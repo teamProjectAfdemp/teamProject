@@ -9,33 +9,27 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages="com.candidjava.spring.controller")
+@ComponentScan(basePackages = "com.candidjava.spring.controller")
 public class SpringConfiguration {
-	
-	
-	@Bean(name="jspViewResolver")
-	public ViewResolver viewResolver()
-	{
-		InternalResourceViewResolver viewResolver=new InternalResourceViewResolver();
-		
-		
-		viewResolver.setPrefix("WEB-INF/views/");
-		viewResolver.setSuffix(".jsp");
-		viewResolver.setViewClass(JstlView.class);
-		return viewResolver;
-	}
-	
-	@Bean
-	public MessageSource messageSource()
-	{
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setBasename("message");
-		return messageSource;
-		
-	}
-        
-      
-	
+
+    @Bean(name = "jspViewResolver")
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+
+        viewResolver.setPrefix("WEB-INF/views/");
+        viewResolver.setSuffix(".jsp");
+        viewResolver.setViewClass(JstlView.class);
+        return viewResolver;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename("message");
+        return messageSource;
+
+    }
 }

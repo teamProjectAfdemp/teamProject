@@ -13,18 +13,16 @@ import com.teamproject.configuration.SpringConfiguration;
 
 public class SpringWebIntializer implements WebApplicationInitializer {
 
-	public void onStartup(ServletContext container) throws ServletException {
-		AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-		context.register(SpringConfiguration.class);
-		context.setServletContext(container);
+    public void onStartup(ServletContext container) throws ServletException {
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.register(SpringConfiguration.class);
+        context.setServletContext(container);
 
-		container.addListener(new ContextLoaderListener(context));
+        container.addListener(new ContextLoaderListener(context));
 
-		ServletRegistration.Dynamic servlet = container.addServlet(
-				"dispatcher", new DispatcherServlet(context));
-		servlet.setLoadOnStartup(1);
-		servlet.addMapping("/");
-
-	}
-
+        ServletRegistration.Dynamic servlet = container.addServlet(
+                "dispatcher", new DispatcherServlet(context));
+        servlet.setLoadOnStartup(1);
+        servlet.addMapping("/");
+    }
 }

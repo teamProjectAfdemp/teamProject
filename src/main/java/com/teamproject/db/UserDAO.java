@@ -33,7 +33,6 @@ public class UserDAO extends Database {
         for (Map<String, Object> row : answer) {
             userID = (Integer) row.get("id");
         }
-
         return userID;
     }
 
@@ -49,7 +48,6 @@ public class UserDAO extends Database {
         for (Map<String, Object> row : answer) {
             newID = (Integer) row.get("id");
         }
-
         return newID != 0;
     }
 
@@ -67,7 +65,6 @@ public class UserDAO extends Database {
             curUser.setId((Integer) row.get("id"));
             curUser.setUsername((String) row.get("username"));
         }
-
     }
 
     public HashMap<Integer, Users> searchForUser(String keyword) {
@@ -82,7 +79,6 @@ public class UserDAO extends Database {
     }
 
     public HashMap<Integer, Users> selectAllUsers() {
-
         String query = "SELECT * FROM `chatapp`.`users`;";
         return getUsersfromQuery(query);
     }
@@ -104,8 +100,6 @@ public class UserDAO extends Database {
 //            user.setActive( ((Integer) row.get("active")) == 1 );
             usersFound.put(user.getId(), user);
         }
-
         return usersFound;
     }
-
 }
