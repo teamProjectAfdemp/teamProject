@@ -6,23 +6,40 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Log in</title>
 <%@include file="links.jsp" %>
+<style><%@include file="/WEB-INF/css/login.css"%></style>
 </head>
 
-<body>
+<body id="LoginForm">
+<div class="container">
+<h1 class="form-heading">login Form</h1>
+<div class="login-form">
+<div class="main-div">
+    <div class="panel">
+   
+   <p>Please enter your email and password</p>
+   </div>
+    <form id="Login">
 
-        <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2" >
-            <h1>User Login</h1>
-            <form action="/login" method="POST" modelAttribute="user">
-                <div class="form-group">
-                    username <br><input type="username" name="username">
-                </div>
-                <div class="form-group">
-                    password <br><input type="password" name="password">
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Log in">
-                </div>
-            </form>
+        <div class="form-group">
+
+
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+
         </div>
+
+        <div class="form-group">
+
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+
+        </div>
+        <div class="forgot">
+        <a href="reset.html">Forgot password?</a>
+</div>
+        <button type="submit" class="btn btn-primary">Login</button>
+
+    </form>
+    </div>
+<p class="botto-text"> Designed by ...</p>
+</div></div></div>
 </body>
 </html>
