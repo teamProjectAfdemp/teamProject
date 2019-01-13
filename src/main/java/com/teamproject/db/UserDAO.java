@@ -85,7 +85,6 @@ public class UserDAO extends Database {
         }
 
         return rowsInserted;
-
     }
 
     public void setUser(User curUser) {

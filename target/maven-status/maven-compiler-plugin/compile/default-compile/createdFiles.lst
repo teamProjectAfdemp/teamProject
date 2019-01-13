@@ -11,7 +11,6 @@ com\teamproject\db\RouteDAOinterface.class
 com\teamproject\db\VehicleDAOinterface.class
 com\teamproject\controller\UserController.class
 com\teamproject\db\UserDAO.class
-com\teamproject\db\MessageDAOinterface.class
 com\teamproject\controller\MessageController.class
 com\teamproject\db\ParticipantDAOinterface.class
 com\teamproject\bean\User.class
