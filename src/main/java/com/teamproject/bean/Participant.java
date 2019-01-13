@@ -1,12 +1,12 @@
 package com.teamproject.bean;
 
 
-public class Participants {
+public class Participant {
     private int id;
     private int route_id;
     private int user_id;
     
-    public Participants(){
+    public Participant(){
         
     }
 

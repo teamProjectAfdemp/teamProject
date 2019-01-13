@@ -1,13 +1,13 @@
 package com.teamproject.bean;
 
 
-public class Posts {
+public class Post {
     private int id;
     private int route_id;
     private int user_id;
     private String post;
     
-    public Posts(){
+    public Post(){
     
     }
 

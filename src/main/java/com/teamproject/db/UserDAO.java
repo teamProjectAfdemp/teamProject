@@ -1,6 +1,6 @@
 package com.teamproject.db;
 
-import com.teamproject.bean.Users;
+import com.teamproject.bean.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -50,8 +50,23 @@ public class UserDAO extends Database {
         }
         return newID != 0;
     }
+    
+     public int checkUsernamePassword(String username, String pass) {
+        int userId = 0;
+        
+        String query = ("SELECT * FROM `users` WHERE `username` = '" + username + "' AND `pass` = '" + pass + "';");
+        
+        Collection<Map<String,Object>> answer = new ArrayList<>();
+        answer = getGenericSelect(query);
+        
+        for (Map<String,Object> row: answer) {
+            userId = (Integer) row.get("id");
+        }
+        
+        return userId;
+    }
 
-    public void setUser(Users curUser) {
+    public void setUser(User curUser) {
 
         String query = "SELECT * FROM `users` "
                 + "WHERE `id` = '" + curUser.getId() + "';";
@@ -67,7 +82,7 @@ public class UserDAO extends Database {
         }
     }
 
-    public HashMap<Integer, Users> searchForUser(String keyword) {
+    public HashMap<Integer, User> searchForUser(String keyword) {
         String like = "'%" + keyword + "%'";
 
         String query = "SELECT * FROM `users` "
@@ -78,20 +93,20 @@ public class UserDAO extends Database {
         return getUsersfromQuery(query);
     }
 
-    public HashMap<Integer, Users> selectAllUsers() {
+    public HashMap<Integer, User> selectAllUsers() {
         String query = "SELECT * FROM `chatapp`.`users`;";
         return getUsersfromQuery(query);
     }
 
-    public HashMap<Integer, Users> getUsersfromQuery(String query) {
+    public HashMap<Integer, User> getUsersfromQuery(String query) {
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
 
-        HashMap<Integer, Users> usersFound = new HashMap<>();
+        HashMap<Integer, User> usersFound = new HashMap<>();
 
         for (Map<String, Object> row : answer) {
-            Users user = new Users();
+            User user = new User();
             user.setId((Integer) row.get("id"));
             user.setUsername((String) row.get("username"));
             user.setFname((String) row.get("fname"));

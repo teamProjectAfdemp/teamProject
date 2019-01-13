@@ -3,7 +3,7 @@ package com.teamproject.bean;
 import java.util.Date;
 
 
-public class Routes {
+public class Route {
     private int id;
     private int creator_id;
     private String departure;
@@ -12,7 +12,7 @@ public class Routes {
     private Date ar_time;
     private String description;
     
-    public Routes(){
+    public Route(){
         
     }
 
