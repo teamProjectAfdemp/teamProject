@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UserController {
 
-    User users = new User();
     User curUser;
-//        public ArrayList<User> allUsers  = new ArrayList<>();
-    
     
     @GetMapping("/profile")
     public ModelAndView userProfile() {
