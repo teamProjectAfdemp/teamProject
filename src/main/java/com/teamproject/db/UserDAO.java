@@ -65,6 +65,28 @@ public class UserDAO extends Database {
         
         return userId;
     }
+     
+      public int createUser(String username, String pass, String fname, String lname) {
+        Connection conn = createConnection();
+        PreparedStatement prest = null;
+        int rowsInserted = 0;
+        String query =  "INSERT INTO `users` (`username`,`pass`,`role_id`,`fname`,`lname`)"+
+                        "VALUES (?,?,?,?,?);";
+        try {
+            prest = conn.prepareStatement(query);
+            prest.setString(1,username);
+            prest.setString(2,pass);
+            prest.setInt(3,2);  //create a user with reader role
+            prest.setString(4,fname);
+            prest.setString(5,lname);
+            rowsInserted = prest.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rowsInserted;
+
+    }
 
     public void setUser(User curUser) {
 

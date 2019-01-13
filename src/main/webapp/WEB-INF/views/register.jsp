@@ -11,8 +11,8 @@
 <body>
 
         <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2" >
-            <h1>User Login</h1>
-            <form action="/register" method="POST" modelAttribute="user">
+            <h1>User Sign up</h1>
+            <form action="/signup" method="POST" modelAttribute="user">
                 <div class="form-group">
                     username <br><input type="username" name="username">
                 </div>
@@ -26,7 +26,7 @@
                     last name <br><input type="text" name="lname">
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Log in">
+                    <input type="submit" value="Sign up">
                 </div>
             </form>
         </div>

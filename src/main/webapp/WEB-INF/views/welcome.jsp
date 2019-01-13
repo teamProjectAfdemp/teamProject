@@ -12,8 +12,7 @@
 
         <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2" >
             <h1>Route Planning</h1>
-            <a href="/login"> Login </a><br>
-            <a href="/register"> Sign up</a><br>   
+            <jsp:include page = "${welcomeInclude}.jsp"/>
         </div>
 </body>
 </html>

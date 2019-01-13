@@ -5,10 +5,15 @@
 <html>
    <head>
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <title>Insert title here</title>
+       <title>${curUser.username}'s Profile</title>
+       <%@include file="links.jsp" %>
    </head>
     <body>
-        <h2>User Info</h2>
+        <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2" >
+        <h2>${curUser.username}'s Profile</h2>
+        <h5><a href="/allusers"> View All Users </a></h5>
+        <h5><a href="/allroutes"> View All Routes </a></h5>
+        </div>
         
        
     </body>

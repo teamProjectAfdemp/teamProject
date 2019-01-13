@@ -21,82 +21,24 @@ public class UserController {
     User users = new User();
     User curUser;
 //        public ArrayList<User> allUsers  = new ArrayList<>();
-
-    @GetMapping("/login")
-    public ModelAndView loginGet(User user) {
-        HttpSession session = session();
-        curUser = (User) session.getAttribute("curUser");
-        if (curUser != null) {
-            return new ModelAndView("forward:/profile");
-        }
-        return new ModelAndView("login");
-    }
-
-    @PostMapping("/login")
-    public ModelAndView loginPost(User user) {
-
-        ModelAndView model;
-        UserDAO userDao = UserDAO.getInstance();
-        int userId = userDao.checkUsernamePassword(user.getUsername(), user.getPassword());
-
-        if (userId == 0) {
-            return new ModelAndView("login");
-        }
-
-        curUser = new User();
-        curUser.setId(userId);
-        HttpSession session = session();
-        userDao.setUser(curUser);
-        session.setAttribute("curUser", curUser);
-        model = new ModelAndView("forward:/profile");
-        // user bean will be automatically binded to view . refer @ModelAttribute
-
-        return model;
-    }
-
-    @GetMapping("/signup")
-    public ModelAndView signUp(User user) {
-        return new ModelAndView("error");
-    }
-
-    @GetMapping("/logout")
-    public ModelAndView logOut() {
-        HttpSession session = session();
-        session.setAttribute("curUser", null);
-        return new ModelAndView("chatup");
-    }
-
-    @PostMapping("/register")
-    public ModelAndView create(User user) {
-        ModelAndView model = new ModelAndView("view");
-        // user bean will be automatically binded to view . refer @ModelAttribute
-
-        users.setFname(user.getFname());
-        users.setLname(user.getLname());
-        users.setUsername(user.getUsername());
-//			users.setPassword(user.getPassword());
-        return model;
-    }
-
-    @GetMapping("/register")
-    public ModelAndView viewData(User user) {
-
-        ModelAndView model = new ModelAndView("registeruser");
-        return model;
-    }
     
     
     @GetMapping("/profile")
     public ModelAndView userProfile() {
-        ModelAndView model = new ModelAndView("profile");
-        return model;
+        // if no user is logged in go to welcome page!
+        // else go to profile
+        return new ModelAndView( (session().getAttribute("curUser") != null)? "profile": "redirect:/");
     }
     
     
     @GetMapping("/allusers")
     public ModelAndView getAllUsers() {
+        // if no user is logged in go to welcome page!
+        if (session().getAttribute("curUser") == null) 
+            return new ModelAndView("redirect:/");
+        
         ModelAndView model = new ModelAndView("viewUsers");
-
+        
         ArrayList<User> allUsers = new ArrayList<>();
 
         UserDAO userDAO = UserDAO.getInstance();
