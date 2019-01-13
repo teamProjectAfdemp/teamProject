@@ -1,4 +1,4 @@
-package com.teamproject.db;
+package com.teamproject.db.Interface;
 
 import java.util.Date;
 
