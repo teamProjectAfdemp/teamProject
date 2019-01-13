@@ -1,7 +1,6 @@
 package com.teamproject.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,11 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamproject.bean.User;
 import com.teamproject.db.UserDAO;
 import javax.servlet.http.HttpSession;
-import org.springframework.http.HttpStatus;
-import static org.springframework.http.RequestEntity.method;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -31,8 +25,11 @@ public class WelcomeController {
     public ModelAndView welcome(User user) {
         ModelAndView model = new ModelAndView("welcome");
         String includedLinks;
-
+        
+        // if user is not logged in return log in and sign up
+        // if user is logged in return log out!
         includedLinks = (session().getAttribute("curUser") == null) ? "welcomeLogin" : "welcomeLogout";
+        // add the included file name as attribute to the ModelView
         model.addObject("welcomeInclude", includedLinks);
 
         return model;

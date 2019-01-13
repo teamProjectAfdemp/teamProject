@@ -11,7 +11,7 @@
          <%@include file="links.jsp" %>
     </head>
     <body>
-        <h5> <a href="/profile"> Back to profile </a> </h5>
+        <%@include file="userinfo.jsp" %>
         <h2>Users: </h2>
         
         <table class="table"> 
