@@ -62,7 +62,6 @@ public class UserDAO extends Database {
         for (Map<String,Object> row: answer) {
             userId = (Integer) row.get("id");
         }
-        
         return userId;
     }
      
@@ -83,7 +82,6 @@ public class UserDAO extends Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return rowsInserted;
     }
 
