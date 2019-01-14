@@ -9,29 +9,33 @@
         <style><%@include file="/WEB-INF/css/login.css"%></style>
     </head>
 
-    <body id="LoginForm">
+    <body>
         <div class="container">
-            <h1 class="form-heading"></h1>
-            <div class="login-form">
-                <div class="main-div">
-                    <div class="panel">
-                        <h2>Log in</h2>
-                        <p>Please enter your username and password</p>
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+                        <div class="card-img-left d-none d-md-flex">
+                            <!-- Background image for card set in CSS! -->
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Log in</h5>
+                            <form class="form-signin" id="Login" action="/login" method="POST" modelAttribute="user">
+                                <div class="form-label-group">
+                                    <input type="username" id="inputUserame" class="form-control" placeholder="Username" name="username" >
+                                    <label for="inputUserame">Username</label>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" >
+                                    <label for="inputPassword">Password</label>
+                                </div>
+                                <hr>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button>
+                                <a class="d-block text-center mt-2 small" href="/signup">Sign Up</a>
+                                <hr class="my-4">
+                            </form>
+                        </div>
                     </div>
-                    <form id="Login" action="/login" method="POST" modelAttribute="user">
-                        <div class="form-group">
-                            <input type="username" class="form-control" id="inputEmail" placeholder="username" name="username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
-                        </div>
-                        <div class="forgot">
-                            <a href="reset.html">Forgot password?</a>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
                 </div>
-                <p class="botto-text"> Designed by E-Team</p>
             </div>
         </div>
     </body>

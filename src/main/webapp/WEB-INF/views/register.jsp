@@ -8,33 +8,42 @@
         <%@include file="links.jsp" %>
         <style><%@include file="/WEB-INF/css/login.css"%></style>
     </head>
-
-    <body id="LoginForm">
+    <body>
         <div class="container">
-            <h1 class="form-heading"></h1>
-            <div class="login-form">
-                <div class="main-div">
-                    <div class="panel">
-                        <h2>Register</h2>
-                        <p></p>
+            <div class="row">
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+                        <div class="card-img-left d-none d-md-flex">
+                            <!-- Background image for card set in CSS! -->
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Register</h5>
+                            <form class="form-signin" id="Register" action="/signup" method="POST" modelAttribute="user">
+                                <div class="form-label-group">
+                                    <input type="text" id="inputUserame" class="form-control" placeholder="Username" name="username">
+                                    <label for="inputUserame">Username</label>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
+                                    <label for="inputPassword">Password</label>
+                                </div>
+                                <hr>
+                                <div class="form-label-group">
+                                    <input type="text" id="inputText" class="form-control" placeholder="First Name" name="fname">
+                                    <label for="inputText">First Name</label>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="text" id="inputConfirmPassword" class="form-control" placeholder="Last Name" name="lname">
+                                    <label for="inputConfirmPassword">Last Name</label>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                                <a class="d-block text-center mt-2 small" href="/login">Sign In</a>
+                                <hr class="my-4">
+                            </form>
+                        </div>
                     </div>
-                    <form id="Register" action="/signup" method="POST" modelAttribute="user">
-                        <div class="form-group">
-                            <input type="username" class="form-control" placeholder="Username" name="username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" name="password">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="First Name" name="fname">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Last Name" name="lname">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </form>
                 </div>
-                <p class="botto-text"> Designed by E-Team</p>
-            </div></div>
+            </div>
+        </div>
     </body>
 </html>
