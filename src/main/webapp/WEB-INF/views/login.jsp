@@ -11,11 +11,12 @@
 
     <body id="LoginForm">
         <div class="container">
-            <h1 class="form-heading">login Form</h1>
+            <h1 class="form-heading"></h1>
             <div class="login-form">
                 <div class="main-div">
                     <div class="panel">
-                        <p>Please enter your email and password</p>
+                        <h2>Log in</h2>
+                        <p>Please enter your username and password</p>
                     </div>
                     <form id="Login" action="/login" method="POST" modelAttribute="user">
                         <div class="form-group">
@@ -30,7 +31,7 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
                 </div>
-                <p class="botto-text"> Designed by ...</p>
+                <p class="botto-text"> Designed by E-Team</p>
             </div>
         </div>
     </body>
