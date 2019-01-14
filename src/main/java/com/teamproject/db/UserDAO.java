@@ -65,6 +65,22 @@ public class UserDAO extends Database {
         return userId;
     }
      
+     public User getUserById(int id){
+         User user = new User();
+         String query = ("SELECT * FROM `Users` WHERE `id` = '" + id + "' ;");
+         
+         Collection<Map<String,Object>> answer = new ArrayList<>();
+         
+          for (Map<String,Object> row: answer) {
+            user.setFname( (String) row.get("fname"));
+            user.setLname( (String) row.get("lname"));
+            user.setUsername( (String) row.get("username"));
+            user.setId( (Integer) row.get("id") );
+        }
+         
+         return user;
+     }
+     
       public int createUser(String username, String pass, String fname, String lname) {
         Connection conn = createConnection();
         PreparedStatement prest = null;
@@ -135,5 +151,21 @@ public class UserDAO extends Database {
             usersFound.put(user.getId(), user);
         }
         return usersFound;
+    }
+    
+       
+    public int updateUser(User user) {
+        
+        String query = "UPDATE `Users` SET `fname` = '"+ user.getFname() + 
+               "`lname` = '"+ user.getLname() + "' WHERE `id` = '" + user.getId()+ "';";
+
+        return execUpdateInsert(query);
+    }
+
+    public int updatePass(User user) {
+
+        String query = "UPDATE `Users` SET `password` = '"+ user.getPassword() + "' WHERE `id` = '" + user.getId() + "';";
+        return execUpdateInsert(query);
+        
     }
 }
