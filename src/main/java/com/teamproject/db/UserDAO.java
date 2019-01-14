@@ -25,7 +25,7 @@ public class UserDAO extends Database {
     public int checkUser(String username) {
         int userID = 0;
 
-        String query = "SELECT * FROM `users` WHERE `username` = \'" + username + "\';";
+        String query = "SELECT * FROM `Users` WHERE `username` = \'" + username + "\';";
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
@@ -40,7 +40,7 @@ public class UserDAO extends Database {
         boolean userAuth = false;
         int newID = 0;
 
-        String query = "SELECT `id` FROM `users` WHERE `id` = '" + userID + "' AND `pass` = '" + pass + "';";
+        String query = "SELECT `id` FROM `Users` WHERE `id` = '" + userID + "' AND `password` = '" + pass + "';";
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
@@ -54,7 +54,7 @@ public class UserDAO extends Database {
      public int checkUsernamePassword(String username, String pass) {
         int userId = 0;
         
-        String query = ("SELECT * FROM `users` WHERE `username` = '" + username + "' AND `pass` = '" + pass + "';");
+        String query = ("SELECT * FROM `Users` WHERE `username` = '" + username + "' AND `password` = '" + pass + "';");
         
         Collection<Map<String,Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
@@ -69,15 +69,15 @@ public class UserDAO extends Database {
         Connection conn = createConnection();
         PreparedStatement prest = null;
         int rowsInserted = 0;
-        String query =  "INSERT INTO `users` (`username`,`pass`,`role_id`,`fname`,`lname`)"+
-                        "VALUES (?,?,?,?,?);";
+        String query =  "INSERT INTO `Users` (`username`,`password`,`fname`,`lname`)"+
+                        "VALUES (?,?,?,?);";
         try {
             prest = conn.prepareStatement(query);
             prest.setString(1,username);
             prest.setString(2,pass);
-            prest.setInt(3,2);  //create a user with reader role
-            prest.setString(4,fname);
-            prest.setString(5,lname);
+            //prest.setInt(3,2);  //create a user with reader role
+            prest.setString(3,fname);
+            prest.setString(4,lname);
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,7 +87,7 @@ public class UserDAO extends Database {
 
     public void setUser(User curUser) {
 
-        String query = "SELECT * FROM `users` "
+        String query = "SELECT * FROM `Users` "
                 + "WHERE `id` = '" + curUser.getId() + "';";
 
         //Execute the query and Get the ArrayList of maps (the ROWS!)
@@ -104,7 +104,7 @@ public class UserDAO extends Database {
     public HashMap<Integer, User> searchForUser(String keyword) {
         String like = "'%" + keyword + "%'";
 
-        String query = "SELECT * FROM `users` "
+        String query = "SELECT * FROM `Users` "
                 + "WHERE `username` LIKE " + like
                 + " OR `fname` LIKE " + like
                 + " OR `lname` LIKE " + like + ";";
@@ -113,7 +113,7 @@ public class UserDAO extends Database {
     }
 
     public HashMap<Integer, User> selectAllUsers() {
-        String query = "SELECT * FROM `chatapp`.`users`;";
+        String query = "SELECT * FROM `teamproject`.`Users`;";
         return getUsersfromQuery(query);
     }
 
