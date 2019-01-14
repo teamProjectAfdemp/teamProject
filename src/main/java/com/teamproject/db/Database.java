@@ -15,12 +15,12 @@ import java.util.Map;
 public class Database {
 
     protected static Class dbClass;
-    protected String server = "localhost:3306";
+    protected String server = "188.166.121.77:3306";
     protected static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     protected static final String PREFACE = "jdbc:mysql://";
-    protected String database = "chatapp";
-    protected String username = "root";
-    protected String password = "kiriosroot";
+    protected String database = "teamproject";
+    protected String username = "remoteuser";
+    protected String password = "password321";
     protected String options = "?zeroDateTimeBehavior=convertToNull&serverTimezone=Europe/Athens&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true";
     protected String urlDB;
 
