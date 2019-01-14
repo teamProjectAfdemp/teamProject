@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
@@ -46,5 +48,30 @@ public class UserController {
         model.addObject("allUsers", allUsers);
 
         return model;
+    }
+    
+    @RequestMapping(value = "/edituser/{id}", method=RequestMethod.GET)
+    public ModelAndView getEditUser(@PathVariable("id") String id) {
+        
+        if (session().getAttribute("curUser") == null) 
+            return new ModelAndView("redirect:/");
+
+        User UserToEdit =  UserDAO.getInstance().getUserById(  Integer.getInteger(id) );
+                
+        ModelAndView model = new ModelAndView("edituser");
+        model.addObject("UserToEdit",UserToEdit);
+        
+        return model;
+    }
+    
+    @RequestMapping(value = "/edituser/{id}", method=RequestMethod.POST)
+    public ModelAndView postEditUser(@PathVariable("id") String id, User user){
+        
+        if (session().getAttribute("curUser") == null) 
+            return new ModelAndView("redirect:/");
+        
+        int updated = UserDAO.getInstance().updateUser(user);
+
+        return new ModelAndView("redirect:/allusers");
     }
 }
