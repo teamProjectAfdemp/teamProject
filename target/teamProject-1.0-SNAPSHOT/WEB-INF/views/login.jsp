@@ -17,12 +17,12 @@
                     <div class="panel">
                         <p>Please enter your email and password</p>
                     </div>
-                    <form id="Login">
+                    <form id="Login" action="/login" method="POST" modelAttribute="user">
                         <div class="form-group">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+                            <input type="username" class="form-control" id="inputEmail" placeholder="username" name="username">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
                         </div>
                         <div class="forgot">
                             <a href="reset.html">Forgot password?</a>
