@@ -12,29 +12,25 @@
     </head>
     <body>
         <%@include file="userinfo.jsp" %>
-        <h2>Routes: </h2>
+        <h2>Users: </h2>
         
         <table class="table"> 
             <thead>
                 <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Starts</th>
-                    <th scope="col">Ends</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Dep Time</th>
-                    <th scope="col">Ar Time</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
                 </tr>
             </thead>
             <tbody>
                 <% int i =1;%>
-                <c:forEach items="${allRoutes}" var="route">
+                <c:forEach items="${allUsers}" var="user">
                     <tr>
                         <td><%= i %></td>
-                        <td>${route.departure}</td>
-                        <td>${route.destination}</td>
-                        <td>${route.description}</td>
-                        <td>${route.dep_time}</td>
-                        <td>${route.ar_time}</td>
+                        <td>${user.username}</td>
+                        <td>${user.fname}</td>
+                        <td>${user.lname}</td>
                         <td><input type="button" action="update" value="Update"></th>
                         <td><input type="button" action="delete" value="Delete"></th>
                         <%i++;%>

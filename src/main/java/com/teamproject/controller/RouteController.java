@@ -4,9 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import static com.teamproject.controller.WelcomeController.session;
-import com.teamproject.db.UserDAO;
+import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,14 +25,14 @@ public class RouteController {
         
         ModelAndView model = new ModelAndView("viewRoutes");
         
-        ArrayList<User> allRoutes = new ArrayList<>();
+        ArrayList<Route> allRoutes = new ArrayList<>();
         
-//        RouteDAO routeDAO =  RouteDAO.getInstance();
-//        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
-//
-//        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-//
-//        model.addObject("allRoutes", allRoutes);
+        RouteDAO routeDAO =  RouteDAO.getInstance();
+        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
+
+        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
+
+        model.addObject("allRoutes", allRoutes);
 
         return model;
     }
