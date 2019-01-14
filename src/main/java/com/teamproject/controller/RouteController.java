@@ -15,7 +15,6 @@ import java.util.HashMap;
 public class RouteController {
 
     User curUser;
-   
     
     @GetMapping("/allroutes")
     public ModelAndView getAllRoutes() {
