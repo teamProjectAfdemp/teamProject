@@ -16,5 +16,6 @@ com\teamproject\controller\MessageController.class
 com\teamproject\db\Interface\VehicleDAOinterface.class
 com\teamproject\bean\User.class
 com\teamproject\bean\Via.class
+com\teamproject\controller\RouteController.class
 com\teamproject\bean\Vehicle.class
 com\teamproject\controller\WelcomeController.class
