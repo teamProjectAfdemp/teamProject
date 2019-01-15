@@ -11,7 +11,7 @@
          <%@include file="links.jsp" %>
     </head>
     <body>
-        <%@include file="userinfo.jsp" %>
+        <%@include file="navmenu.jsp" %>
         <h2>Users: </h2>
         
         <table class="table"> 
@@ -31,8 +31,9 @@
                         <td>${user.username}</td>
                         <td>${user.fname}</td>
                         <td>${user.lname}</td>
-                        <td><input type="button" action="update" value="Update"></th>
-                        <td><input type="button" action="delete" value="Delete"></th>
+                        <!--<td><form > <input type="button" value="Update"></form></td>-->
+                        <td><a href="/edituser${user.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Update</a></td>
+                        <td><a href="http://localhost:8080/deleteuser/${user.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Delete</a></td>
                         <%i++;%>
                     </tr>
                 </c:forEach>
