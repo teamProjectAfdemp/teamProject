@@ -11,7 +11,7 @@
          <%@include file="links.jsp" %>
     </head>
     <body>
-        <%@include file="userinfo.jsp" %>
+        <%@include file="navmenu.jsp" %>
         <h2>Users: </h2>
         
         <table class="table"> 
