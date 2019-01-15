@@ -40,7 +40,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             prest.setString(3,route.getDestination());
 //            prest.setString(4,"NOW()");
 //            prest.setString(5,"NOW()");
-            prest.setString(6,route.getDescription());
+            prest.setString(4,route.getDescription());
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
