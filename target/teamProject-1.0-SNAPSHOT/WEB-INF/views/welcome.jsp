@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
         <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2" >
             <h1>Route Planning</h1>
             <!--
