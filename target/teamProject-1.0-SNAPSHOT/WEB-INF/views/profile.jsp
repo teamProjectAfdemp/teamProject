@@ -9,7 +9,8 @@
        <%@include file="links.jsp" %>
    </head>
     <body>
-        <%@include file="userinfo.jsp" %>
+        <%--<%@include file="userinfo.jsp" %>--%>
+        <%@include file="navmenu.jsp" %>
         <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2" >
         <h2>${curUser.username}'s Profile</h2>
         <h5><a href="/allusers"> View All Users </a></h5>
