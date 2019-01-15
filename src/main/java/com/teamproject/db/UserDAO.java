@@ -1,6 +1,8 @@
 package com.teamproject.db;
 
+import com.teamproject.db.RouteDAO;
 import com.teamproject.bean.User;
+import static com.teamproject.db.RouteDAO.routeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -102,7 +104,6 @@ public class UserDAO extends Database {
     }
 
     public void setUser(User curUser) {
-
         String query = "SELECT * FROM `Users` "
                 + "WHERE `id` = '" + curUser.getId() + "';";
 
