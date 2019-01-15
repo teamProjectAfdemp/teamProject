@@ -25,11 +25,11 @@ public class SpringConfiguration {
         return viewResolver;
     }
 
-    @Bean
-    public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("message");
-        return messageSource;
-
-    }
+//    @Bean
+//    public MessageSource messageSource() {
+//        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+//        messageSource.setBasename("message");
+//        return messageSource;
+//
+//    }
 }
