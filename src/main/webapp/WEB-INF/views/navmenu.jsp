@@ -24,10 +24,10 @@
                     <a class="nav-link" href="/allroutes" >Find Routes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/allusers">Create A Route</a>
+                    <a class="nav-link" href="/addroute">Create A Route</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/addroute">My Routes</a>
+                    <a class="nav-link" href="/allusers">My Routes</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto nav-flex-icons">
