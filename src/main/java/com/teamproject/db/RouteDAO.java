@@ -27,7 +27,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
     }
 
     @Override
-    public int createRoute(int creator_id, String departure, String destination, String description) {
+    public int createRoute(Route route) {
         Connection conn = createConnection();
         PreparedStatement prest = null;
         int rowsInserted = 0;
@@ -35,16 +35,17 @@ public class RouteDAO extends Database implements RouteDAOinterface{
                         "VALUES (?,?,?,?,?,?);";
         try {
             prest = conn.prepareStatement(query);
-            prest.setInt(1,creator_id);
-            prest.setString(2,departure);
-            prest.setString(3,destination);
-            prest.setString(4,"NOW()");
-            prest.setString(5,"NOW()");
-            prest.setString(6,description);
+            prest.setInt(1,route.getCreator_id());
+            prest.setString(2,route.getDeparture());
+            prest.setString(3,route.getDestination());
+//            prest.setString(4,"NOW()");
+//            prest.setString(5,"NOW()");
+            prest.setString(6,route.getDescription());
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEE " +route.getDeparture());
         return rowsInserted;
     }
 

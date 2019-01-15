@@ -26,6 +26,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/allusers">My Route</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addroute">Add Route</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto nav-flex-icons">
                 <li class="nav-item avatar dropdown">

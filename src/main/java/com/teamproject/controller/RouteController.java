@@ -10,6 +10,10 @@ import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RouteController {
@@ -34,5 +38,25 @@ public class RouteController {
         model.addObject("allRoutes", allRoutes);
 
         return model;
+    }
+    
+    @GetMapping("/addroute")
+    public ModelAndView signUpPost(User user) {
+        ModelAndView model = new ModelAndView("addroute");
+        return model;
+    }
+    
+    @PostMapping("/addroute")
+    public ModelAndView signUp(Route route) {
+
+        RouteDAO routeDAO = RouteDAO.getInstance();
+//        UserDAO userDao = UserDAO.getInstance();
+        // if user exists reload page!
+//       if  (userDao.checkUser(user.getUsername()) != 0) 
+//           return new ModelAndView("redirect:/signup");
+        // if user is created go to login page
+       if (routeDAO.createRoute(route) != 0)
+           return new ModelAndView("redirect:/login");
+       else return new ModelAndView("error");
     }
 }
