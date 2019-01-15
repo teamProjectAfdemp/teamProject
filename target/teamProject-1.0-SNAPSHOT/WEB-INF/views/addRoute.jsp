@@ -1,17 +1,57 @@
-<%-- 
-    Document   : addRoute
-    Created on : Jan 15, 2019, 2:24:06 PM
-    Author     : Mike
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Add Route</title>
+        <%@include file="links.jsp" %>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="/addRoute" method="POST" modelAttribute="UserToEdit"> 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCrator">Creator</label>
+                    <input type="text" class="form-control" placeholder="Creator" name="creator">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputDeparture">Departure</label>
+                    <input type="text" class="form-control" placeholder="Departure" name="departure">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDestination">Destination</label>
+                <input type="text" class="form-control" placeholder="Destination" name="destination">
+            </div>
+            <div class="form-group">
+                <label for="inputDepTime">Dep Time</label>
+                <input type="text" class="form-control" placeholder="Dep Time" name="depTime">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputArTime">Ar Time</label>
+                    <input type="text" class="form-control">
+                </div>
+                <!--    <div class="form-group col-md-4">
+                      <label for="inputState">State</label>
+                      <select id="inputState" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                      </select>
+                    </div>-->
+                <div class="form-group col-md-2">
+                    <label for="inputDescription">Description</label>
+                    <input type="text" class="form-control" placeholder="Description" name="description">
+                </div>
+            </div>
+            <!--  <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                    Check me out
+                  </label>
+                </div>
+              </div>-->
+            <button type="submit" class="btn btn-primary">Create a route</button>
+        </form>
     </body>
 </html>
