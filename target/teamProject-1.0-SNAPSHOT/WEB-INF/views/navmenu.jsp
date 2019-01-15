@@ -21,13 +21,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/allroutes" >Routes</a>
+                    <a class="nav-link" href="/allroutes" >Find Routes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/allusers">My Route</a>
+                    <a class="nav-link" href="/allusers">Create A Route</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/addroute">Add Route</a>
+                    <a class="nav-link" href="/addroute">My Routes</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto nav-flex-icons">
