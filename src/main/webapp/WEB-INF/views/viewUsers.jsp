@@ -31,9 +31,9 @@
                         <td>${user.username}</td>
                         <td>${user.fname}</td>
                         <td>${user.lname}</td>
-                        <td><form action="edituser/${user.id}"> <input type="button" value="Update"></form></td>
-                        <td><a href="edituser/${user.id}"> Update></a></td>
-                        <td><form action="deleteuser/${user.id}"> <input type="button" value="Delete"></form></td>
+                        <!--<td><form > <input type="button" value="Update"></form></td>-->
+                        <td><a href="/edituser${user.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Update</a></td>
+                        <td><a href="http://localhost:8080/deleteuser/${user.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Delete</a></td>
                         <%i++;%>
                     </tr>
                 </c:forEach>
