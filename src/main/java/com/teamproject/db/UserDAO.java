@@ -56,9 +56,9 @@ public class UserDAO extends Database {
     public int checkUsernamePassword(String username, String pass) {
         int userId = 0;
 
-        String query = ("SELECT * FROM `Users` WHERE `username` = '" + username + "' AND `password` = '" + pass + "';");
+        String query = ("SELECT * FROM `teamproject`.`Users` WHERE `username` = '" + username + "' AND `password` = '" + pass + "';");
 
-        Collection<Map<String, Object>> answer = new ArrayList<>();
+        Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
 
         for (Map<String, Object> row : answer) {
@@ -69,12 +69,13 @@ public class UserDAO extends Database {
 
     public User getUserById(int id) {
         User user = new User();
-        String query = ("SELECT * FROM `teamproject`.`Users` WHERE `id` = '" + id + "' ;");
+        
+        String query = ("SELECT * FROM `teamproject`.`Users` WHERE `id` = '" + id + "';");
 
         Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
         
-        for ( Map<String, Object> row : answer) {
+        for (Map<String, Object> row : answer) {
             user.setFname((String) row.get("fname"));
             user.setLname((String) row.get("lname"));
             user.setUsername((String) row.get("username"));
@@ -158,8 +159,8 @@ public class UserDAO extends Database {
 
     public int updateUser(User user) {
 
-        String query = "UPDATE `Users` SET `fname` = '" + user.getFname()
-                + "`lname` = '" + user.getLname() + "' WHERE `id` = '" + user.getId() + "';";
+        String query = "UPDATE `teamproject`.`Users` SET `fname` = '" + user.getFname()
+                + "' ,`lname` = '" + user.getLname() + "' WHERE `id` = '" + user.getId() + "';";
 
         return execUpdateInsert(query);
     }

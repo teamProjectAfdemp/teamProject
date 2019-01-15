@@ -12,18 +12,18 @@
 
         <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2" >
             <h1>User Edit</h1>
-            <form action="/updateuser" method="POST" modelAttribute="UserToEdit">
+            <form action="/updateuser" method="POST" modelAttribute="user">
                 <div class="form-group">
-                    username <br><input disabled type="username" name="username" value="${UserToEdit.username}">
+                    username <br><input disabled type="username" name="username" placeholder="${userToEdit.username}">
                 </div>
                 <div class="form-group">
-                    first name <br><input type="text" name="fname" value="${UserToEdit.fname}">
+                    first name <br><input type="text" name="fname" placeholder="${userToEdit.fname}">
                 </div>
                 <div class="form-group">
-                    last name <br><input type="text" name="lname" value="${UserToEdit.lname}">
+                    last name <br><input type="text" name="lname" placeholder="${userToEdit.lname}">
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Sumbit">
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Update User</button>
                 </div>
             </form>
         </div>
