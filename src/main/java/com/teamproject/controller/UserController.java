@@ -55,9 +55,11 @@ public class UserController {
         
         if (session().getAttribute("curUser") == null) 
             return new ModelAndView("redirect:/");
-
-        User UserToEdit =  UserDAO.getInstance().getUserById(  Integer.getInteger(id) );
-                
+        
+        System.out.println("THE ID IS " + id);
+        User UserToEdit =  UserDAO.getInstance().getUserById( Integer.getInteger(id) );
+         
+        System.out.println("USER TO EDIT" + UserToEdit);
         ModelAndView model = new ModelAndView("edituser");
         model.addObject("UserToEdit",UserToEdit);
         
