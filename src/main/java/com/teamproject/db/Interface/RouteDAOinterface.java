@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 public interface RouteDAOinterface {
-    void createRoute(int creator_id, String departure, String destination, Date dep_time, Date ar_time, String description);
+    int createRoute(int creator_id, String departure, String destination, String description);
     void updateRoute(int id, int creator_id, String departure, String destination, Date dep_time, Date ar_time, String description);
     void deleteRoute();
     void deleteRouteById(int id);
