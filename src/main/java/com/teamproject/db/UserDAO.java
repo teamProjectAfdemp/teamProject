@@ -53,7 +53,7 @@ public class UserDAO extends Database {
         return newID != 0;
     }
     
-     public int checkUsernamePassword(String username, String pass) {
+    public int checkUsernamePassword(String username, String pass) {
         int userId = 0;
         
         String query = ("SELECT * FROM `Users` WHERE `username` = '" + username + "' AND `password` = '" + pass + "';");
@@ -67,7 +67,7 @@ public class UserDAO extends Database {
         return userId;
     }
      
-     public User getUserById(int id){
+    public User getUserById(int id){
          User user = new User();
          String query = ("SELECT * FROM `Users` WHERE `id` = '" + id + "' ;");
          
