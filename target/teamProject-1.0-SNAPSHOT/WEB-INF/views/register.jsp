@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sign Up</title>
         <%@include file="links.jsp" %>
-        <style><%@include file="/WEB-INF/css/login.css"%></style>
+    <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="container">

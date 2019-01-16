@@ -79,9 +79,12 @@ public class UserDAO extends Database {
             user.setFname((String) row.get("fname"));
             user.setLname((String) row.get("lname"));
             user.setUsername((String) row.get("username"));
-            user.setId((Integer) row.get("id"));
+            user.setId( (Integer) row.get("id"));
+            System.out.println(row.get("id"));
             System.out.println("ONE MORE USER");
         }
+        
+        System.out.println(user.getId());
 
         return user;
     }
@@ -161,8 +164,10 @@ public class UserDAO extends Database {
 
         String query = "UPDATE `teamproject`.`Users` SET `fname` = '" + user.getFname()
                 + "' ,`lname` = '" + user.getLname() + "' WHERE `id` = '" + user.getId() + "';";
-
+        
+        System.out.println(query);
         return execUpdateInsert(query);
+        
     }
 
     public int updatePass(User user) {

@@ -10,6 +10,7 @@ import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.UserDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
@@ -21,17 +22,22 @@ public class UserController {
     public ModelAndView userProfile() {
         // if no user is logged in go to welcome page!
         // else go to profile
-        return new ModelAndView( (session().getAttribute("curUser") != null)? "profile": "redirect:/");
+        if (session().getAttribute("curUser") == null) return new ModelAndView("redirect:/");
+        
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "route");
+        return model;
     }
     
     
     @GetMapping("/allusers")
-    public ModelAndView getAllUsers() {
+    public ModelAndView getAllUsers(User user) {
         // if no user is logged in go to welcome page!
         if (session().getAttribute("curUser") == null) 
             return new ModelAndView("redirect:/");
         
-        ModelAndView model = new ModelAndView("viewUsers");
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "viewUsers");
         
         ArrayList<User> allUsers = new ArrayList<>();
 
@@ -46,27 +52,45 @@ public class UserController {
     }
     
     @GetMapping("/edituser{id}")
-    public ModelAndView getEditUser(@PathVariable int id, User user) {
+    public ModelAndView getEditUser(@PathVariable("id") int id, User updatedUser) {
         
         if (session().getAttribute("curUser") == null) 
             return new ModelAndView("redirect:/");
 
+        System.out.println(id);
         User userToEdit =  UserDAO.getInstance().getUserById( id );
+        
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "edituserform");
+        model.addObject("userToEdit",userToEdit);
 
-        return  new ModelAndView("/edituserform","userToEdit",userToEdit);
+        return  model;
     }
     
    
     
     @PostMapping("/updateuser")
-    public ModelAndView postEditUser(User user){
+    public ModelAndView postEditUser(@ModelAttribute("updatedUser")User updatedUser){
         
         if (session().getAttribute("curUser") == null) 
             return new ModelAndView("redirect:/");
         
-        System.out.println(user.getUsername());
-        int updated = UserDAO.getInstance().updateUser(user);
+        System.out.println(updatedUser.getId());
+        System.out.println(updatedUser.getUsername());
+        int updated = UserDAO.getInstance().updateUser(updatedUser);
         
         return new ModelAndView("redirect:/allusers");
     }
+    
+    @GetMapping("/deleteuser{id}")
+    public ModelAndView postDeleteUser(@ModelAttribute("userToDelete")User userToDelete){
+        
+        if (session().getAttribute("curUser") == null) 
+            return new ModelAndView("redirect:/");
+        
+//        int updated = UserDAO.getInstance().updateUser(updatedUser);
+        
+        return new ModelAndView("redirect:/allusers");
+    }
+    
 }

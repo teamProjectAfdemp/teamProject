@@ -19,18 +19,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class RouteController {
 
     User curUser;
-    
+
     @GetMapping("/allroutes")
     public ModelAndView getAllRoutes() {
         // if no user is logged in go to welcome page!
-        if (session().getAttribute("curUser") == null) 
+        if (session().getAttribute("curUser") == null) {
             return new ModelAndView("redirect:/");
-        
-        ModelAndView model = new ModelAndView("viewRoutes");
-        
+        }
+
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "viewRoutes");
+
         ArrayList<Route> allRoutes = new ArrayList<>();
-        
-        RouteDAO routeDAO =  RouteDAO.getInstance();
+
+        RouteDAO routeDAO = RouteDAO.getInstance();
         HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
 
         allRoutesMap.forEach((k, v) -> allRoutes.add(v));
@@ -39,15 +41,22 @@ public class RouteController {
 
         return model;
     }
-    
+
     @GetMapping("/addroute")
-    public ModelAndView signUpPost(User user) {
-        ModelAndView model = new ModelAndView("addroute");
+    public ModelAndView getAddRoute() {
+
+        if (session().getAttribute("curUser") == null) {
+            return new ModelAndView("redirect:/");
+        }
+
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "addroute");
+
         return model;
     }
-    
+
     @PostMapping("/addroute")
-    public ModelAndView signUp(Route route) {
+    public ModelAndView postAddRoute(Route route) {
 
         RouteDAO routeDAO = RouteDAO.getInstance();
 //        UserDAO userDao = UserDAO.getInstance();
@@ -55,8 +64,10 @@ public class RouteController {
 //       if  (userDao.checkUser(user.getUsername()) != 0) 
 //           return new ModelAndView("redirect:/signup");
         // if user is created go to login page
-       if (routeDAO.createRoute(route) != 0)
-           return new ModelAndView("redirect:/login");
-       else return new ModelAndView("error");
+        if (routeDAO.createRoute(route) != 0) {
+            return new ModelAndView("redirect:/login");
+        } else {
+            return new ModelAndView("error");
+        }
     }
 }
