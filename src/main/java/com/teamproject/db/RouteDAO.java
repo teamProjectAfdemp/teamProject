@@ -31,8 +31,8 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         Connection conn = createConnection();
         PreparedStatement prest = null;
         int rowsInserted = 0;
-        String query =  "INSERT INTO `Routes` (`creator_id`,`departure`,`destination`,`dep_time`,`ar_time`,`description`)"+
-                        "VALUES (?,?,?,?,?,?);";
+        String query =  "INSERT INTO `Routes` (`creator_id`,`departure`,`destination`,`description`)"+
+                        "VALUES (?,?,?,?);";
         try {
             prest = conn.prepareStatement(query);
             prest.setInt(1,route.getCreator_id());
