@@ -1,6 +1,7 @@
 package com.teamproject.db;
 
 import com.teamproject.bean.Route;
+import com.teamproject.bean.User;
 import com.teamproject.db.Interface.RouteDAOinterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -87,5 +88,49 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             routeFound.put(route.getId(), route);
         }
         return routeFound;
+    }
+    
+    public Route getRouteById(int id) {
+        Route route = new Route();
+        
+        String query = ("SELECT * FROM `teamproject`.`Routes` WHERE `id` = '" + id + "';");
+
+        Collection<Map<String, Object>> answer;
+        answer = getGenericSelect(query);
+        
+        for (Map<String, Object> row : answer) {
+            route.setId( (Integer) row.get("id"));
+            route.setCreator_id((Integer) row.get("creator_id"));
+            route.setDeparture((String) row.get("departure"));
+            route.setDestination((String) row.get("destination"));
+            route.setDep_time((Date) row.get("dep_time"));
+            route.setAr_time((Date) row.get("ar_time"));
+            route.setDescription((String) row.get("description"));
+            
+            System.out.println(row.get("id"));
+            System.out.println("ONE MORE USER");
+        }
+        
+        System.out.println(route.getId());
+
+        return route;
+    }
+    
+    public int updateRoute(Route route) {
+
+        String query = "UPDATE `teamproject`.`Routes` SET `departure` = '" + route.getDeparture()
+                + "' ,`destination` = '" + route.getDestination() + "' WHERE `id` = '" + route.getId() + "';";
+        
+        System.out.println(query);
+        return execUpdateInsert(query);
+        
+    }
+    
+    public int deleteRoute(Route route) {
+        
+        String query = "DELETE FROM `teamproject`.`Routes` WHERE `id` = '" + route.getId() + "';";
+        
+        System.out.println(query);
+        return execUpdateInsert(query);
     }
 }

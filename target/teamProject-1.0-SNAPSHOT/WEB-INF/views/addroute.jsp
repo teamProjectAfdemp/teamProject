@@ -40,10 +40,10 @@
                     <label for="inputDescription">Description</label>
                     <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="description"></textarea>
                 </div>
-                <div class="form-group">
+<!--                <div class="form-group">
                     <label for="exampleFormControlFile1">Upload an image</label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
+                </div>-->
                 <!--  <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="gridCheck">
