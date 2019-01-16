@@ -4,6 +4,11 @@
     background-image: linear-gradient(45deg, #c1e5dd, #8eaacf);
 }*/
 
+
+.row{
+    margin:0;   
+}
+
 nav {
     position: fixed !important;
     width: 100%;
@@ -17,8 +22,8 @@ nav {
 }
 
 nav a {
-     display: block;
-     float: left;
+    display: block;
+    float: left;
 }
 
 #mainTitle {
@@ -31,6 +36,6 @@ nav a {
 
 #navbardiv li {
     width: 140px;
-   text-align: center;
-   align-items: center;
+    text-align: center;
+    align-items: center;
 }

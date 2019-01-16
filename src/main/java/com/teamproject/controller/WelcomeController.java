@@ -25,13 +25,6 @@ public class WelcomeController {
     public ModelAndView welcome(User user) {
         ModelAndView model = new ModelAndView("redirect:/login");
         //String includedLinks;
-        
-        // if user is not logged in return log in and sign up
-        // if user is logged in return log out!
-        //includedLinks = (session().getAttribute("curUser") == null) ? "welcomeLogin" : "welcomeLogout";
-        // add the included file name as attribute to the ModelView
-        //model.addObject("welcomeInclude", includedLinks);
-
         return model;
     }
 
@@ -74,7 +67,7 @@ public class WelcomeController {
 
         UserDAO userDao = UserDAO.getInstance();
         // if user exists reload page!
-       if  (userDao.checkUser(user.getUsername()) != 0) 
+       if  (userDao.checkUser(user.getUsername()) != 0)
            return new ModelAndView("redirect:/signup");
         // if user is created go to login page
        if (userDao.createUser(user.getUsername(), user.getPassword(), user.getFname(), user.getLname()) != 0)
