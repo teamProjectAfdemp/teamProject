@@ -169,6 +169,22 @@ public class UserDAO extends Database {
         return execUpdateInsert(query);
         
     }
+    
+    public int deleteUser(User user) {
+        
+        String query = "DELETE FROM `teamproject`.`Users` WHERE `id` = '" + user.getId() + "';";
+        
+        System.out.println(query);
+        return execUpdateInsert(query);
+    }
+    
+    public int disableUser(User user) {
+        
+        // NOT YET IMPLEMENTED ON DB
+         String query = "UPDATE `Users` SET `active` = '" + "??" + "' WHERE `id` = '" + user.getId() + "';";
+        return execUpdateInsert(query);
+        
+    }
 
     public int updatePass(User user) {
 

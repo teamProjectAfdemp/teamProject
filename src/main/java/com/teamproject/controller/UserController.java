@@ -88,7 +88,19 @@ public class UserController {
         if (session().getAttribute("curUser") == null)
             return new ModelAndView("redirect:/");
 
-//        int updated = UserDAO.getInstance().updateUser(updatedUser);
+        int updated = UserDAO.getInstance().deleteUser(userToDelete);
+
+        return new ModelAndView("redirect:/allusers");
+    }
+    
+     @GetMapping("/disableuser{id}")
+    public ModelAndView getDisableUser(@ModelAttribute("userToDisable")User userToDisable){
+
+        if (session().getAttribute("curUser") == null)
+            return new ModelAndView("redirect:/");
+        
+        // NOT YET IMPLEMENTED ON DB
+//        int updated = UserDAO.getInstance().disableUser(userToDisable);
 
         return new ModelAndView("redirect:/allusers");
     }
