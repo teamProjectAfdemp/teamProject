@@ -1,4 +1,13 @@
-
+<<<<<<< HEAD
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Add Route</title>
+        <%@include file="links.jsp" %>
+    </head>
+    <body>
         <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2">
             <form action="/addroute" method="POST" modelAttribute="route"> 
                 <div class="form-group">
