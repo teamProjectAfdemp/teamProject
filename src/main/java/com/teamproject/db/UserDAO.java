@@ -52,53 +52,50 @@ public class UserDAO extends Database {
         }
         return newID != 0;
     }
-
+    
     public int checkUsernamePassword(String username, String pass) {
         int userId = 0;
-
-        String query = ("SELECT * FROM `teamproject`.`Users` WHERE `username` = '" + username + "' AND `password` = '" + pass + "';");
-
-        Collection<Map<String, Object>> answer;
+        
+        String query = ("SELECT * FROM `Users` WHERE `username` = '" + username + "' AND `password` = '" + pass + "';");
+        
+        Collection<Map<String,Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
-
-        for (Map<String, Object> row : answer) {
+        
+        for (Map<String,Object> row: answer) {
             userId = (Integer) row.get("id");
         }
         return userId;
     }
-
-    public User getUserById(int id) {
-        User user = new User();
-        
-        String query = ("SELECT * FROM `teamproject`.`Users` WHERE `id` = '" + id + "';");
-
-        Collection<Map<String, Object>> answer;
-        answer = getGenericSelect(query);
-        
-        for (Map<String, Object> row : answer) {
-            user.setFname((String) row.get("fname"));
-            user.setLname((String) row.get("lname"));
-            user.setUsername((String) row.get("username"));
-            user.setId((Integer) row.get("id"));
-            System.out.println("ONE MORE USER");
+     
+    public User getUserById(int id){
+         User user = new User();
+         String query = ("SELECT * FROM `Users` WHERE `id` = '" + id + "' ;");
+         
+         Collection<Map<String,Object>> answer = new ArrayList<>();
+         
+          for (Map<String,Object> row: answer) {
+            user.setFname( (String) row.get("fname"));
+            user.setLname( (String) row.get("lname"));
+            user.setUsername( (String) row.get("username"));
+            user.setId( (Integer) row.get("id") );
         }
-
-        return user;
-    }
-
-    public int createUser(String username, String pass, String fname, String lname) {
+         
+         return user;
+     }
+     
+      public int createUser(String username, String pass, String fname, String lname) {
         Connection conn = createConnection();
         PreparedStatement prest = null;
         int rowsInserted = 0;
-        String query = "INSERT INTO `Users` (`username`,`password`,`fname`,`lname`)"
-                + "VALUES (?,?,?,?);";
+        String query =  "INSERT INTO `Users` (`username`,`password`,`fname`,`lname`)"+
+                        "VALUES (?,?,?,?);";
         try {
             prest = conn.prepareStatement(query);
-            prest.setString(1, username);
-            prest.setString(2, pass);
+            prest.setString(1,username);
+            prest.setString(2,pass);
             //prest.setInt(3,2);  //create a user with reader role
-            prest.setString(3, fname);
-            prest.setString(4, lname);
+            prest.setString(3,fname);
+            prest.setString(4,lname);
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -156,19 +153,20 @@ public class UserDAO extends Database {
         }
         return usersFound;
     }
-
+    
+       
     public int updateUser(User user) {
-
-        String query = "UPDATE `teamproject`.`Users` SET `fname` = '" + user.getFname()
-                + "' ,`lname` = '" + user.getLname() + "' WHERE `id` = '" + user.getId() + "';";
+        
+        String query = "UPDATE `Users` SET `fname` = '"+ user.getFname() + 
+               "`lname` = '"+ user.getLname() + "' WHERE `id` = '" + user.getId()+ "';";
 
         return execUpdateInsert(query);
     }
 
     public int updatePass(User user) {
 
-        String query = "UPDATE `Users` SET `password` = '" + user.getPassword() + "' WHERE `id` = '" + user.getId() + "';";
+        String query = "UPDATE `Users` SET `password` = '"+ user.getPassword() + "' WHERE `id` = '" + user.getId() + "';";
         return execUpdateInsert(query);
-
+        
     }
 }
