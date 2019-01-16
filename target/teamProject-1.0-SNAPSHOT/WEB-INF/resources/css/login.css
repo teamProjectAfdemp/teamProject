@@ -28,8 +28,10 @@ body {
 .card-signin .card-img-left {
   width: 45%;
   /* Link to your background image using in the property below! */
-  background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-  background-size: cover;
+  background: scroll center url('/resources/img/RouteIcon.svg');
+  background-size: 50% 50%;
+  background-origin: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 .card-signin .card-body {

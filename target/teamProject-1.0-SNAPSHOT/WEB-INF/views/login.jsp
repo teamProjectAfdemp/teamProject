@@ -5,8 +5,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Log in</title>
-        <%@include file="links.jsp" %>
-        <style><%@include file="/WEB-INF/resources/css/login.css"%></style>
+        <%--<%@include file="links.jsp" %>--%>
+        <c:import url="links.jsp"/>
+        <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet" type="text/css">
+        <%--<%@include file="/resources/css/login.css"%>--%>
     </head>
 
     <body>
@@ -21,11 +23,11 @@
                             <h5 class="card-title text-center">Log in</h5>
                             <form class="form-signin" id="Login" action="/login" method="POST" modelAttribute="user">
                                 <div class="form-label-group">
-                                    <input type="username" id="inputUserame" class="form-control" placeholder="Username" name="username" >
+                                    <input type="username" id="inputUserame" class="form-control" placeholder="Username" name="username" required >
                                     <label for="inputUserame">Username</label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" >
+                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
                                 <hr>

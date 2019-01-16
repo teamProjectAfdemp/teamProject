@@ -32,10 +32,10 @@
            
             <ul class="navbar-nav ml-auto nav-flex-icons">
                 <li class="nav-item avatar dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">${curUser.username}
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
+                    <div class="dropdown-menu" >
                         <a class="dropdown-item" href="/index">Profile</a>
                         <a class="dropdown-item" href="/logout">Log Out</a>
                     </div>
