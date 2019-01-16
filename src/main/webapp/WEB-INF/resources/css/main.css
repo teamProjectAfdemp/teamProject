@@ -56,6 +56,15 @@ hr
     margin: 2rem;
 }
 
+.mybutton:hover {
+    background-color: transparent;
+    transition: 0.5s linear;
+    color: #3a3a3a;
+    border: 3px solid #3a3a3a;
+}
+
+
+
 #routeHeader {
     margin-top: 5rem;
    

@@ -24,8 +24,8 @@
                         <td>${route.description}</td>
                         <td>${route.dep_time}</td>
                         <td>${route.ar_time}</td>
-                        <td><input type="button" action="update" value="Update"></th>
-                        <td><input type="button" action="delete" value="Delete"></th>
+                        <td><a href="/editroute${route.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Update</a></td>
+                        <td><a href="/deleteroute${route.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Delete</a></td>
                         <%i++;%>
                     </tr>
                 </c:forEach>
