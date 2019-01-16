@@ -31,8 +31,8 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         Connection conn = createConnection();
         PreparedStatement prest = null;
         int rowsInserted = 0;
-        String query =  "INSERT INTO `Routes` (`creator_id`,`departure`,`destination`,`dep_time`,`ar_time`,`description`)"+
-                        "VALUES (?,?,?,?,?,?);";
+        String query =  "INSERT INTO `Routes` (`creator_id`,`departure`,`destination`,`description`)"+
+                        "VALUES (?,?,?,?);";
         try {
             prest = conn.prepareStatement(query);
             prest.setInt(1,route.getCreator_id());
@@ -45,7 +45,6 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEE " +route.getDeparture());
         return rowsInserted;
     }
 
@@ -66,10 +65,10 @@ public class RouteDAO extends Database implements RouteDAOinterface{
     
     public HashMap<Integer, Route> selectAllRoutes() {
         String query = "SELECT * FROM `teamproject`.`Routes`;";
-        return getUsersfromQuery(query);
+        return getRoutefromQuery(query);
     }
     
-    public HashMap<Integer, Route> getUsersfromQuery(String query) {
+    public HashMap<Integer, Route> getRoutefromQuery(String query) {
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);

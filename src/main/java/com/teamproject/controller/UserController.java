@@ -51,13 +51,9 @@ public class UserController {
         if (session().getAttribute("curUser") == null) 
             return new ModelAndView("redirect:/");
 
-
         User userToEdit =  UserDAO.getInstance().getUserById( id );
 
-
-        ModelAndView model = new ModelAndView("/edituserform","userToEdit",userToEdit);
-        
-        return model;
+        return  new ModelAndView("/edituserform","userToEdit",userToEdit);
     }
     
    
@@ -71,7 +67,6 @@ public class UserController {
         System.out.println(user.getUsername());
         int updated = UserDAO.getInstance().updateUser(user);
         
-
         return new ModelAndView("redirect:/allusers");
     }
 }
