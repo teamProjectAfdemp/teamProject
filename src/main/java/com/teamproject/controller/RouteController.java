@@ -53,8 +53,8 @@ public class RouteController {
         RouteDAO routeDAO = RouteDAO.getInstance();
         UserDAO userDao = UserDAO.getInstance();
 //         if user exists reload page!
-       if  (userDao.checkUser(curUser.getUsername()) != 0) 
-           return new ModelAndView("redirect:/signup");
+//       if  (userDao.checkUser(curUser.getUsername()) != 0) 
+//           return new ModelAndView("redirect:/signup");
 //         if user is created go to login page
        if (routeDAO.createRoute(route) != 0)
            return new ModelAndView("redirect:/login");
