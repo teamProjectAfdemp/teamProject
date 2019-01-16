@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Log in</title>
         <%@include file="links.jsp" %>
-        <style><%@include file="/WEB-INF/css/login.css"%></style>
+        <style><%@include file="/WEB-INF/resources/css/login.css"%></style>
     </head>
 
     <body>

@@ -1,35 +1,35 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="links.jsp" %>
-        <style><%@include file="/WEB-INF/css/navbar.css"%></style>
-    </head>
-    <body>
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1" style="background-color:  #4b86b4" style="color:  black">
-        <a class="navbar-brand" >Team E</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-                aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-            <ul class="navbar-nav mr-auto">
+
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link href="<c:url value="/resources/css/navbar.css" />" rel="stylesheet" type="text/css">
+<nav class="row navbar navbar-expand-lg navbar-dark">
+
+            <img src="/resources/img/RouteIcon.svg" width="50" height="50" alt="">
+            <a id="mainTitle" class="navbar-brand" >route <br> planner</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+                    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        <div class="collapse navbar-collapse" id="navbardiv">
+
+            <ul class="navbar-nav justify-content-center d-flex flex-fill">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/index">Home
+                    <a class="nav-link" href="/index">HOME
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/allroutes" >Find Routes</a>
+                    <a class="nav-link" href="/allroutes" >FIND ROUTES</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/addroute">Create A Route</a>
+                    <a class="nav-link" href="/allusers">ALL USERS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/allusers">My Routes</a>
+                    <a class="nav-link" href="/addroute">ADD ROUTE</a>
                 </li>
             </ul>
+           
             <ul class="navbar-nav ml-auto nav-flex-icons">
                 <li class="nav-item avatar dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
@@ -42,6 +42,5 @@
                 </li>
             </ul>
         </div>
-    </nav>
-</body>
-</html>
+</nav>
+
