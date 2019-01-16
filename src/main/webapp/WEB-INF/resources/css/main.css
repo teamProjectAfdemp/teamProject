@@ -45,22 +45,27 @@ hr
     top: 80px; 
     height: 60px;
     max-width: 100px;
+    margin: 2rem !important;
 }
 
 .mybutton {
-    background-color: transparent;
-    border: 3px solid #f9f9f9;
-    font-size: 1.2rem;
-    font-weight: 600;   
-    color: #f9f9f9;
-    margin: 2rem;
+    background-color: transparent !important; 
+    border: 3px solid #f9f9f9 !important;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;   
+    color: #f9f9f9 !important;
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    
 }
 
 .mybutton:hover {
-    background-color: transparent;
-    transition: 0.5s linear;
-    color: #3a3a3a;
-    border: 3px solid #3a3a3a;
+    background-color: transparent !important;
+    transition: 0.5s ease-in-out !important;
+    color: #3a3a3a !important;
+    border: 3px solid #3a3a3a !important;
+    
 }
 
 
@@ -150,4 +155,9 @@ footer {
 
 .backlight {
     background-color: #f9f9f9;
+}
+
+.readonlyinput {
+    background-color: transparent !important;
+    border: 1px solid #f9f9f9 !important;
 }
