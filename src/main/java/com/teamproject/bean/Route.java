@@ -8,8 +8,8 @@ public class Route {
     private int creator_id;
     private String departure;
     private String destination;
-    private Date dep_time;
-    private Date ar_time;
+    private String dep_time;
+    private String ar_time;
     private String description;
     
     public Route(){
@@ -48,19 +48,19 @@ public class Route {
         this.destination = destination;
     }
 
-    public Date getDep_time() {
+    public String getDep_time() {
         return dep_time;
     }
 
-    public void setDep_time(Date dep_time) {
+    public void setDep_time(String dep_time) {
         this.dep_time = dep_time;
     }
 
-    public Date getAr_time() {
+    public String getAr_time() {
         return ar_time;
     }
 
-    public void setAr_time(Date ar_time) {
+    public void setAr_time(String ar_time) {
         this.ar_time = ar_time;
     }
 
