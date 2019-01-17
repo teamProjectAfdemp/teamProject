@@ -26,7 +26,7 @@
                     <a class="nav-link" href="/allusers">ALL USERS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/addroute">ADD ROUTE</a>
+                    <a class="nav-link" href="/allposts">ADD ROUTE</a>
                 </li>
             </ul>
            
