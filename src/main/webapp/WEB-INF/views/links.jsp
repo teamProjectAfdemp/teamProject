@@ -24,11 +24,11 @@
         format: 'dd-mm-yyyy',
         container: container,
         todayHighlight: true,
-        autoclose: true,
+        autoclose: true
       };
       minDate:true;
       date_input.datepicker(options);
-    })
+    });
 </script>
 
 <script>
@@ -40,8 +40,8 @@
         format: 'dd-mm-yyyy',
         container: container,
         todayHighlight: true,
-        autoclose: true,
+        autoclose: true
       };
       date_input.datepicker(options);
-    })
+    });
 </script>
