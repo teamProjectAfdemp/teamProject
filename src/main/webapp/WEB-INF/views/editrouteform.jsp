@@ -30,23 +30,10 @@
                 <div class="form-group"> <!-- Date input -->
                     <label class="control-label" for="date">Ar Time</label>
                     <input class="form-control" id="date1" name="ar_time" placeholder="${routeToEdit.ar_time}" value="${routeToEdit.ar_time}" type="text"/>
-                </div>
-                <!--                <div class="form-group">
-                                    <label for="inputDepTime">Dep Time</label>
-                                    <input type="text" class="form-control" name="dep_time" placeholder="${routeToEdit.dep_time}" value="${routeToEdit.dep_time}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputArTime">Ar Time</label>
-                                    <input type="text" class="form-control" name="ar_time" placeholder="${routeToEdit.ar_time}" value="${routeToEdit.ar_time}">
-                                </div>
-                -->                <div class="form-group">
+                </div><div class="form-group">
                     <label for="inputDescription">Description</label>
                     <textarea  type="text" class="form-control" name="description" rows="4" placeholder="${routeToEdit.description}" value="${routeToEdit.description}"></textarea>
                 </div>
-                <!--                <div class="form-group">
-                                    <label for="exampleFormControlFile1">Upload an image</label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                </div>-->
                 <button type="submit" class="btn btn-primary">Update a route</button>
             </form>
         </div>
