@@ -1,11 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add Route</title>
-        <%@include file="links.jsp" %>
-    </head>
+
     <body>
         <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2">
             <form action="/addroute" method="POST" modelAttribute="route"> 
@@ -40,10 +33,10 @@
                     <label for="inputDescription">Description</label>
                     <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="description"></textarea>
                 </div>
-                <div class="form-group">
+<!--                <div class="form-group">
                     <label for="exampleFormControlFile1">Upload an image</label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
+                </div>-->
                 <!--  <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" id="gridCheck">
@@ -55,5 +48,3 @@
                 <button type="submit" class="btn btn-primary">Create a route</button>
             </form>
         </div>
-    </body>
-</html>
