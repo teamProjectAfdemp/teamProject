@@ -59,10 +59,10 @@ body {
   border-radius: 2rem;
 }
 
-.form-label-group>input,
+/*.form-label-group>input,
 .form-label-group>label {
   padding: var(--input-padding-y) var(--input-padding-x);
-}
+}*/
 
 .form-label-group>label {
   position: absolute;
