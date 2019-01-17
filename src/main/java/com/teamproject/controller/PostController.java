@@ -24,7 +24,7 @@ public class PostController {
         }
 
         ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "viewPost");
+        model.addObject("includeView", "viewPosts");
 
         ArrayList<Post> allPosts = new ArrayList<>();
 
@@ -67,42 +67,42 @@ public class PostController {
         }
     }
     
-    @GetMapping("/edipost{id}")
-    public ModelAndView getEditPost(@PathVariable("id") int id, Post updatedPost) {
-
-        if (session().getAttribute("curUser") == null)
-            return new ModelAndView("redirect:/");
-
-        System.out.println(id);
-        Post postToEdit =  PostDAO.getInstance().getPostById( id );
-
-        ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "editpostform");
-        model.addObject("postToEdit",postToEdit);
-
-        return  model;
-    }
-
-    @PostMapping("/updatepost")
-    public ModelAndView postEditPost(@ModelAttribute("updatedPost")Post updatedPost){
-
-        if (session().getAttribute("curUser") == null)
-            return new ModelAndView("redirect:/");
-
-        System.out.println(updatedPost.getId());
-        int updated = PostDAO.getInstance().updatePost(updatedPost);
-
-        return new ModelAndView("redirect:/allpost");
-    }
-
-    @GetMapping("/deletepost{id}")
-    public ModelAndView postDeletePost(@ModelAttribute("postToDelete")Post postToDelete){
-
-        if (session().getAttribute("curUser") == null)
-            return new ModelAndView("redirect:/");
-
-        int updated = PostDAO.getInstance().deletePost(postToDelete);
-
-        return new ModelAndView("redirect:/allpost");
-    }
+//    @GetMapping("/edipost{id}")
+//    public ModelAndView getEditPost(@PathVariable("id") int id, Post updatedPost) {
+//
+//        if (session().getAttribute("curUser") == null)
+//            return new ModelAndView("redirect:/");
+//
+//        System.out.println(id);
+//        Post postToEdit =  PostDAO.getInstance().getPostById( id );
+//
+//        ModelAndView model = new ModelAndView("template");
+//        model.addObject("includeView", "editpostform");
+//        model.addObject("postToEdit",postToEdit);
+//
+//        return  model;
+//    }
+//
+//    @PostMapping("/updatepost")
+//    public ModelAndView postEditPost(@ModelAttribute("updatedPost")Post updatedPost){
+//
+//        if (session().getAttribute("curUser") == null)
+//            return new ModelAndView("redirect:/");
+//
+//        System.out.println(updatedPost.getId());
+//        int updated = PostDAO.getInstance().updatePost(updatedPost);
+//
+//        return new ModelAndView("redirect:/allpost");
+//    }
+//
+//    @GetMapping("/deletepost{id}")
+//    public ModelAndView postDeletePost(@ModelAttribute("postToDelete")Post postToDelete){
+//
+//        if (session().getAttribute("curUser") == null)
+//            return new ModelAndView("redirect:/");
+//
+//        int updated = PostDAO.getInstance().deletePost(postToDelete);
+//
+//        return new ModelAndView("redirect:/allpost");
+//    }
 }
