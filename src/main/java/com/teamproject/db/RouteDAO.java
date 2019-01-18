@@ -134,4 +134,9 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         System.out.println(query);
         return execUpdateInsert(query);
     }
+    
+    public Route selectRouteById(int id){
+        Route route =  new Route();
+        return route;
+    }
 }
