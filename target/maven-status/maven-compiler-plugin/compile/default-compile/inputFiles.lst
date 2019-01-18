@@ -3,9 +3,11 @@ C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\configuration\SpringWebIntializer.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Database.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\MessageController.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\restcontroller\UserServiceController.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\VehicleDAOinterface.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\PostController.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Post.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\service\UserService.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Via.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\ParticipantDAOinterface.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\ViaDAOinterface.java
@@ -13,8 +15,10 @@ C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\WelcomeController.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Participant.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\UserDAO.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\service\UserServiceImpl.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\UserDAOinterface.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Route.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\configuration\CORSFilter.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\UserController.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\RouteDAOinterface.java
 C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\configuration\SpringConfiguration.java
