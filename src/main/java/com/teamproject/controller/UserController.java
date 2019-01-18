@@ -50,6 +50,18 @@ public class UserController {
 
         return model;
     }
+    
+    @GetMapping("/allusersJson")
+    public ModelAndView getAllUsersJson(User user) {
+        // if no user is logged in go to welcome page!
+//        if (session().getAttribute("curUser") == null)
+//            return new ModelAndView("redirect:/");
+
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "viewUsersJson");
+
+        return model;
+    }
 
     @GetMapping("/edituser{id}")
     public ModelAndView getEditUser(@PathVariable("id") int id, User updatedUser) {

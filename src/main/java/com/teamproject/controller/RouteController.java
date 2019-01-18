@@ -42,6 +42,25 @@ public class RouteController {
 
         return model;
     }
+    
+    @GetMapping("/route/{id}")
+    public ModelAndView viewSingleRoute( @PathVariable("id") int id ) {
+        // if no user is logged in go to welcome page!
+        if (session().getAttribute("curUser") == null) {
+            return new ModelAndView("redirect:/");
+        }
+
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "viewRoutes");
+
+        ArrayList<Route> allRoutes = new ArrayList<>();
+
+        Route route = RouteDAO.getInstance().selectRouteById(id);
+
+        model.addObject("route", route);
+
+        return model;
+    }
 
     @GetMapping("/addroute")
     public ModelAndView getAddRoute() {
