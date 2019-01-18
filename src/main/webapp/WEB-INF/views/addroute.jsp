@@ -24,11 +24,11 @@
                 </div>
                 <div class="form-group">
                     <label for="inputDepTime">Dep Time</label>
-                    <input type="text" class="form-control" placeholder="Dep Time" name="depTime">
+                    <input type="date" class="form-control" placeholder="Dep Time" name="depTime">
                 </div>
                 <div class="form-group">
                     <label for="inputArTime">Ar Time</label>
-                    <input type="text" class="form-control" placeholder="Ar Time" name="arTime">
+                    <input type="date" class="form-control" placeholder="Ar Time" name="arTime">
                 </div>
                 <!--    <div class="form-group col-md-4">
                       <label for="inputState">State</label>

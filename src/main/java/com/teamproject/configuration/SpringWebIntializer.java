@@ -10,10 +10,13 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 import com.teamproject.configuration.SpringConfiguration;
+import javax.servlet.Filter;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class SpringWebIntializer implements WebApplicationInitializer {
 
     public void onStartup(ServletContext container) throws ServletException {
+        
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.register(SpringConfiguration.class);
         context.setServletContext(container);
@@ -28,3 +31,34 @@ public class SpringWebIntializer implements WebApplicationInitializer {
     
     
 }
+
+
+//import com.teamproject.controller.WelcomeController;
+//import javax.servlet.Filter;
+//
+//import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+//
+//public class SpringWebIntializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+// 
+//    @Override
+//    protected Class<?>[] getRootConfigClasses() {
+//        return new Class[] { WelcomeController.class };
+//    }
+//  
+//    @Override
+//    protected Class<?>[] getServletConfigClasses() {
+//        return null;
+//    }
+//  
+//    @Override
+//    protected String[] getServletMappings() {
+//        return new String[] { "/" };
+//    }
+//    
+//    @Override
+//    protected Filter[] getServletFilters() {
+//    	Filter [] singleton = { new CORSFilter() };
+//    	return singleton;
+//	}
+// 
+//}

@@ -88,4 +88,23 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         }
         return routeFound;
     }
+    
+    public Route selectRouteById(int id) {
+        Route route = new Route();
+        String query = "SELECT * FROM `Routes` WHERE `id` = '"+ id +"';";
+        
+        Collection<Map<String, Object>> answer = new ArrayList<>();
+        answer = getGenericSelect(query);
+        
+        for (Map<String, Object> row : answer) {
+            route.setId( (Integer) row.get("id"));
+//            user.setLname((String) row.get("lname"));
+//            user.setUsername((String) row.get("username"));
+//            user.setId( (Integer) row.get("id"));
+//            System.out.println(row.get("id"));
+//            System.out.println("ONE MORE USER");
+        }
+        
+        return route;
+    }
 }
