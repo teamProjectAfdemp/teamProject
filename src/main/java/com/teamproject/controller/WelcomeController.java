@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamproject.bean.User;
 import com.teamproject.db.UserDAO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -23,28 +24,32 @@ public class WelcomeController {
 
     @GetMapping( {"/","/index"} )
     public ModelAndView welcome(User user) {
+        
         ModelAndView model = new ModelAndView("redirect:/login");
         //String includedLinks;
         return model;
     }
 
     @GetMapping("/login")
-    public ModelAndView loginGet(User user) {
-
-        return new ModelAndView( (session().getAttribute("curUser") == null)? "login" :"redirect:/profile" );
+    public ModelAndView loginGet(User user, HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        return new ModelAndView( (CookieHandler.validateCookie(request.getCookies())) ?"redirect:/profile": "login");
     }
 
     @PostMapping("/login")
-    public ModelAndView loginPost(User user) {
+    public ModelAndView loginPost(User user, HttpServletRequest request) {
 
         ModelAndView model;
+        
+        // if credentials are not correct refresh
         UserDAO userDao = UserDAO.getInstance();
         int userId = userDao.checkUsernamePassword(user.getUsername(), user.getPassword());
-
-        if (userId == 0) {
-            return new ModelAndView("login");
-        }
-
+        if (userId == 0) return new ModelAndView("redirect:/login");
+       
+        // if cannot Validate Cookie refresh!
+        if ( ! CookieHandler.validateCookie(userId, request.getCookies()) ) return new ModelAndView("redirect:/login");
+        
         curUser = new User();
         curUser.setId(userId);
         HttpSession session = session();
@@ -57,13 +62,17 @@ public class WelcomeController {
     }
 
     @GetMapping("/signup")
-    public ModelAndView signUpPost(User user) {
-        ModelAndView model = new ModelAndView("register");
-        return model;
+    public ModelAndView signUpPost(User user, HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        return new ModelAndView( (CookieHandler.validateCookie(request.getCookies())) ?"redirect:/profile": "register");
     }
 
     @PostMapping("/signup")
-    public ModelAndView signUp(User user) {
+    public ModelAndView signUp(User user, HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( (CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/profile");
 
         UserDAO userDao = UserDAO.getInstance();
         // if user exists reload page!
@@ -76,9 +85,11 @@ public class WelcomeController {
     }
 
     @GetMapping("/logout")
-    public ModelAndView logOut() {
-        HttpSession session = session();
-        session.setAttribute("curUser", null);
-        return new ModelAndView("redirect:/");
+    public ModelAndView logOut( HttpServletRequest request) {
+        
+        // remove cookie if present!
+        CookieHandler.removeCookie(request.getCookies());
+       
+        return new ModelAndView("redirect:/login");
     }
 }

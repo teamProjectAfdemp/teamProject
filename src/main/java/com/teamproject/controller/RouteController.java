@@ -10,6 +10,7 @@ import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,11 +23,11 @@ public class RouteController {
     User curUser;
 
     @GetMapping("/allroutes")
-    public ModelAndView getAllRoutes() {
-        // if no user is logged in go to welcome page!
-        if (session().getAttribute("curUser") == null) {
-            return new ModelAndView("redirect:/");
-        }
+    public ModelAndView getAllRoutes(HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "viewRoutes");
@@ -44,12 +45,12 @@ public class RouteController {
     }
     
     @GetMapping("/route/{id}")
-    public ModelAndView viewSingleRoute( @PathVariable("id") int id ) {
-        // if no user is logged in go to welcome page!
-        if (session().getAttribute("curUser") == null) {
-            return new ModelAndView("redirect:/");
-        }
-
+    public ModelAndView viewSingleRoute( @PathVariable("id") int id, HttpServletRequest request ) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+        
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "viewRoutes");
 
@@ -63,11 +64,10 @@ public class RouteController {
     }
 
     @GetMapping("/addroute")
-    public ModelAndView getAddRoute() {
+    public ModelAndView getAddRoute(HttpServletRequest request) {
 
-        if (session().getAttribute("curUser") == null) {
-            return new ModelAndView("redirect:/");
-        }
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "addroute");
@@ -76,7 +76,10 @@ public class RouteController {
     }
 
     @PostMapping("/addroute")
-    public ModelAndView postAddRoute(Route route) {
+    public ModelAndView postAddRoute(Route route, HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
         RouteDAO routeDAO = RouteDAO.getInstance();
 //        UserDAO userDao = UserDAO.getInstance();
@@ -92,10 +95,10 @@ public class RouteController {
     }
     
     @GetMapping("/editroute{id}")
-    public ModelAndView getEditRoute(@PathVariable("id") int id, Route updatedRoute) {
+    public ModelAndView getEditRoute(@PathVariable("id") int id, Route updatedRoute, HttpServletRequest request) {
 
-        if (session().getAttribute("curUser") == null)
-            return new ModelAndView("redirect:/");
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
         System.out.println(id);
         Route routeToEdit =  RouteDAO.getInstance().getRouteById( id );
@@ -108,10 +111,10 @@ public class RouteController {
     }
 
     @PostMapping("/updateroute")
-    public ModelAndView postEditRoute(@ModelAttribute("updatedRoute")Route updatedRoute){
+    public ModelAndView postEditRoute(@ModelAttribute("updatedRoute")Route updatedRoute, HttpServletRequest request){
 
-        if (session().getAttribute("curUser") == null)
-            return new ModelAndView("redirect:/");
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
         System.out.println(updatedRoute.getId());
         int updated = RouteDAO.getInstance().updateRoute(updatedRoute);
@@ -120,10 +123,10 @@ public class RouteController {
     }
 
     @GetMapping("/deleteroute{id}")
-    public ModelAndView postDeleteUser(@ModelAttribute("userToDelete")Route routeToDelete){
+    public ModelAndView postDeleteUser(@ModelAttribute("userToDelete")Route routeToDelete, HttpServletRequest request){
 
-        if (session().getAttribute("curUser") == null)
-            return new ModelAndView("redirect:/");
+       // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
         int updated = RouteDAO.getInstance().deleteRoute(routeToDelete);
 

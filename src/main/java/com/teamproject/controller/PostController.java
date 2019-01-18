@@ -8,6 +8,7 @@ import com.teamproject.db.PostDAO;
 import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,10 @@ public class PostController {
     User curUser;
 
     @GetMapping("/allposts")
-    public ModelAndView getAllPost() {
-        // if no user is logged in go to welcome page!
-        if (session().getAttribute("curUser") == null) {
-            return new ModelAndView("redirect:/");
-        }
+    public ModelAndView getAllPost(HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "viewPosts");
@@ -41,11 +41,10 @@ public class PostController {
     }
 
     @GetMapping("/addpost")
-    public ModelAndView getAddPost() {
+    public ModelAndView getAddPost(HttpServletRequest request) {
 
-        if (session().getAttribute("curUser") == null) {
-            return new ModelAndView("redirect:/");
-        }
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "addpost");
@@ -54,7 +53,10 @@ public class PostController {
     }
 
     @PostMapping("/addpost")
-    public ModelAndView postAddPost(Post post) {
+    public ModelAndView postAddPost(Post post, HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
         PostDAO postDAO = PostDAO.getInstance();
 //        UserDAO userDao = UserDAO.getInstance();
