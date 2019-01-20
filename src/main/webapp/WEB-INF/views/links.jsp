@@ -24,18 +24,14 @@
         format: 'dd-mm-yyyy',
         container: container,
         todayHighlight: true,
-        autoclose: true
+        autoclose: true           
       };
-      minDate:true;
       date_input.datepicker(options);
     });
-</script>
 
-<script>
     $(document).ready(function(){
       var date_input=$('input[name="ar_time"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      $('#date1').datepicker("#date").valueOf() 
       var options={
         format: 'dd-mm-yyyy',
         container: container,

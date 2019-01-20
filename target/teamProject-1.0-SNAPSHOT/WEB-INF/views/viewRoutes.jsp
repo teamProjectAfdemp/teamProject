@@ -7,8 +7,8 @@
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Starts</th>
-            <th scope="col">Ends</th>
+            <th scope="col">Title</th>
+            <th scope="col">Shortdesc</th>
             <th scope="col">Description</th>
             <th scope="col">Dep Time</th>
             <th scope="col">Ar Time</th>
@@ -22,8 +22,8 @@
         <c:forEach items="${allRoutes}" var="route">
             <tr>
                 <td><%= i%></td>
-                <td>${route.departure}</td>
-                <td>${route.destination}</td>
+                <td>${route.title}</td>
+                <td>${route.shortdesc}</td>
                 <td>${route.description}</td>
                 <td>${route.dep_time}</td>
                 <td>${route.ar_time}</td>

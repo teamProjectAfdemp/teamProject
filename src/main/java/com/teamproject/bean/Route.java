@@ -1,16 +1,21 @@
 package com.teamproject.bean;
 
+import java.sql.Blob;
 import java.util.Date;
 
 
 public class Route {
     private int id;
     private int creator_id;
-    private String departure;
-    private String destination;
+    private String title;
+    private String shortdesc;
+    private String description;
+    private int seats;
     private String dep_time;
     private String ar_time;
-    private String description;
+    private String created;
+    private Blob image;
+   
     
     public Route(){
         
@@ -32,20 +37,36 @@ public class Route {
         this.creator_id = creator_id;
     }
 
-    public String getDeparture() {
-        return departure;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDeparture(String departure) {
-        this.departure = departure;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDestination() {
-        return destination;
+    public String getShortdesc() {
+        return shortdesc;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setShortdesc(String shortdesc) {
+        this.shortdesc = shortdesc;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
     }
 
     public String getDep_time() {
@@ -64,11 +85,19 @@ public class Route {
         this.ar_time = ar_time;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCreated() {
+        return created;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
     }
 }

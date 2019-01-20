@@ -2,10 +2,10 @@
     <h1>"${routeToEdit.departure}" Edit</h1>
     <form action="/updateroute" method="POST" modelAttribute="updatedRoute"> 
         <input type="text" name="id" value="${routeToEdit.id}" hidden>
-        <div class="form-group">
+<!--        <div class="form-group">
             <label for="inputCrator">Creator</label>
             <input type="text" class="form-control" name="creator_id" placeholder="${routeToEdit.creator_id}" value="${routeToEdit.creator_id}">
-        </div>
+        </div>-->
         <div class="form-group">
             <label for="inputDeparture">Departure</label>
             <input type="text" class="form-control" name="departure" placeholder="${routeToEdit.departure}" value="${routeToEdit.departure}">
