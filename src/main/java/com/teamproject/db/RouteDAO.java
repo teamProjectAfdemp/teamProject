@@ -3,6 +3,7 @@ package com.teamproject.db;
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import com.teamproject.db.Interface.RouteDAOinterface;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -32,16 +33,19 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         Connection conn = createConnection();
         PreparedStatement prest = null;
         int rowsInserted = 0;
-        String query =  "INSERT INTO `Routes` (`creator_id`,`departure`,`destination`,`dep_time`,`ar_time`,`description`)"+
-                        "VALUES (?,?,?,?,?,?);";
+        String query =  "INSERT INTO `Routes` (`creator_id`,`title`,`shortdesc`,`description`,`seats`,`dep_time`,`ar_time`,`image`)"+
+                        "VALUES (?,?,?,?,?,?,?,?);";
+        System.out.println(query);
         try {
             prest = conn.prepareStatement(query);
             prest.setInt(1,route.getCreator_id());
-            prest.setString(2,route.getDeparture());
-            prest.setString(3,route.getDestination());
-            prest.setString(4,route.getDep_time());
-            prest.setString(5,route.getAr_time());
-            prest.setString(6,route.getDescription());
+            prest.setString(2,route.getTitle());
+            prest.setString(3,route.getShortdesc());
+            prest.setString(4,route.getDescription());
+            prest.setInt(5,route.getSeats());
+            prest.setString(6,route.getDep_time());
+            prest.setString(7,route.getAr_time());
+            prest.setString(8,route.getImage());
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,11 +84,14 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             Route route = new Route();
             route.setId((Integer) row.get("id"));
             route.setCreator_id((Integer) row.get("creator_id"));
-            route.setDeparture((String) row.get("departure"));
-            route.setDestination((String) row.get("destination"));
+            route.setTitle((String) row.get("title"));
+            route.setShortdesc((String) row.get("shortdesc"));
+            route.setDescription((String) row.get("description"));
+            route.setSeats((Integer) row.get("seats"));
             route.setDep_time( (String) row.get("dep_time"));
             route.setAr_time( (String) row.get("ar_time") );
-            route.setDescription((String) row.get("description"));
+            //route.setCreated((String) row.get("created"));
+            //route.setImage((Blob) row.get("image"));
             routeFound.put(route.getId(), route);
         }
         return routeFound;
@@ -99,13 +106,16 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         answer = getGenericSelect(query);
 
         for (Map<String, Object> row : answer) {
-            route.setId( (Integer) row.get("id"));
+            route.setId((Integer) row.get("id"));
             route.setCreator_id((Integer) row.get("creator_id"));
-            route.setDeparture((String) row.get("departure"));
-            route.setDestination((String) row.get("destination"));
-            route.setDep_time((String) row.get("dep_time"));
-            route.setAr_time((String) row.get("ar_time"));
+            route.setTitle((String) row.get("title"));
+            route.setShortdesc((String) row.get("shortdesc"));
             route.setDescription((String) row.get("description"));
+            route.setSeats((Integer) row.get("seats"));
+            route.setDep_time( (String) row.get("dep_time"));
+            route.setAr_time( (String) row.get("ar_time") );
+            //route.setCreated((String) row.get("created"));
+            route.setImage((String) row.get("image"));
 
             System.out.println(row.get("id"));
             System.out.println("ONE MORE USER");
@@ -118,8 +128,10 @@ public class RouteDAO extends Database implements RouteDAOinterface{
 
     public int updateRoute(Route route) {
 
-        String query = "UPDATE `teamproject`.`Routes` SET `departure` = '" + route.getDeparture()
-                + "' ,`destination` = '" + route.getDestination() + "' ,`dep_time` = '" + route.getDep_time() + "' ,`ar_time` = '" + route.getAr_time() +
+        String query = "UPDATE `teamproject`.`Routes` SET `title` = '" + route.getTitle()
+                + "' ,`shortdesc` = '" + route.getShortdesc() + "' ,`description` = '" + route.getDescription()
+                + "' ,`seats` = '" + route.getSeats() + "' ,`dep_time` = '" + route.getDep_time() 
+                + "' ,`ar_time` = '" + route.getAr_time() + "' ,`image` = '" + route.getImage() +
                 "' WHERE `id` = '" + route.getId() + "';";
 
         System.out.println(query);
@@ -145,13 +157,16 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         Route route =  new Route();
         
         for (Map<String, Object> row : answer) {
-            route.setId( (Integer) row.get("id"));
+            route.setId((Integer) row.get("id"));
             route.setCreator_id((Integer) row.get("creator_id"));
-            route.setDeparture((String) row.get("departure"));
-            route.setDestination((String) row.get("destination"));
-            route.setDep_time((String) row.get("dep_time"));
-            route.setAr_time((String) row.get("ar_time"));
+            route.setTitle((String) row.get("title"));
+            route.setShortdesc((String) row.get("shortdesc"));
             route.setDescription((String) row.get("description"));
+            route.setSeats((Integer) row.get("seats"));
+            route.setDep_time( (String) row.get("dep_time"));
+            route.setAr_time( (String) row.get("ar_time") );
+            //route.setCreated((String) row.get("created"));
+            route.setImage((String) row.get("image"));
         }
         
         return route;

@@ -6,7 +6,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
-import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RouteController {
