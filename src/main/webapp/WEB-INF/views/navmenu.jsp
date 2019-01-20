@@ -12,7 +12,7 @@
 
         <div class="collapse navbar-collapse" id="navbardiv">
 
-        
+        //---
             <ul class="navbar-nav justify-content-center d-flex flex-fill">
                 <li class="nav-item active">
                     <a class="nav-link" href="/index">HOME
