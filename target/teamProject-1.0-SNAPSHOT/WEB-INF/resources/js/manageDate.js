@@ -1,7 +1,7 @@
 function myfunc(){
 
-    const checkinEl = document.querySelector('#checkin');
-    const checkoutEl = document.querySelector('#checkout');
+    const checkinEl = document.querySelector('#depTime');
+    const checkoutEl = document.querySelector('#arTime');
  
     //event for checking date for check-in check-out
     checkinEl.addEventListener('change', function() {

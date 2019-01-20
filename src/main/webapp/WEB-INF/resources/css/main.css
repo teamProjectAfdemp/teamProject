@@ -150,9 +150,13 @@ footer {
      margin: 0;
      padding: 0;
      background-color: #3a3a3a;
-    color:  white;
-    height: 120px;
+     color:  white;
+     height: 60px;
+     display: flex;
+     justify-content:center;
 }
+
+footer p{margin-top: 20px;}         
 
 .backlight {
     background-color: #f9f9f9;

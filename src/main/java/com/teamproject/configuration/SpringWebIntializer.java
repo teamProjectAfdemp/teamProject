@@ -9,9 +9,6 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import com.teamproject.configuration.SpringConfiguration;
-import javax.servlet.Filter;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class SpringWebIntializer implements WebApplicationInitializer {
 
@@ -28,8 +25,6 @@ public class SpringWebIntializer implements WebApplicationInitializer {
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/");
     }
-    
-    
 }
 
 

@@ -33,6 +33,8 @@
     </main>
 
     <footer>
+        
+    <p style="text-align:center">Copyright 2019 © Bootcamp 6 Team Project</p>
 
     </footer>
        

@@ -10,7 +10,7 @@
             <div id="routePreview" class="row d-flex justify-content-center "> 
                 <div id="routeHeader" class="col-3 text-center "> 
                     <h1> 
-                        <c:out value="${aRoute.destination}"/> 
+                        <c:out value="${aRoute.title}"/> 
                         <!--Road <br>to Hell-->
                     </h1><hr class="">
                     <p>From "${aRoute.dep_time}"

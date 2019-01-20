@@ -6,23 +6,31 @@
         </div>
         <div class="form-group">
             <label for="inputDeparture">Departure</label>
-            <input type="text" class="form-control" placeholder="Departure" name="departure">
+            <input type="text" class="form-control" placeholder="Departure" name="title">
         </div>
         <div class="form-group">
             <label for="inputDestination">Destination</label>
-            <input type="text" class="form-control" placeholder="Destination" name="destination">
+            <input type="text" class="form-control" placeholder="Destination" name="shortdesc">
         </div>
-        <div class="form-group"> <!-- Date input -->
+        <div class="form-group">
             <label class="control-label" for="date">Dep Time</label>
-            <input class="form-control" id="date" name="dep_time" placeholder="DD-MM-YYY" type="text"/>
+            <input class="form-control" id="depTime" name="dep_time" placeholder="DD-MM-YYY" type="text"/>
         </div>
-        <div class="form-group"> <!-- Date input -->
+        <div class="form-group">
             <label class="control-label" for="date">Ar Time</label>
-            <input class="form-control" id="date" name="ar_time" placeholder="DD-MM-YYY" type="text"/>
+            <input class="form-control" id="arTime" name="ar_time" placeholder="DD-MM-YYY" type="text"/>
         </div>
         <div class="form-group">
             <label for="inputDescription">Description</label>
             <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="description"></textarea>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile" name="image">
+            <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
         </div>
         <button type="submit" class="btn btn-primary">Create a route</button>
     </form>
