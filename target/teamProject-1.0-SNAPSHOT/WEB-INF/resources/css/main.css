@@ -20,7 +20,8 @@ header {
 
 main 
 {
-    background-image: linear-gradient(160deg,#8eaacf, #c1e5dd);
+   /* background-image: linear-gradient(160deg,#8eaacf, #c1e5dd);*/
+    background-color: #cfe0e8;
     margin: 0;
     height: auto;
     padding: 0;
@@ -45,16 +46,30 @@ hr
     top: 80px; 
     height: 60px;
     max-width: 100px;
+    margin: 2rem !important;
 }
 
 .mybutton {
-    background-color: transparent;
-    border: 3px solid #f9f9f9;
-    font-size: 1.2rem;
-    font-weight: 600;   
-    color: #f9f9f9;
-    margin: 2rem;
+    background-color: transparent !important; 
+    border: 3px solid #f9f9f9 !important;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;   
+    color: #f9f9f9 !important;
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    
 }
+
+.mybutton:hover {
+    background-color: transparent !important;
+    transition: 0.5s ease-in-out !important;
+    color: #3a3a3a !important;
+    border: 3px solid #3a3a3a !important;
+    
+}
+
+
 
 #routeHeader {
     margin-top: 5rem;
@@ -142,3 +157,12 @@ footer {
 .backlight {
     background-color: #f9f9f9;
 }
+
+.readonlyinput {
+    background-color: transparent !important;
+    border: 1px solid #f9f9f9 !important;
+}
+
+.card{box-shadow: 5px 5px 10px #888888;}
+
+

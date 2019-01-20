@@ -1,6 +1,7 @@
 package com.teamproject.db;
 
 import com.teamproject.bean.Post;
+import com.teamproject.bean.Route;
 import com.teamproject.db.Interface.PostDAOinterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -82,4 +83,44 @@ public class PostDAO extends Database implements PostDAOinterface{
         }
         return postFound;
     }    
+    
+    public Post getPostById(int id) {
+        Post post = new Post();
+        
+        String query = ("SELECT * FROM `teamproject`.`Posts` WHERE `id` = '" + id + "';");
+
+        Collection<Map<String, Object>> answer;
+        answer = getGenericSelect(query);
+        
+        for (Map<String, Object> row : answer) {
+            post.setId( (Integer) row.get("id"));
+            post.setRoute_id((Integer) row.get("route_id"));
+            post.setUser_id((Integer) row.get("user_id"));
+            post.setPost((String) row.get("post"));
+            
+            System.out.println(row.get("id"));
+            System.out.println("ONE MORE POST");
+        }
+        
+        System.out.println(post.getId());
+
+        return post;
+    }
+    
+    public int updatePost(Post post) {
+
+        String query = "UPDATE `teamproject`.`Posts` SET `post` = '" + post.getPost() +
+                "' WHERE `id` = '" + post.getId() + "';";
+        
+        System.out.println(query);
+        return execUpdateInsert(query);
+    }
+    
+    public int deletePost(Post post) {
+        
+        String query = "DELETE FROM `teamproject`.`Posts` WHERE `id` = '" + post.getId() + "';";
+        
+        System.out.println(query);
+        return execUpdateInsert(query);
+    }
 }

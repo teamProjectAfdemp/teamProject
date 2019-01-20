@@ -10,29 +10,42 @@ import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.UserDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
 
     User curUser;
-    
-    @GetMapping("/profile")
-    public ModelAndView userProfile() {
-        // if no user is logged in go to welcome page!
-        // else go to profile
-        return new ModelAndView( (session().getAttribute("curUser") != null)? "profile": "redirect:/");
+
+    @RequestMapping("/profile")
+    public ModelAndView userProfile( HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+        HttpSession session = session();
+        curUser = (User) session.getAttribute("curUser");
+        return new ModelAndView("forward:/edituser" + curUser.getId() );
+//        ModelAndView model = new ModelAndView("template");
+//        model.addObject("includeView", "allroutes");
+        
     }
-    
-    
+
+
     @GetMapping("/allusers")
-    public ModelAndView getAllUsers() {
-        // if no user is logged in go to welcome page!
-        if (session().getAttribute("curUser") == null) 
-            return new ModelAndView("redirect:/");
+    public ModelAndView getAllUsers(User user, HttpServletRequest request) {
         
-        ModelAndView model = new ModelAndView("viewUsers");
-        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "viewUsers");
+
         ArrayList<User> allUsers = new ArrayList<>();
 
         UserDAO userDAO = UserDAO.getInstance();
@@ -45,28 +58,72 @@ public class UserController {
         return model;
     }
     
-    @GetMapping("/edituser{id}")
-    public ModelAndView getEditUser(@PathVariable int id, User user) {
+    @GetMapping("/allusersJson")
+    public ModelAndView getAllUsersJson(User user) {
+        // if no user is logged in go to welcome page!
+//        if (session().getAttribute("curUser") == null)
+//            return new ModelAndView("redirect:/");
         
-        if (session().getAttribute("curUser") == null) 
-            return new ModelAndView("redirect:/");
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "viewUsersJson");
 
+        return model;
+    }
+
+    @GetMapping("/edituser{id}")
+    public ModelAndView getEditUser(@PathVariable("id") int id, User updatedUser, HttpServletRequest request) {
+
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+
+        System.out.println(id);
         User userToEdit =  UserDAO.getInstance().getUserById( id );
 
-        return  new ModelAndView("/edituserform","userToEdit",userToEdit);
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "edituserform");
+        model.addObject("userToEdit",userToEdit);
+
+        return  model;
     }
-    
-   
-    
+
+
+
     @PostMapping("/updateuser")
-    public ModelAndView postEditUser(User user){
+    public ModelAndView postEditUser(@ModelAttribute("updatedUser")User updatedUser, HttpServletRequest request, RedirectAttributes redir){
+
+       // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+
+        int updated = UserDAO.getInstance().updateUser(updatedUser);
         
-        if (session().getAttribute("curUser") == null) 
-            return new ModelAndView("redirect:/");
-        
-        System.out.println(user.getUsername());
-        int updated = UserDAO.getInstance().updateUser(user);
-        
+        redir.addFlashAttribute("modal", "User Updated!");
+
         return new ModelAndView("redirect:/allusers");
     }
+
+    @GetMapping("/deleteuser{id}")
+    public ModelAndView postDeleteUser(@ModelAttribute("userToDelete")User userToDelete, HttpServletRequest request, RedirectAttributes redir){
+
+       // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+
+        int updated = UserDAO.getInstance().deleteUser(userToDelete);
+        
+        redir.addFlashAttribute("modal", "User Updated!");
+
+        return new ModelAndView("redirect:/allusers");
+    }
+    
+     @GetMapping("/disableuser{id}")
+    public ModelAndView getDisableUser(@ModelAttribute("userToDisable")User userToDisable, HttpServletRequest request){
+
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+        // NOT YET IMPLEMENTED ON DB
+//        int updated = UserDAO.getInstance().disableUser(userToDisable);
+
+        return new ModelAndView("redirect:/allusers");
+    }
+
 }

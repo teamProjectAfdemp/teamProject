@@ -2,13 +2,12 @@
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
 }
-
 body {
   background: #9CECFB;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+  background: -webkit-linear-gradient(to right, #8eaacf, #c1e5dd);
   /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #0052D4, #65C7F7, #9CECFB);
+  background: linear-gradient(to right, #8eaacf, #c1e5dd);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -28,8 +27,10 @@ body {
 .card-signin .card-img-left {
   width: 45%;
   /* Link to your background image using in the property below! */
-  background: scroll center url('https://source.unsplash.com/WEQbe2jBg40/414x512');
-  background-size: cover;
+  background: scroll center url('/resources/img/RouteIcon.svg');
+  background-size: 50% 50%;
+  background-origin: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 .card-signin .card-body {

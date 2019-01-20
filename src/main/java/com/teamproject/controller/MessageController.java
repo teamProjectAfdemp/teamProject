@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamproject.bean.User;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MessageController {
@@ -17,12 +18,21 @@ public class MessageController {
     Message message = new Message();
 
     @GetMapping("/message-index")
-    public ModelAndView create(Message message) {
+    public ModelAndView create(Message message, HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
         return new ModelAndView("messagecreate");
     }
 
     @PostMapping("/createmsg")
-    public ModelAndView sendMessage(Message message) {
+    public ModelAndView sendMessage(Message message, HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+        
         ModelAndView model = new ModelAndView("viewmessages");
         // user bean will be automatically binded to view . refer @ModelAttribute
 
@@ -35,7 +45,11 @@ public class MessageController {
     }
 
     @GetMapping("/viewmsg")
-    public ModelAndView viewMessage(Message message) {
+    public ModelAndView viewMessage(Message message , HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
         ModelAndView model = new ModelAndView("viewmessages");
         // user bean will be automatically binded to view . refer @ModelAttribute
 

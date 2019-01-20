@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sign Up</title>
         <%@include file="links.jsp" %>
-        <style><%@include file="/WEB-INF/css/login.css"%></style>
+    <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="container">
@@ -20,21 +20,25 @@
                             <h5 class="card-title text-center">Register</h5>
                             <form class="form-signin" id="Register" action="/signup" method="POST" modelAttribute="user">
                                 <div class="form-label-group">
-                                    <input type="text" id="inputUserame" class="form-control" placeholder="Username" name="username">
+                                    <input type="text" id="inputUserame" class="form-control" placeholder="Username" name="username" required>
                                     <label for="inputUserame">Username</label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
+                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
                                 <hr>
                                 <div class="form-label-group">
-                                    <input type="text" id="inputText" class="form-control" placeholder="First Name" name="fname">
+                                    <input type="text" id="inputText" class="form-control" placeholder="First Name" name="fname" required>
                                     <label for="inputText">First Name</label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="text" id="inputConfirmPassword" class="form-control" placeholder="Last Name" name="lname">
+                                    <input type="text" id="inputConfirmPassword" class="form-control" placeholder="Last Name" name="lname" required>
                                     <label for="inputConfirmPassword">Last Name</label>
+                                </div>
+                                 <div class="form-label-group">
+                                    <input type="email" id="inputEmail" class="form-control" placeholder="e-mail" name="email" required>
+                                    <label for="inputEmail">E-mail</label>
                                 </div>
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
                                 <a class="d-block text-center mt-2 small" href="/login">Sign In</a>
@@ -45,5 +49,9 @@
                 </div>
             </div>
         </div>
+        <c:if test="${!empty modal}">
+            <c:import url="modal.jsp"/>
+            <script type="text/javascript" src="/resources/js/showmodal.js"></script>
+        </c:if>  
     </body>
 </html>
