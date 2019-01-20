@@ -5,12 +5,12 @@
             <input type="text" class="form-control" placeholder="Creator" name="creator_id">
         </div>
         <div class="form-group">
-            <label for="inputDeparture">Departure</label>
-            <input type="text" class="form-control" placeholder="Departure" name="title">
+            <label for="inputDeparture">Title</label>
+            <input type="text" class="form-control" placeholder="Title" name="title">
         </div>
         <div class="form-group">
-            <label for="inputDestination">Destination</label>
-            <input type="text" class="form-control" placeholder="Destination" name="shortdesc">
+            <label for="inputDestination">Short desc</label>
+            <input type="text" class="form-control" placeholder="shortdesc" name="shortdesc">
         </div>
         <div class="form-group">
             <label class="control-label" for="date">Dep Time</label>
