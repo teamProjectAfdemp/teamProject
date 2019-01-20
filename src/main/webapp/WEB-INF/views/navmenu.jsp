@@ -15,18 +15,22 @@
 
         <ul class="navbar-nav justify-content-center d-flex flex-fill">
             <li class="nav-item active">
-                <a class="nav-link" href="/index">HOME
+                <a class="nav-link" href="/allroutes">FIND ROUTES
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/allroutes" >FIND ROUTES</a>
+            <li class="nav-item avatar dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdownMyRoutesButton" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false" >MY ROUTES</a>
+                <div class="dropdown-menu" >
+                    <a class="dropdown-item" href="/routesjoined">JOINED</a>
+                    <a class="dropdown-item" href="/routescreated">CREATED</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/allusers">ALL USERS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/addroute">ADD ROUTE</a>
+                 <a class="nav-link" href="/addroute">ADD ROUTE
+                    <span class="sr-only">(current)</span>
+                </a>
             </li>
         </ul>
 
@@ -37,6 +41,9 @@
                 </a>
                 <div class="dropdown-menu" >
                     <a class="dropdown-item" href="/index">Profile</a>
+                    <c:if test="${curUser.username == 'admin'}">
+                        <a class="dropdown-item" href="/allusers">All users</a>
+                    </c:if>
                     <a class="dropdown-item" href="/logout">Log Out</a>
 
                 </div>
