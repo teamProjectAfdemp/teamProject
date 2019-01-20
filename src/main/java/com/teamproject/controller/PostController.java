@@ -1,11 +1,8 @@
 package com.teamproject.controller;
 
 import com.teamproject.bean.Post;
-import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
-import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.PostDAO;
-import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
