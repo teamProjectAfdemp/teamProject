@@ -22,6 +22,5 @@ com\teamproject\configuration\SpringWebIntializer.class
 com\teamproject\controller\PostController.class
 com\teamproject\db\Interface\RouteDAOinterface.class
 com\teamproject\db\Interface\UserDAOinterface.class
-com\teamproject\db\ParticipantsDAO.class
 com\teamproject\controller\RouteController.class
 com\teamproject\db\JavaData.class
