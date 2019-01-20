@@ -44,7 +44,7 @@ public class RouteController {
     }
     
     @RequestMapping("/allcreatedroutes")
-    public ModelAndView getAlljoinedRoutes(HttpServletRequest request) {
+    public ModelAndView getAllJoinedRoutes(HttpServletRequest request) {
         
         // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
@@ -58,6 +58,29 @@ public class RouteController {
         RouteDAO routeDAO = RouteDAO.getInstance();
         curUser = (User) session().getAttribute("curUser");
         HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllCreatedRoutesById(curUser);
+
+        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
+
+        model.addObject("allRoutes", allRoutes);
+
+        return model;
+    }
+    
+    @RequestMapping("/alljoinedroutes")
+    public ModelAndView getAllCreatedRoutes(HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "viewRoutes");
+
+        ArrayList<Route> allRoutes = new ArrayList<>();
+
+        RouteDAO routeDAO = RouteDAO.getInstance();
+        curUser = (User) session().getAttribute("curUser");
+        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllJoinedRoutesById(curUser);
 
         allRoutesMap.forEach((k, v) -> allRoutes.add(v));
 
