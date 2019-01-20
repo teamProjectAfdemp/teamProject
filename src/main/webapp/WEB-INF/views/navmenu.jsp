@@ -25,17 +25,12 @@
                 <div class="dropdown-menu" >
                     <a class="dropdown-item" href="/routesjoined">JOINED</a>
                     <a class="dropdown-item" href="/routescreated">CREATED</a>
-
                 </div>
             </li>
-<!--            <li class="nav-item">
-                <a class="nav-link" href="/allusers">ALL USERS</a>
-            </li>-->
             <li class="nav-item">
                  <a class="nav-link" href="/addroute">ADD ROUTE
                     <span class="sr-only">(current)</span>
                 </a>
-                
             </li>
         </ul>
 
