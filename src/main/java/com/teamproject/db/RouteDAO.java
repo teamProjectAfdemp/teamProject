@@ -35,6 +35,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         int rowsInserted = 0;
         String query =  "INSERT INTO `Routes` (`creator_id`,`title`,`shortdesc`,`description`,`seats`,`dep_time`,`ar_time`,`image`)"+
                         "VALUES (?,?,?,?,?,?,?,?);";
+        System.out.println(query);
         try {
             prest = conn.prepareStatement(query);
             prest.setInt(1,route.getCreator_id());
@@ -44,7 +45,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             prest.setInt(5,route.getSeats());
             prest.setString(6,route.getDep_time());
             prest.setString(7,route.getAr_time());
-            prest.setBlob(8,route.getImage());
+            prest.setString(8,route.getImage());
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,7 +91,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             route.setDep_time( (String) row.get("dep_time"));
             route.setAr_time( (String) row.get("ar_time") );
             //route.setCreated((String) row.get("created"));
-            route.setImage((Blob) row.get("image"));
+            //route.setImage((Blob) row.get("image"));
             routeFound.put(route.getId(), route);
         }
         return routeFound;
@@ -114,7 +115,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             route.setDep_time( (String) row.get("dep_time"));
             route.setAr_time( (String) row.get("ar_time") );
             //route.setCreated((String) row.get("created"));
-            route.setImage((Blob) row.get("image"));
+            route.setImage((String) row.get("image"));
 
             System.out.println(row.get("id"));
             System.out.println("ONE MORE USER");
@@ -165,7 +166,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             route.setDep_time( (String) row.get("dep_time"));
             route.setAr_time( (String) row.get("ar_time") );
             //route.setCreated((String) row.get("created"));
-            route.setImage((Blob) row.get("image"));
+            route.setImage((String) row.get("image"));
         }
         
         return route;

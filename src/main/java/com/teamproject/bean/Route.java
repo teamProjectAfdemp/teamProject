@@ -14,7 +14,7 @@ public class Route {
     private String dep_time;
     private String ar_time;
     private String created;
-    private Blob image;
+    private String image;
    
     
     public Route(){
@@ -93,11 +93,11 @@ public class Route {
         this.created = created;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
