@@ -16,6 +16,7 @@
             <div class="row">
                 <div class="col-lg-10 col-xl-9 mx-auto">
                     <div class="card card-signin flex-row my-5">
+                        <a href="<c:url value="/allusersJson"/>" >ALL USERS JSON</a>
                         <div class="card-img-left d-none d-md-flex">
                             <!-- Background image for card set in CSS! -->
                         </div>
@@ -40,5 +41,9 @@
                 </div>
             </div>
         </div>
+        <c:if test="${!empty modal}">
+            <c:import url="modal.jsp"/>
+            <script type="text/javascript" src="/resources/js/showmodal.js"></script>
+        </c:if>  
     </body>
 </html>

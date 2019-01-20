@@ -23,13 +23,18 @@
 
     <main class="container-fluid">
         
-      <c:import url="${includeView}.jsp"/>
+    <c:import url="${includeView}.jsp"/>
+      
+    <c:if test="${!empty modal}">
+        <c:import url="modal.jsp"/>
+        <script type="text/javascript" src="/resources/js/showmodal.js"></script>
+    </c:if>  
 
     </main>
 
     <footer>
 
     </footer>
-
+       
 </body>
 </html>

@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\RouteDAO.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\controller\UserController.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\bean\User.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\Database.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\configuration\SpringWebIntializer.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\Interface\ParticipantDAOinterface.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\controller\CookieHandler.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\Interface\VehicleDAOinterface.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\JavaData.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\service\UserServiceImpl.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\bean\Participant.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\Interface\RouteDAOinterface.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\Interface\ViaDAOinterface.java
@@ -14,13 +18,56 @@ D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\control
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\Interface\PostDAOinterface.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\UserDAO.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\bean\Vehicle.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\configuration\CORSFilter.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\restcontroller\UserServiceController.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\controller\ParticipantController.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\bean\Post.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\ParticipantsDAO.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\controller\MessageController.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\controller\RouteController.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\ParticipantDAO.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\configuration\SpringConfiguration.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\bean\Route.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\ViaDAO.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\service\UserService.java
+D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\VehicleDAO.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\bean\Via.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\bean\Message.java
 D:\Programs\Programming\GitHub\teamProject\src\main\java\com\teamproject\db\PostDAO.java
+=======
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\RouteDAO.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\PostDAOinterface.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\configuration\SpringWebIntializer.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Database.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\MessageController.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\restcontroller\UserServiceController.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\VehicleDAOinterface.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\ParticipantDAO.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\PostController.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Post.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\service\UserService.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Via.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\ParticipantDAOinterface.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\ViaDAOinterface.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\ParticipantsDAO.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\CookieHandler.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\WelcomeController.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Participant.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\UserDAO.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\service\UserServiceImpl.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\UserDAOinterface.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Route.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\configuration\CORSFilter.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\UserController.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\Interface\RouteDAOinterface.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\configuration\SpringConfiguration.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Vehicle.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\Message.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\bean\User.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\PostDAO.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\JavaData.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\VehicleDAO.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\ParticipantController.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\db\ViaDAO.java
+C:\Marios\BC\TXT\Team Project\GitRepo\teamProject\src\main\java\com\teamproject\controller\RouteController.java
+>>>>>>> marios

@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 public class RouteDAO extends Database implements RouteDAOinterface{
-    
+
     public static RouteDAO routeDAO = null;
 
     private RouteDAO() {
@@ -63,12 +63,12 @@ public class RouteDAO extends Database implements RouteDAOinterface{
     public void deleteRouteById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public HashMap<Integer, Route> selectAllRoutes() {
         String query = "SELECT * FROM `teamproject`.`Routes`;";
         return getRoutefromQuery(query);
     }
-    
+
     public HashMap<Integer, Route> getRoutefromQuery(String query) {
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
@@ -89,14 +89,60 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         }
         return routeFound;
     }
-    
+
     public Route getRouteById(int id) {
         Route route = new Route();
-        
+
         String query = ("SELECT * FROM `teamproject`.`Routes` WHERE `id` = '" + id + "';");
 
         Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
+
+        for (Map<String, Object> row : answer) {
+            route.setId( (Integer) row.get("id"));
+            route.setCreator_id((Integer) row.get("creator_id"));
+            route.setDeparture((String) row.get("departure"));
+            route.setDestination((String) row.get("destination"));
+            route.setDep_time((String) row.get("dep_time"));
+            route.setAr_time((String) row.get("ar_time"));
+            route.setDescription((String) row.get("description"));
+
+            System.out.println(row.get("id"));
+            System.out.println("ONE MORE USER");
+        }
+
+        System.out.println(route.getId());
+
+        return route;
+    }
+
+    public int updateRoute(Route route) {
+
+        String query = "UPDATE `teamproject`.`Routes` SET `departure` = '" + route.getDeparture()
+                + "' ,`destination` = '" + route.getDestination() + "' ,`dep_time` = '" + route.getDep_time() + "' ,`ar_time` = '" + route.getAr_time() +
+                "' WHERE `id` = '" + route.getId() + "';";
+
+        System.out.println(query);
+        return execUpdateInsert(query);
+
+    }
+
+    public int deleteRoute(Route route) {
+
+        String query = "DELETE FROM `teamproject`.`Routes` WHERE `id` = '" + route.getId() + "';";
+
+        System.out.println(query);
+        return execUpdateInsert(query);
+    }
+    
+    public Route selectRouteById(int id){
+        
+        String query = "SELECT * FROM `teamproject`.`Routes` WHERE `id` = '" + id +"';";
+        
+        Collection<Map<String, Object>> answer;
+        answer = getGenericSelect(query);
+        
+        Route route =  new Route();
         
         for (Map<String, Object> row : answer) {
             route.setId( (Integer) row.get("id"));
@@ -106,32 +152,8 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             route.setDep_time((String) row.get("dep_time"));
             route.setAr_time((String) row.get("ar_time"));
             route.setDescription((String) row.get("description"));
-            
-            System.out.println(row.get("id"));
-            System.out.println("ONE MORE USER");
         }
         
-        System.out.println(route.getId());
-
         return route;
-    }
-    
-    public int updateRoute(Route route) {
-
-        String query = "UPDATE `teamproject`.`Routes` SET `departure` = '" + route.getDeparture()
-                + "' ,`destination` = '" + route.getDestination() + "' ,`dep_time` = '" + route.getDep_time() + "' ,`ar_time` = '" + route.getAr_time() + 
-                "' WHERE `id` = '" + route.getId() + "';";
-        
-        System.out.println(query);
-        return execUpdateInsert(query);
-        
-    }
-    
-    public int deleteRoute(Route route) {
-        
-        String query = "DELETE FROM `teamproject`.`Routes` WHERE `id` = '" + route.getId() + "';";
-        
-        System.out.println(query);
-        return execUpdateInsert(query);
     }
 }
