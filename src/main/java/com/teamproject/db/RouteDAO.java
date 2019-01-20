@@ -54,7 +54,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
     }
 
     @Override
-    public void updateRoute(int id, int creator_id, String departure, String destination, Date dep_time, Date ar_time, String description) {
+    public void updateRoute(int id, int creator_id, String title, String shortdesc, Date dep_time, Date ar_time, String description) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -91,7 +91,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
             route.setDep_time( (String) row.get("dep_time"));
             route.setAr_time( (String) row.get("ar_time") );
             //route.setCreated((String) row.get("created"));
-            //route.setImage((Blob) row.get("image"));
+            route.setImage((String) row.get("image"));
             routeFound.put(route.getId(), route);
         }
         return routeFound;
