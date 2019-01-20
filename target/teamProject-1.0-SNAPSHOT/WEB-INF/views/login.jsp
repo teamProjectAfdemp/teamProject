@@ -41,5 +41,9 @@
                 </div>
             </div>
         </div>
+        <c:if test="${!empty modal}">
+            <c:import url="modal.jsp"/>
+            <script type="text/javascript" src="/resources/js/showmodal.js"></script>
+        </c:if>  
     </body>
 </html>

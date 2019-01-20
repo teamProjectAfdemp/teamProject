@@ -136,7 +136,24 @@ public class RouteDAO extends Database implements RouteDAOinterface{
     }
     
     public Route selectRouteById(int id){
+        
+        String query = "SELECT * FROM `teamproject`.`Routes` WHERE `id` = '" + id +"';";
+        
+        Collection<Map<String, Object>> answer;
+        answer = getGenericSelect(query);
+        
         Route route =  new Route();
+        
+        for (Map<String, Object> row : answer) {
+            route.setId( (Integer) row.get("id"));
+            route.setCreator_id((Integer) row.get("creator_id"));
+            route.setDeparture((String) row.get("departure"));
+            route.setDestination((String) row.get("destination"));
+            route.setDep_time((String) row.get("dep_time"));
+            route.setAr_time((String) row.get("ar_time"));
+            route.setDescription((String) row.get("description"));
+        }
+        
         return route;
     }
 }

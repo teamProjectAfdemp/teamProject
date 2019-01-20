@@ -12,6 +12,9 @@
             <th scope="col">Description</th>
             <th scope="col">Dep Time</th>
             <th scope="col">Ar Time</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -24,6 +27,7 @@
                 <td>${route.description}</td>
                 <td>${route.dep_time}</td>
                 <td>${route.ar_time}</td>
+                <td><a href="/route/${route.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">View</a></td>
                 <td><a href="/editroute${route.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Update</a></td>
                 <td><a href="/deleteroute${route.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Delete</a></td>
                 <%i++;%>

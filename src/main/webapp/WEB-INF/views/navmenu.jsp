@@ -38,6 +38,7 @@
                     <div class="dropdown-menu" >
                         <a class="dropdown-item" href="/index">Profile</a>
                         <a class="dropdown-item" href="/logout">Log Out</a>
+                        
                     </div>
                 </li>
             </ul>
