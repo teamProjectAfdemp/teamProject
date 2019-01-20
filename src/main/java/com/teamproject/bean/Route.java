@@ -1,8 +1,5 @@
 package com.teamproject.bean;
 
-import java.sql.Blob;
-import java.util.Date;
-
 
 public class Route {
     private int id;
