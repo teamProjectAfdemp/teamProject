@@ -4,12 +4,14 @@ com\teamproject\db\RouteDAO.class
 com\teamproject\configuration\SpringConfiguration.class
 com\teamproject\db\Database.class
 com\teamproject\db\Interface\PostDAOinterface.class
+com\teamproject\db\ParticipantDAO.class
 com\teamproject\controller\UserController.class
 com\teamproject\db\UserDAO.class
 com\teamproject\db\Interface\ParticipantDAOinterface.class
 com\teamproject\controller\MessageController.class
 com\teamproject\db\Interface\VehicleDAOinterface.class
 com\teamproject\controller\ParticipantController.class
+com\teamproject\controller\CookieHandler.class
 com\teamproject\service\UserServiceImpl.class
 com\teamproject\bean\User.class
 com\teamproject\bean\Via.class
@@ -27,4 +29,7 @@ com\teamproject\controller\PostController.class
 com\teamproject\db\Interface\RouteDAOinterface.class
 com\teamproject\db\Interface\UserDAOinterface.class
 com\teamproject\db\ParticipantsDAO.class
+com\teamproject\db\ViaDAO.class
 com\teamproject\controller\RouteController.class
+com\teamproject\db\JavaData.class
+com\teamproject\db\VehicleDAO.class
