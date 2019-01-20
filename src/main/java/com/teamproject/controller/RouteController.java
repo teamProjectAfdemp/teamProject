@@ -22,7 +22,7 @@ public class RouteController {
 
     User curUser;
 
-    @GetMapping("/allroutes")
+    @RequestMapping("/allroutes")
     public ModelAndView getAllRoutes(HttpServletRequest request) {
         
         // if user's cookie does not match got to login page!
@@ -52,13 +52,12 @@ public class RouteController {
         
         
         ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "viewRoutes");
-
-        ArrayList<Route> allRoutes = new ArrayList<>();
+        model.addObject("includeView", "route");
 
         Route route = RouteDAO.getInstance().selectRouteById(id);
+        System.out.println(route.getDescription());
 
-        model.addObject("route", route);
+        model.addObject("aRoute", route);
 
         return model;
     }
