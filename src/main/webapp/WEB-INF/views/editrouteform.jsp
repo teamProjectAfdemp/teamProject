@@ -1,11 +1,11 @@
 <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2">
-    <h1>"${routeToEdit.title}" Edit</h1>
+<!--    <h1>"${routeToEdit.title}" Edit</h1>-->
     <form action="/updateroute" method="POST" modelAttribute="updatedRoute"> 
         <input type="text" name="id" value="${routeToEdit.id}" hidden>
-        <div class="form-group">
+<!--        <div class="form-group">
             <label for="inputCrator">Creator</label>
             <input type="text" class="form-control" name="creator_id" placeholder="${routeToEdit.creator_id}" value="${routeToEdit.creator_id}">
-        </div>
+        </div>-->
         <div class="form-group">
             <label for="inputDeparture">Title</label>
             <input type="text" class="form-control" name="title" placeholder="${routeToEdit.title}" value="${routeToEdit.title}">
@@ -25,6 +25,6 @@
             <label for="inputDescription">Description</label>
             <textarea  type="text" class="form-control" name="description" rows="4" placeholder="${routeToEdit.description}" value="${routeToEdit.description}"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Update a route</button>
+        <button type="submit" class="btn btn-primary">Edit a route</button>
     </form>
 </div>
