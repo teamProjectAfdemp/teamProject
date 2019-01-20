@@ -3,7 +3,6 @@ package com.teamproject.db;
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import com.teamproject.db.Interface.RouteDAOinterface;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,6 +16,10 @@ import java.util.Map;
 public class RouteDAO extends Database implements RouteDAOinterface{
 
     public static RouteDAO routeDAO = null;
+
+    public static RouteDAO getInstance(String curUser) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     private RouteDAO() {
     }
@@ -70,6 +73,11 @@ public class RouteDAO extends Database implements RouteDAOinterface{
 
     public HashMap<Integer, Route> selectAllRoutes() {
         String query = "SELECT * FROM `teamproject`.`Routes`;";
+        return getRoutefromQuery(query);
+    }
+    
+    public HashMap<Integer, Route> selectAllCreatedRoutesById(User user) {
+        String query = ("SELECT * FROM `teamproject`.`Routes` WHERE `creator_id` = '" + user.getId() + "';");
         return getRoutefromQuery(query);
     }
 

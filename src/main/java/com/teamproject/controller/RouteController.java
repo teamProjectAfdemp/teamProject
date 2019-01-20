@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
+import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,6 +35,29 @@ public class RouteController {
 
         RouteDAO routeDAO = RouteDAO.getInstance();
         HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
+
+        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
+
+        model.addObject("allRoutes", allRoutes);
+
+        return model;
+    }
+    
+    @RequestMapping("/allcreatedroutes")
+    public ModelAndView getAlljoinedRoutes(HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "viewRoutes");
+
+        ArrayList<Route> allRoutes = new ArrayList<>();
+
+        RouteDAO routeDAO = RouteDAO.getInstance();
+        curUser = (User) session().getAttribute("curUser");
+        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllCreatedRoutesById(curUser);
 
         allRoutesMap.forEach((k, v) -> allRoutes.add(v));
 

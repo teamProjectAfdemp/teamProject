@@ -24,7 +24,7 @@
                    aria-expanded="false" >MY ROUTES</a>
                 <div class="dropdown-menu" >
                     <a class="dropdown-item" href="/routesjoined">JOINED</a>
-                    <a class="dropdown-item" href="/routescreated">CREATED</a>
+                    <a class="dropdown-item" href="/allcreatedroutes">CREATED</a>
 
                 </div>
             </li>
