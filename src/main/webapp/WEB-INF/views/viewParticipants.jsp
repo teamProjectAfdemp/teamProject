@@ -5,15 +5,19 @@
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Username</th>
+            <th scope="col">Route ID</th>
+            <th scope="col">User ID</th>
         </tr>
     </thead>
     <tbody>
         <% int i = 1;%>
-        <c:forEach items="${participantsUsernamesMap}" var="username">
+        <c:forEach items="${allParticipants}" var="participant">
             <tr>
                 <td><%= i%></td>
-                <td>${username.value}</td>
+                <td>${participant.route_id}</td>
+                <td>${participant.user_id}</td>
+                <td><a href="/edituser${participant.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Update</a></td>
+                <td><a href="/deleteuser${participant.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Delete</a></td>
                 <%i++;%>
             </tr>
         </c:forEach>

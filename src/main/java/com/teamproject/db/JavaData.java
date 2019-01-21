@@ -37,7 +37,7 @@ public class JavaData extends Database{
         
         for (Post post: posts) {
             if ( !usernamesMap.containsKey(post.getUser_id()) )
-                usernamesMap.put(post.getUser_id(), usersMap.get(post.getUser_id()).getUsername());
+                usernamesMap.put(post.getUser_id(), usersMap.get( post.getUser_id() ).getUsername());
         }
        
         return usernamesMap;
@@ -48,8 +48,7 @@ public class JavaData extends Database{
         
         for (Participant participant: participants) {
             if ( !usernamesMap.containsKey(participant.getUser_id()) )
-                usernamesMap.put( participant.getUser_id(), usersMap.get(participant.getUser_id()).getUsername());
-            System.out.println(usersMap.get(participant.getUser_id()).getUsername());
+                usernamesMap.put( participant.getUser_id(), usersMap.get( participant.getUser_id() ).getUsername());
         }
        
         return usernamesMap;
