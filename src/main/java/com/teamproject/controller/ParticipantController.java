@@ -38,11 +38,11 @@ public class ParticipantController {
 
         ArrayList<Participant> allParticipants = new ArrayList<>();
 
-        ParticipantDAO participantDAO = ParticipantDAO.getInstance();
-        HashMap<Integer, Participant> allPArticipantsMap = participantDAO.selectAllparticipants();
-
-        allPArticipantsMap.forEach((k, v) -> allParticipants.add(v));  
-        model.addObject("allParticipants", allParticipants);
+//        ParticipantDAO participantDAO = ParticipantDAO.getInstance();
+//        HashMap<Integer, Participant> allPArticipantsMap = participantDAO.selectParticipantById();
+//
+//        allPArticipantsMap.forEach((k, v) -> allParticipants.add(v));  
+//        model.addObject("allParticipants", allParticipants);
 
         return model;
     }    
