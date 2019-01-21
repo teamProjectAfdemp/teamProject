@@ -1,0 +1,42 @@
+ 
+/*navbar.navbar-custom 
+{
+    background-image: linear-gradient(45deg, #c1e5dd, #8eaacf);
+}*/
+
+
+.row{
+    padding-bottom: 15px;
+    margin: 0;
+}
+
+nav {
+    position: fixed !important;
+    width: 100%;
+    background-color: #3a3a3a;
+    color: white;
+    height: 90px;
+    top: 0; 
+    padding: auto;
+    left:0;
+    z-index: 1200;
+}
+
+nav a {
+    display: block;
+    float: left;
+}
+
+#mainTitle {
+    font-size: 2.7rem;
+    line-height: 2.5rem;
+    font-size: 150;
+    padding: 10px;
+}
+
+
+#navbardiv li {
+    width: 140px;
+    text-align: center;
+    align-items: center;
+}
