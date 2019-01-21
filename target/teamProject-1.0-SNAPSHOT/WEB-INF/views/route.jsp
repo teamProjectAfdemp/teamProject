@@ -13,6 +13,7 @@
                 <c:out value="${aRoute.title}"/> 
                 <!--Road <br>to Hell-->
             </h1><hr class="">
+
             <p>From ${aRoute.dep_time}
                 <!--23 March-->
                 <br>
@@ -57,15 +58,15 @@
 
     <div id="routeUsers" class="row d-flex justify-content-center">
         <h2>Route Users</h2>
+        <c:import url="viewParticipants.jsp"/>
     </div>
 
-    <section id="routeChat" class="row justify-content-center align-items-center">
-        <div class="col-7 d-flex flex-row ">
-            <div class="backlight"></div>
-            <button action="/allusers" class="shadow mybutton">View Chats</button>
+    <section id="routeChat" ng-app="myApp" class="ng-cloak" class="row justify-content-center align-items-center">
+      
+        <div class="col-7" ng-controller="PostController as ctrl">
+           <c:import url="viewPosts.jsp"/>
+           <c:import url="addpost.jsp"/>
         </div>
-        <div class="col-7 shadow backlight"></div>
-        <div class="col-7 shadow backlight"></div>
 
     </section>
 

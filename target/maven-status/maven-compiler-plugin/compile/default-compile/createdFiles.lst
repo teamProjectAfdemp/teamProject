@@ -4,6 +4,7 @@ com\teamproject\configuration\SpringConfiguration.class
 com\teamproject\db\Database.class
 com\teamproject\db\Interface\PostDAOinterface.class
 com\teamproject\db\ParticipantDAO.class
+com\teamproject\restcontroller\PostServiceController.class
 com\teamproject\controller\UserController.class
 com\teamproject\db\UserDAO.class
 com\teamproject\db\Interface\ParticipantDAOinterface.class
@@ -18,8 +19,10 @@ com\teamproject\bean\Route.class
 com\teamproject\bean\Participant.class
 com\teamproject\restcontroller\UserServiceController.class
 com\teamproject\configuration\CORSFilter.class
+com\teamproject\service\PostServiceImpl.class
 com\teamproject\configuration\SpringWebIntializer.class
 com\teamproject\controller\PostController.class
+com\teamproject\service\PostService.class
 com\teamproject\db\Interface\RouteDAOinterface.class
 com\teamproject\db\Interface\UserDAOinterface.class
 com\teamproject\controller\RouteController.class

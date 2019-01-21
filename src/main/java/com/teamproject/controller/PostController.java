@@ -8,6 +8,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -59,13 +60,12 @@ public class PostController {
         return new ModelAndView("redirect:/route/"+post.getRoute_id());
     }
     
-//    @GetMapping("/edipost{id}")
-//    public ModelAndView getEditPost(@PathVariable("id") int id, Post updatedPost) {
+//    @GetMapping("/edipost/{id}")
+//    public ModelAndView getEditPost(@PathVariable("id") int id, Post updatedPost, HttpServletRequest request) {
 //
-//        if (session().getAttribute("curUser") == null)
-//            return new ModelAndView("redirect:/");
+//         // if user's cookie does not match got to login page!
+//        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 //
-//        System.out.println(id);
 //        Post postToEdit =  PostDAO.getInstance().getPostById( id );
 //
 //        ModelAndView model = new ModelAndView("template");

@@ -1,5 +1,6 @@
 package com.teamproject.controller;
 
+import com.teamproject.bean.Participant;
 import com.teamproject.bean.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +10,8 @@ import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import com.teamproject.db.PostDAO;
 import static com.teamproject.controller.WelcomeController.session;
+import com.teamproject.db.JavaData;
+import com.teamproject.db.ParticipantDAO;
 import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -114,9 +117,21 @@ public class RouteController {
         HashMap<Integer, Post> routePostsMap = PostDAO.getInstance().selectPostsByRouteId(route.getId());
         ArrayList<Post> routePosts = new ArrayList<>();
         routePostsMap.forEach((k, v) -> routePosts.add(v));
+        
+        HashMap<Integer,String> usernamesMap =  JavaData.getUsernamesFromPosts(routePosts);
+        
+        
+        HashMap<Integer, Participant> ParticipantsMap = ParticipantDAO.getInstance().selectParticipantById(route.getId());
+        ArrayList<Participant> routeParticipants = new ArrayList<>();
+        ParticipantsMap.forEach((k, v) -> routeParticipants.add(v));
+        
+        HashMap<Integer,String> participantsUsernamesMap =  JavaData.getUsernamesFromParticipants(routeParticipants);
+        
 
         model.addObject("routePosts", routePosts);
         model.addObject("aRoute", route);
+        model.addObject("usernamesMap", usernamesMap);
+        model.addObject("participantsUsernamesMap", participantsUsernamesMap);
 
         return model;
     }

@@ -41,6 +41,12 @@ hr
     background-color: #333;
 }
 
+.smallhr {
+    /*border: none;*/
+    height: 1px;
+    background-color: #777;
+}
+
 #joinButton{
     position: fixed;
     top: 80px; 
@@ -83,7 +89,7 @@ h1 {
 
 
 #routeSmallInfo {
-    
+    text-justify: auto;
     margin-top: 11rem;
     margin-left: 2rem;
     border: 3px solid black;
