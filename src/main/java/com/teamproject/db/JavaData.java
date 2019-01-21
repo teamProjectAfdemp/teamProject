@@ -10,9 +10,11 @@ import com.teamproject.bean.Post;
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
-public class JavaData {
+public class JavaData extends Database{
     
     private static HashMap<Integer,User> usersMap;
     private static HashMap<Integer,Route> routesMap;
