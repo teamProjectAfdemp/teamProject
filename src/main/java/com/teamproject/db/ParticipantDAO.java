@@ -1,6 +1,7 @@
 package com.teamproject.db;
 
 import com.teamproject.bean.Participant;
+import com.teamproject.bean.Route;
 import com.teamproject.db.Interface.ParticipantDAOinterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Controller;
 
-
+@Controller
 public class ParticipantDAO extends Database implements ParticipantDAOinterface{
 
     public static ParticipantDAO participantDAO = null;
@@ -80,5 +82,68 @@ public class ParticipantDAO extends Database implements ParticipantDAOinterface{
         }
         return participantFound;
     }    
+    
+    
+    public HashMap<Integer, Participant> selectAllparticipants() {
+        String query = "SELECT * FROM `teamproject`.`Participants`;";
+        return getParticipantfromQuery(query);
+    }
+    
+    public Participant getParticipantById(int id) {
+        Participant participant = new Participant();
+
+        String query = ("SELECT * FROM `teamproject`.`Participants` WHERE `id` = '" + id + "';");
+
+        Collection<Map<String, Object>> answer;
+        answer = getGenericSelect(query);
+
+        for (Map<String, Object> row : answer) {
+            participant.setId((Integer) row.get("id"));
+            participant.setRoute_id((Integer) row.get("route_id"));
+            participant.setUser_id((Integer) row.get("user_id"));
+            
+            System.out.println(row.get("id"));
+            System.out.println("ONE MORE Participant");
+        }
+        System.out.println(participant.getId());
+
+        return participant;
+    }
+
+    public int updateParticipant(Participant participant) {
+
+        String query = "UPDATE `teamproject`.`Participants` SET `route_id` = '" + participant.getRoute_id()
+                + "' ,`user_id` = '" + participant.getUser_id() + "';";
+
+        System.out.println(query);
+        return execUpdateInsert(query);
+
+    }
+    
+    public int deleteParticipant(Participant participant) {
+
+        String query = "DELETE FROM `teamproject`.`Participants` WHERE `id` = '" + participant.getId() + "';";
+
+        System.out.println(query);
+        return execUpdateInsert(query);
+    }
+    
+    public Participant selectParticipantById(int id){
+        
+        String query = "SELECT * FROM `teamproject`.`Participants` WHERE `id` = '" + id +"';";
+        
+        Collection<Map<String, Object>> answer;
+        answer = getGenericSelect(query);
+        
+        Participant participant =  new Participant();
+        
+        for (Map<String, Object> row : answer) {
+            participant.setId((Integer) row.get("id"));
+            participant.setRoute_id((Integer) row.get("route_id"));
+            participant.setUser_id((Integer) row.get("user_id"));
+        }
+        
+        return participant;
+    }
     
 }
