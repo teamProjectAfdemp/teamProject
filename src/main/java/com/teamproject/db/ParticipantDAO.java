@@ -84,12 +84,6 @@ public class ParticipantDAO extends Database implements ParticipantDAOinterface 
 
     }
 
-
-    public HashMap<Integer, Participant> selectAllparticipants() {
-        String query = "SELECT * FROM `teamproject`.`Participants`;";
-        return getParticipantfromQuery(query);
-    }
-
     public Participant getParticipantById(int id) {
         Participant participant = new Participant();
 

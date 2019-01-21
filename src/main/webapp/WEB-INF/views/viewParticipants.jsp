@@ -11,13 +11,10 @@
     </thead>
     <tbody>
         <% int i = 1;%>
-        <c:forEach items="${allParticipants}" var="participant">
+        <c:forEach items="${participantsUsernamesMap}" var="username">
             <tr>
                 <td><%= i%></td>
-                <td>${participant.route_id}</td>
-                <td>${participant.user_id}</td>
-                <td><a href="/edituser${participant.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Update</a></td>
-                <td><a href="/deleteuser${participant.id}" class="btn btn-outline-secondary " role="button" aria-pressed="true">Delete</a></td>
+                <td>${username.value}</td>
                 <%i++;%>
             </tr>
         </c:forEach>
