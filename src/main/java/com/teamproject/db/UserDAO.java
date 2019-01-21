@@ -27,7 +27,7 @@ public class UserDAO extends Database {
     public int checkUser(String username) {
         int userID = 0;
 
-        String query = "SELECT * FROM `Users` WHERE `username` = \'" + username + "\';";
+        String query = "SELECT * FROM `Users` WHERE `username` = '" + username + "';";
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);

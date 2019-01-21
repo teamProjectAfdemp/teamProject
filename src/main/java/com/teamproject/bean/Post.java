@@ -5,6 +5,7 @@ public class Post {
     private int id;
     private int route_id;
     private int user_id;
+    private String created;
     private String post;
     
     public Post(){
@@ -41,5 +42,13 @@ public class Post {
 
     public void setPost(String post) {
         this.post = post;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 }
