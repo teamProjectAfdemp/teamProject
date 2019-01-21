@@ -66,6 +66,12 @@ public class PostDAO extends Database implements PostDAOinterface{
         return getPostfromQuery(query);
     }
     
+    public HashMap<Integer, Post> selectPostsByRouteId(int id) {
+       String query = "SELECT * FROM `teamproject`.`Posts` WHERE `route_id` = '"+ id + "';"; 
+       
+       return getPostfromQuery(query);
+    }
+    
     public HashMap<Integer, Post> getPostfromQuery(String query) {
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
@@ -79,6 +85,7 @@ public class PostDAO extends Database implements PostDAOinterface{
             post.setRoute_id((Integer) row.get("route_id"));
             post.setUser_id((Integer) row.get("user_id"));
             post.setPost((String) row.get("post"));
+            post.setCreated( ((Date) row.get("created")).toString());
             postFound.put(post.getId(), post);
         }
         return postFound;
