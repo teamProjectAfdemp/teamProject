@@ -108,38 +108,26 @@ public class RouteController {
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "route");
-
+        
+        // Select route
         Route route = RouteDAO.getInstance().selectRouteById(id);
 
         if (route == null) {
             redir.addFlashAttribute("modal", "Route does not exist!");
             return new ModelAndView("redirect:/");
         }
-
-        ArrayList<Post> routePosts = new ArrayList<Post>( PostDAO.getInstance().selectPostsByRouteId(route.getId()).values() );
         
-//        HashMap<Integer,String> routeUsers = new HashMap<><>();
-        
-//        List< T > asd = new ArrayList<Object>(); 
-        
-//        for(Post post: routePosts){
-//           if( routeUsers.containsKey(post.getUser_id()) )
-//        }
-//        
-        HashMap<Integer,String> usernamesMap =  JavaData.getUsernamesFromPosts(routePosts);
-        
-        ArrayList<Participant> routeParticipants = new ArrayList<Participant>( ParticipantDAO.getInstance().selectParticipantById(route.getId()).values() ); 
-        HashMap<Integer,String> participantsUsernamesMap =  JavaData.getUsernamesFromParticipants(routeParticipants);
-        
-        
-        
-//          routeUsers = JavaData.addUsernames(routeUsers,);
+        // get route participants
+        ArrayList<Participant> routeParticipants = new ArrayList<>( ParticipantDAO.getInstance().selectParticipantById(route.getId()).values() );
+       
+        // get route posts
+        ArrayList<Post> routePosts = new ArrayList<>( PostDAO.getInstance().selectPostsByRouteId(route.getId()).values() );
         
         model.addObject("aRoute", route);
         model.addObject("routePosts", routePosts);
-        model.addObject("usernamesMap", usernamesMap);
-        model.addObject("participantsUsernamesMap", participantsUsernamesMap);
-
+        model.addObject("routeParticipants", routeParticipants);
+        session().setAttribute("usernamesMap", JavaData.getIdUsernamesMap());
+        
         return model;
     }
 
