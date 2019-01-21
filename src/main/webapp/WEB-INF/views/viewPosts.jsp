@@ -13,7 +13,10 @@
 
 <div class="collapse p-0 mt-1 pt-2 pb-2" id="collapseExample">
     <div class="card card-body shadow ">
-        <input name="routeid" type="text" ng-bind="routeid" value="${aRoute.id}" hidden/>
+        <!--<input name="routeid" type="text" ng-name="routeid" ng-bind="routeid" value="${aRoute.id}" hidden/>-->
+        <script>
+         var aaa = ${aRoute.id};
+        </script>
         <div class="p-3 ml-4 mr-4 border-bottom border-secondary" ng-repeat="p in ctrl.posts">
             
             <span ng-bind="p.id" class="text-muted" ><u></u></span>
@@ -23,7 +26,7 @@
                 <button class="btn btn-outline-secondary p-0" action="/editpost/{{ post.id }}" aria-expanded="false" aria-controls="collapseExample" type="button" > edit </button>
             </c:if>
             </div>
-            <input ng-bind="p.id" type="text" value="{{ post.id }}" hidden/>
+        <input ng-bind="p.id" type="text" value="{{ post.id }}" hidden/>
         </div>
     </div>
 </div>

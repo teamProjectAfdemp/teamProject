@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('myApp').controller('PostController', ['$scope', 'PostService', function($scope, PostService) {
+angular.module('myApp').controller('PostController', ['$scope','$page', 'PostService', function($scope, PostService) {
     var self = this;
     self.post={id:null,user_id:'',post:'',created:''};
     self.posts=[];
-    self.routeid=null;
 
     self.submit = submit;
     self.edit = edit;
@@ -12,8 +11,8 @@ angular.module('myApp').controller('PostController', ['$scope', 'PostService', f
     self.reset = reset;
     
     
-    fetchAllRoutePosts(self.routeid);
-//    fetchAllRoutePosts(routeid);
+//    fetchAllRoutePosts(1);
+    fetchAllRoutePosts($page.aaa);
 
     function fetchAllRoutePosts(id){
         PostService.fetchAllRoutePosts(id)

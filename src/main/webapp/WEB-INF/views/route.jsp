@@ -61,7 +61,7 @@
         <c:import url="viewParticipants.jsp"/>
     </div>
 
-    <section id="routeChat" ng-app="myApp" class="ng-cloak" class="row justify-content-center align-items-center">
+    <section id="routeChat" ng-app="myApp" class="ng-cloak row justify-content-center align-items-center">
       
         <div class="col-7" ng-controller="PostController as ctrl">
            <c:import url="viewPosts.jsp"/>
