@@ -4,19 +4,16 @@ angular.module('myApp').controller('PostController', ['$scope', 'PostService', f
     var self = this;
     self.post={id:null,user_id:'',post:'',created:''};
     self.posts=[];
-    self.routeid=null;
 
     self.submit = submit;
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;
-    
-    
-    fetchAllRoutePosts(self.routeid);
-//    fetchAllRoutePosts(routeid);
+
+    fetchAllRoutePosts(routeid);
 
     function fetchAllRoutePosts(id){
-        PostService.fetchAllRoutePosts(id)
+        PostService.fetchAllRoutePosts(routeid)
             .then(
             function(d) {
                 self.posts = d;
@@ -30,17 +27,17 @@ angular.module('myApp').controller('PostController', ['$scope', 'PostService', f
     function createPost(post){
         PostService.createPost (post)
             .then(
-            fetchAllRoutePosts,
+            fetchAllRoutePosts(routeid),
             function(errResponse){
                 console.error('Error while creating post');
             }
         );
     }
 
-    function updatePost(post, id){
-        PostService.updatePost (post, id)
+    function updatePost(post, routeid){
+        PostService.updatePost (post, routeid)
             .then(
-            fetchAllRoutePosts,
+            fetchAllRoutePosts(routeid),
             function(errResponse){
                 console.error('Error while updating Post');
             }
@@ -50,46 +47,46 @@ angular.module('myApp').controller('PostController', ['$scope', 'PostService', f
     function deletePost(id){
         PostService.deletePost (id)
             .then(
-            fetchAllRoutePosts,
+            fetchAllRoutePosts(routeid),
             function(errResponse){
                 console.error('Error while deleting post');
             }
         );
     }
 
-    function submit() {
-        if(self.user.id===null){
-            console.log('Saving New Post', self.post);
-            createPost(self.post);
-        }else{
-            updatePost(self.post, self.post.id);
-            console.log('User updated with id ', self.post.id);
-        }
-        reset();
-    }
-
-    function edit(id){
-        console.log('id to be edited', id);
-        for(var i = 0; i < self.posts.length; i++){
-            if(self.posts[i].id === id) {
-                self.post = angular.copy(self.posts[i]);
-                break;
-            }
-        }
-    }
-
-    function remove(id){
-        console.log('id to be deleted', id);
-        if(self.post.id === id) {//clean form if the user to be deleted is shown there.
-            reset();
-        }
-        deletePost(id);
-    }
-
-
-    function reset(){
-        self.post={id:null,user_id:'',post:'',created:''};
-        $scope.myForm.$setPristine(); //reset Form
-    }
+//    function submit() {
+//        if(self.post.id===null){
+//            console.log('Saving New Post', self.post);
+//            createPost(self.post);
+//        }else{
+//            updatePost(self.post, self.post.id);
+//            console.log('User updated with id ', self.post.id);
+//        }
+//        reset();
+//    }
+//
+//    function edit(id){
+//        console.log('id to be edited', id);
+//        for(var i = 0; i < self.posts.length; i++){
+//            if(self.posts[i].id === id) {
+//                self.post = angular.copy(self.posts[i]);
+//                break;
+//            }
+//        }
+//    }
+//
+//    function remove(id){
+//        console.log('id to be deleted', id);
+//        if(self.post.id === id) {//clean form if the user to be deleted is shown there.
+//            reset();
+//        }
+//        deletePost(id);
+//    }
+//
+//
+//    function reset(){
+//        self.post={id:null,user_id:'',post:'',created:''};
+//        $scope.myForm.$setPristine(); //reset Form
+//    }
 
 }]);

@@ -3,22 +3,16 @@ package com.teamproject.controller;
 import com.teamproject.bean.Participant;
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
-import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.ParticipantDAO;
 import com.teamproject.db.RouteDAO;
-import com.teamproject.db.UserDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller

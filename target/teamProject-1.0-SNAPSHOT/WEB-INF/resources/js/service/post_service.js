@@ -30,13 +30,13 @@ angular.module('myApp').factory('PostService', ['$http', '$q', function($http, $
 
     function createPost(post) {
         var deferred = $q.defer();
-        $http.post(REST_SERVICE_URI, post)
+        $http.post(REST_SERVICE_URI + 'create', post)
             .then(
             function (response) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while creating User');
+                console.error('Error while creating post');
                 deferred.reject(errResponse);
             }
         );
@@ -46,7 +46,7 @@ angular.module('myApp').factory('PostService', ['$http', '$q', function($http, $
 
     function updatePost(post, id) {
         var deferred = $q.defer();
-        $http.put(REST_SERVICE_URI+id, user)
+        $http.put(REST_SERVICE_URI + "update/" + post.id, post)
             .then(
             function (response) {
                 deferred.resolve(response.data);

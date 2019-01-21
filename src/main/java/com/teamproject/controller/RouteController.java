@@ -15,6 +15,8 @@ import com.teamproject.db.ParticipantDAO;
 import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import static javafx.scene.input.KeyCode.T;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -106,33 +108,26 @@ public class RouteController {
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "route");
-
+        
+        // Select route
         Route route = RouteDAO.getInstance().selectRouteById(id);
 
         if (route == null) {
             redir.addFlashAttribute("modal", "Route does not exist!");
             return new ModelAndView("redirect:/");
         }
-
-        HashMap<Integer, Post> routePostsMap = PostDAO.getInstance().selectPostsByRouteId(route.getId());
-        ArrayList<Post> routePosts = new ArrayList<>();
-        routePostsMap.forEach((k, v) -> routePosts.add(v));
         
-        HashMap<Integer,String> usernamesMap =  JavaData.getUsernamesFromPosts(routePosts);
+        // get route participants
+        ArrayList<Participant> routeParticipants = new ArrayList<>( ParticipantDAO.getInstance().selectParticipantById(route.getId()).values() );
+       
+        // get route posts
+        ArrayList<Post> routePosts = new ArrayList<>( PostDAO.getInstance().selectPostsByRouteId(route.getId()).values() );
         
-        
-        HashMap<Integer, Participant> ParticipantsMap = ParticipantDAO.getInstance().selectParticipantById(route.getId());
-        ArrayList<Participant> routeParticipants = new ArrayList<>();
-        ParticipantsMap.forEach((k, v) -> routeParticipants.add(v));
-        
-        HashMap<Integer,String> participantsUsernamesMap =  JavaData.getUsernamesFromParticipants(routeParticipants);
-        
-
-        model.addObject("routePosts", routePosts);
         model.addObject("aRoute", route);
-        model.addObject("usernamesMap", usernamesMap);
-        model.addObject("participantsUsernamesMap", participantsUsernamesMap);
-
+        model.addObject("routePosts", routePosts);
+        model.addObject("routeParticipants", routeParticipants);
+        session().setAttribute("usernamesMap", JavaData.getIdUsernamesMap());
+        
         return model;
     }
 

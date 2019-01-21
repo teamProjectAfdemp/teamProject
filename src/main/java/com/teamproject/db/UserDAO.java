@@ -139,6 +139,20 @@ public class UserDAO extends Database {
         String query = "SELECT * FROM `teamproject`.`Users`;";
         return getUsersfromQuery(query);
     }
+    
+    public HashMap<Integer,String> selectAllUsernames() {
+        
+        HashMap<Integer,String> usernamesMap =  new HashMap();
+        String query = "SELECT `id`,`username` FROM `teamproject`.`Users`;";
+
+         Collection<Map<String, Object>> answer = new ArrayList<>();
+         answer = getGenericSelect(query);
+         for (Map<String, Object> row : answer) {
+             usernamesMap.put((Integer) row.get("id"), (String) row.get("username"));
+         }
+        
+         return usernamesMap;
+    }
 
     public HashMap<Integer, User> getUsersfromQuery(String query) {
 
