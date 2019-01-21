@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp').controller('PostController', ['$scope','$page', 'PostService', function($scope, PostService) {
+angular.module('myApp').controller('PostController', ['$scope', 'PostService', function($scope, PostService) {
     var self = this;
     self.post={id:null,user_id:'',post:'',created:''};
     self.posts=[];
@@ -9,13 +9,11 @@ angular.module('myApp').controller('PostController', ['$scope','$page', 'PostSer
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;
-    
-    
-//    fetchAllRoutePosts(1);
-    fetchAllRoutePosts($page.aaa);
+
+    fetchAllRoutePosts(routeid);
 
     function fetchAllRoutePosts(id){
-        PostService.fetchAllRoutePosts(id)
+        PostService.fetchAllRoutePosts(routeid)
             .then(
             function(d) {
                 self.posts = d;
@@ -29,7 +27,7 @@ angular.module('myApp').controller('PostController', ['$scope','$page', 'PostSer
     function createPost(post){
         PostService.createPost (post)
             .then(
-            fetchAllRoutePosts,
+            fetchAllRoutePosts(routeid),
             function(errResponse){
                 console.error('Error while creating post');
             }
@@ -39,7 +37,7 @@ angular.module('myApp').controller('PostController', ['$scope','$page', 'PostSer
     function updatePost(post, id){
         PostService.updatePost (post, id)
             .then(
-            fetchAllRoutePosts,
+            fetchAllRoutePosts(routeid),
             function(errResponse){
                 console.error('Error while updating Post');
             }
@@ -49,7 +47,7 @@ angular.module('myApp').controller('PostController', ['$scope','$page', 'PostSer
     function deletePost(id){
         PostService.deletePost (id)
             .then(
-            fetchAllRoutePosts,
+            fetchAllRoutePosts(routeid),
             function(errResponse){
                 console.error('Error while deleting post');
             }
@@ -57,7 +55,7 @@ angular.module('myApp').controller('PostController', ['$scope','$page', 'PostSer
     }
 
     function submit() {
-        if(self.user.id===null){
+        if(self.post.id===null){
             console.log('Saving New Post', self.post);
             createPost(self.post);
         }else{
