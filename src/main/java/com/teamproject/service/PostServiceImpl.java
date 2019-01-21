@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class PostServiceImpl implements PostService {
 
     public boolean addPost(Post post) {
-
+        if ( PostDAO.getInstance().createPost(post) == 1) return true;
         return false;
     }
 

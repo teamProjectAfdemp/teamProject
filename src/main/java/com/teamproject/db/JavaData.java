@@ -12,27 +12,39 @@ import com.teamproject.bean.User;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.BiConsumer;
 
-public class JavaData extends Database{
-    
-    private static HashMap<Integer,User> usersMap;
-    private static HashMap<Integer,Route> routesMap;
-    private static HashMap<Integer,Post> postsMap;
-    private static HashMap<Integer,Participant> routeHasUsers;
-    
+public class JavaData extends Database {
+
+    private static HashMap<Integer, User> usersMap;
+    private static HashMap<Integer, Route> routesMap;
+    private static HashMap<Integer, Post> postsMap;
+    private static HashMap<Integer, Participant> routeHasUsers;
+
+    private static HashMap<Integer, String> idUsernamesMap;
+
     static {
-        usersMap = UserDAO.getInstance().selectAllUsers();
-        routesMap = RouteDAO.getInstance().selectAllRoutes();
-        postsMap = PostDAO.getInstance().selectAllPosts();
-        routeHasUsers = ParticipantDAO.getInstance().selectAllParticipants();
+//        usersMap = UserDAO.getInstance().selectAllUsers();
+        idUsernamesMap = UserDAO.getInstance().selectAllUsernames();
+//        routesMap = RouteDAO.getInstance().selectAllRoutes();
+//        postsMap = PostDAO.getInstance().selectAllPosts();
+//        routeHasUsers = ParticipantDAO.getInstance().selectAllParticipants();
+        
     }
     
-    public static ArrayList<User> selectAllUsers() {
-        return new ArrayList<User>();
+    private static void populateUsernames() { 
+
+//        usersMap.forEach((Integer key, User value) -> {idUsernamesMap.put(key,value.getUsername()); System.out.println(value.getUsername());} ); 
     }
-    
-    public static HashMap<Integer,String> getUsernamesFromPosts(ArrayList<Post> posts){
+
+    public static HashMap<Integer, String> getIdUsernamesMap() {
+        return idUsernamesMap;
+    }
+
+public static HashMap<Integer,String> getUsernamesFromPosts(ArrayList<Post> posts){
         HashMap<Integer,String> usernamesMap = new HashMap<Integer,String>();
         
         for (Post post: posts) {

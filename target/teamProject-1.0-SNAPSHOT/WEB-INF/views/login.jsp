@@ -4,10 +4,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Log in</title>
-        <%--<%@include file="links.jsp" %>--%>
         <c:import url="links.jsp"/>
         <link href="<c:url value="/resources/css/login.css" />" rel="stylesheet" type="text/css">
-        <%--<%@include file="/resources/css/login.css"%>--%>
     </head>
 
     <body>
@@ -15,7 +13,6 @@
             <div class="row">
                 <div class="col-lg-10 col-xl-9 mx-auto">
                     <div class="card card-signin flex-row my-5">
-                        <a href="<c:url value="/allusersJson"/>" >ALL USERS JSON</a>
                         <div class="card-img-left d-none d-md-flex">
                             <!-- Background image for card set in CSS! -->
                         </div>
