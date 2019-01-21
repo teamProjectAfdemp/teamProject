@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Controller;
 
-@Controller
 public class ParticipantDAO extends Database implements ParticipantDAOinterface{
 
     public static ParticipantDAO participantDAO = null;
@@ -130,7 +129,7 @@ public class ParticipantDAO extends Database implements ParticipantDAOinterface{
     
     public Participant selectParticipantById(int id){
         
-        String query = "SELECT * FROM `teamproject`.`Participants` WHERE `id` = '" + id +"';";
+        String query = "SELECT * FROM `teamproject`.`Participants` WHERE `route_id` = '" + id +"';";
         
         Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);

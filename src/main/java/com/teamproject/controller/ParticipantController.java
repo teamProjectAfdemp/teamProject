@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
+@Controller
 public class ParticipantController {
     
     User curUser;
@@ -39,10 +41,40 @@ public class ParticipantController {
         ParticipantDAO participantDAO = ParticipantDAO.getInstance();
         HashMap<Integer, Participant> allPArticipantsMap = participantDAO.selectAllparticipants();
 
-        allPArticipantsMap.forEach((k, v) -> allParticipants.add(v));
-
-        model.addObject("allRoutes", allParticipants);
+        allPArticipantsMap.forEach((k, v) -> allParticipants.add(v));  
+        model.addObject("allParticipants", allParticipants);
 
         return model;
     }    
+    
+    @GetMapping("/addparticipant")
+    public ModelAndView getAddParticipant(HttpServletRequest request) {
+
+        // if user's cookie does not match got to login page!
+        if (!(CookieHandler.validateCookie(request.getCookies()))) {
+            return new ModelAndView("redirect:/");
+        }
+
+        ModelAndView model = new ModelAndView("template");
+        model.addObject("includeView", "addparticipant");
+
+        return model;
+    }
+
+    @PostMapping("/addparticipant")
+    public ModelAndView postAddParticipant(Route route, HttpServletRequest request) {
+
+        // if user's cookie does not match got to login page!
+        if (!(CookieHandler.validateCookie(request.getCookies()))) {
+            return new ModelAndView("redirect:/");
+        }
+
+        RouteDAO routeDAO = RouteDAO.getInstance();
+
+        if (routeDAO.createRoute(route) != 0) {
+            return new ModelAndView("redirect:/login");
+        } else {
+            return new ModelAndView("error");
+        }
+    }
 }
