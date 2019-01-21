@@ -10,14 +10,13 @@ import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import com.teamproject.db.PostDAO;
 import static com.teamproject.controller.WelcomeController.session;
-import com.teamproject.db.JavaData;
 import com.teamproject.db.ParticipantDAO;
 import com.teamproject.db.RouteDAO;
+import com.teamproject.db.UserDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import static javafx.scene.input.KeyCode.T;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -126,7 +125,12 @@ public class RouteController {
         model.addObject("aRoute", route);
         model.addObject("routePosts", routePosts);
         model.addObject("routeParticipants", routeParticipants);
-        session().setAttribute("usernamesMap", JavaData.getIdUsernamesMap());
+        
+        
+        HttpSession session = session();
+        if (session.getAttribute("usernamesMap")==null) {
+            session.setAttribute("usernamesMap", UserDAO.getInstance().getidUsernamesMap());
+        }
         
         return model;
     }

@@ -28,15 +28,24 @@ nav a {
 }
 
 #mainTitle {
-    font-size: 2.7rem;
-    line-height: 2.5rem;
-    font-size: 150;
+    font-size: 2rem;
+    line-height: 2rem;
     padding: 10px;
 }
 
 
-#navbardiv li {
-    width: 140px;
+
+#navbardiv li  {
+    width: 180px;
     text-align: center;
     align-items: center;
+    
+    
+}
+
+#navbardiv li a{
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    padding-top: 0;
+    padding-bottom: 2rem;
 }
