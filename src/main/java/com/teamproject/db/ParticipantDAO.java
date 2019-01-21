@@ -1,6 +1,11 @@
 package com.teamproject.db;
 
 import com.teamproject.bean.Participant;
+<<<<<<< HEAD
+import com.teamproject.bean.Route;
+=======
+import com.teamproject.bean.Post;
+>>>>>>> marios
 import com.teamproject.db.Interface.ParticipantDAOinterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Controller;
 
 public class ParticipantDAO extends Database implements ParticipantDAOinterface {
 
@@ -78,6 +84,12 @@ public class ParticipantDAO extends Database implements ParticipantDAOinterface 
         }
         return participantFound;
 
+    }
+
+
+    public HashMap<Integer, Participant> selectAllparticipants() {
+        String query = "SELECT * FROM `teamproject`.`Participants`;";
+        return getParticipantfromQuery(query);
     }
 
     public Participant getParticipantById(int id) {
