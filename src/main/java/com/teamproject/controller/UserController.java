@@ -42,6 +42,10 @@ public class UserController {
         
         // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+        // only admin user can view all users!
+        curUser = (User) session().getAttribute("curUser");
+        if ( !curUser.getUsername().equals("admin") ) return new ModelAndView("redirect:/");
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "viewUsers");
@@ -75,8 +79,12 @@ public class UserController {
 
         // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
-
-        System.out.println(id);
+        
+        // a user can edit his own profile only
+        // except for admin that can edit any user's profile
+        curUser = (User) session().getAttribute("curUser");
+        if (curUser.getId()!=id && !curUser.getUsername().equals("admin")) return new ModelAndView("redirect:/allroutes");
+        
         User userToEdit =  UserDAO.getInstance().getUserById( id );
 
         ModelAndView model = new ModelAndView("template");
@@ -85,8 +93,6 @@ public class UserController {
 
         return  model;
     }
-
-
 
     @PostMapping("/updateuser")
     public ModelAndView postEditUser(@ModelAttribute("updatedUser")User updatedUser, HttpServletRequest request, RedirectAttributes redir){
@@ -98,7 +104,7 @@ public class UserController {
         
         redir.addFlashAttribute("modal", "User Updated!");
 
-        return new ModelAndView("redirect:/allusers");
+        return new ModelAndView("redirect:/allroutes");
     }
 
     @GetMapping("/deleteuser{id}")

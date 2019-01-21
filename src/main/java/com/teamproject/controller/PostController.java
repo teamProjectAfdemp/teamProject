@@ -36,17 +36,17 @@ public class PostController {
         return model;
     }
 
-    @GetMapping("/addpost")
-    public ModelAndView getAddPost(HttpServletRequest request) {
-
-        // if user's cookie does not match got to login page!
-        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
-
-        ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "addpost");
-
-        return model;
-    }
+//    @GetMapping("/addpost")
+//    public ModelAndView getAddPost(HttpServletRequest request) {
+//
+//        // if user's cookie does not match got to login page!
+//        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+//
+//        ModelAndView model = new ModelAndView("template");
+//        model.addObject("includeView", "addpost");
+//
+//        return model;
+//    }
 
     @PostMapping("/addpost")
     public ModelAndView postAddPost(Post post, HttpServletRequest request) {
@@ -54,17 +54,9 @@ public class PostController {
         // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
 
-        PostDAO postDAO = PostDAO.getInstance();
-//        UserDAO userDao = UserDAO.getInstance();
-        // if user exists reload page!
-//       if  (userDao.checkUser(user.getUsername()) != 0)
-//           return new ModelAndView("redirect:/signup");
-        // if user is created go to login page
-        if (postDAO.createPost(post) != 0) {
-            return new ModelAndView("redirect:/login");
-        } else {
-            return new ModelAndView("error");
-        }
+        PostDAO.getInstance().createPost(post);
+       
+        return new ModelAndView("redirect:/route/"+post.getRoute_id());
     }
     
 //    @GetMapping("/edipost{id}")
