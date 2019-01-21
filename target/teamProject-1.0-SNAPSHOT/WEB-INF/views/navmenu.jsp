@@ -23,7 +23,7 @@
                 <a class="nav-link dropdown-toggle" id="dropdownMyRoutesButton" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false" >MY ROUTES</a>
                 <div class="dropdown-menu" >
-                    <a class="dropdown-item" href="/routesjoined">JOINED</a>
+                    <a class="dropdown-item" href="/allparticipants">JOINED</a>
                     <a class="dropdown-item" href="/allcreatedroutes">CREATED</a>
 
                 </div>
