@@ -37,9 +37,9 @@ public class ParticipantController {
         ArrayList<Participant> allParticipants = new ArrayList<>();
 
         ParticipantDAO participantDAO = ParticipantDAO.getInstance();
-        HashMap<Integer, Participant> allPArticipantsMap = participantDAO.selectAllparticipants();
+        HashMap<Integer, Participant> allParticipantsMap = participantDAO.selectAllParticipants();
 
-        allPArticipantsMap.forEach((k, v) -> allParticipants.add(v));
+        allParticipantsMap.forEach((k, v) -> allParticipants.add(v));
 
         model.addObject("allRoutes", allParticipants);
 
