@@ -49,5 +49,6 @@ public class UserServiceImpl implements UserService{
         public boolean saveUser(User user) {
             return ( UserDAO.getInstance().createUser(user.getUsername(), user.getPassword(), user.getFname(), user.getLname()) ==1 );
         }
+        
  
 }

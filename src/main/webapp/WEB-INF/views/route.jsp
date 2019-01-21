@@ -58,11 +58,12 @@
 
     <div id="routeUsers" class="row d-flex justify-content-center">
         <h2>Route Users</h2>
+        <c:import url="viewParticipants.jsp"/>
     </div>
 
-    <section id="routeChat" class="row justify-content-center align-items-center">
+    <section id="routeChat" ng-app="myApp" class="ng-cloak" class="row justify-content-center align-items-center">
       
-        <div class="col-7 ">
+        <div class="col-7" ng-controller="PostController as ctrl">
            <c:import url="viewPosts.jsp"/>
            <c:import url="addpost.jsp"/>
         </div>
