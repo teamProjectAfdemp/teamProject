@@ -36,10 +36,10 @@
                                     <input type="text" id="inputConfirmPassword" class="form-control" placeholder="Last Name" name="lname" required>
                                     <label for="inputConfirmPassword">Last Name</label>
                                 </div>
-                                 <div class="form-label-group">
+<!--                                 <div class="form-label-group">
                                     <input type="email" id="inputEmail" class="form-control" placeholder="e-mail" name="email" required>
                                     <label for="inputEmail">E-mail</label>
-                                </div>
+                                </div>-->
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
                                 <a class="d-block text-center mt-2 small" href="/login">Sign In</a>
                                 <hr class="my-4">

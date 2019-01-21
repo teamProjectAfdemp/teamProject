@@ -1,9 +1,9 @@
 <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2">
     <form action="/addroute" method="POST" modelAttribute="route">
-        <div class="form-group">
+<!--        <div class="form-group" hidden>
             <label for="inputCrator">Creator</label>
             <input type="text" class="form-control" placeholder="Creator" name="creator_id">
-        </div>
+        </div>-->
         <div class="form-group">
             <label for="inputDeparture">Title</label>
             <input type="text" class="form-control" placeholder="Title" name="title">

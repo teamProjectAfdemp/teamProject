@@ -13,17 +13,18 @@
                 <c:out value="${aRoute.title}"/> 
                 <!--Road <br>to Hell-->
             </h1><hr class="">
-            <p>From "${aRoute.dep_time}"
+
+            <p>From ${aRoute.dep_time}
                 <!--23 March-->
                 <br>
-                To "${aRoute.ar_time}"
+                To ${aRoute.ar_time}
                 <!--25 March-->
             </p>
 
         </div>
         <div id="routeSmallInfo" class="col-4 p-3 shadow"> 
             <h4>Details</h4>
-            <p>"${aRoute.description}"  
+            <p>${aRoute.shortdesc}  
                 <!--                        A 4-day trip to the bottom of the wildest
                                         hell you could imagine. Keep reading andz
                                         don’t be afraid to ask for details.-->
@@ -41,7 +42,7 @@
         <div class="col-1"></div>
         <div id="routeDetailsText" class="col-7 text-center shadow"> 
             <h4>Program and Details</h4><hr>
-            <p> "${aRoute.description}" 
+            <p> ${aRoute.description} 
                 <!--                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
@@ -60,11 +61,11 @@
     </div>
 
     <section id="routeChat" class="row justify-content-center align-items-center">
+      
         <div class="col-7 ">
            <c:import url="viewPosts.jsp"/>
            <c:import url="addpost.jsp"/>
         </div>
-        <!--<div class="col-7 shadow backlight"></div>-->
 
     </section>
 

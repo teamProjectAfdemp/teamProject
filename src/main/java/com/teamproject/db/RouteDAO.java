@@ -2,8 +2,8 @@ package com.teamproject.db;
 
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
+import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.Interface.RouteDAOinterface;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,6 +18,10 @@ public class RouteDAO extends Database implements RouteDAOinterface{
 
     public static RouteDAO routeDAO = null;
 
+    public static RouteDAO getInstance(String curUser) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private RouteDAO() {
     }
 
@@ -30,6 +34,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
 
     @Override
     public int createRoute(Route route) {
+        User curUser = (User) session().getAttribute("curUser");
         Connection conn = createConnection();
         PreparedStatement prest = null;
         int rowsInserted = 0;
@@ -38,7 +43,7 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         System.out.println(query);
         try {
             prest = conn.prepareStatement(query);
-            prest.setInt(1,route.getCreator_id());
+            prest.setInt(1,curUser.getId());
             prest.setString(2,route.getTitle());
             prest.setString(3,route.getShortdesc());
             prest.setString(4,route.getDescription());
@@ -72,7 +77,17 @@ public class RouteDAO extends Database implements RouteDAOinterface{
         String query = "SELECT * FROM `teamproject`.`Routes`;";
         return getRoutefromQuery(query);
     }
-
+    
+    public HashMap<Integer, Route> selectAllCreatedRoutesById(User user) {
+        String query = ("SELECT * FROM `teamproject`.`Routes` WHERE `creator_id` = '" + user.getId() + "';");
+        return getRoutefromQuery(query);
+    }
+    
+    public HashMap<Integer, Route> selectAllJoinedRoutesById(User user) {
+        String query = ("SELECT * FROM `teamproject`.`Routes` WHERE `creator_id` = '" + user.getId() + "';");
+        return getRoutefromQuery(query);
+    }
+            
     public HashMap<Integer, Route> getRoutefromQuery(String query) {
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
