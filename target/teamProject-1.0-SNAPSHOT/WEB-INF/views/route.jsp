@@ -13,6 +13,7 @@
                 <c:out value="${aRoute.title}"/> 
                 <!--Road <br>to Hell-->
             </h1><hr class="">
+
             <p>From ${aRoute.dep_time}
                 <!--23 March-->
                 <br>
@@ -60,12 +61,11 @@
     </div>
 
     <section id="routeChat" class="row justify-content-center align-items-center">
-        <div class="col-7 d-flex flex-row ">
-            <div class="backlight"></div>
-            <button action="/allusers" class="shadow mybutton">View Chats</button>
+      
+        <div class="col-7 ">
+           <c:import url="viewPosts.jsp"/>
+           <c:import url="addpost.jsp"/>
         </div>
-        <div class="col-7 shadow backlight"></div>
-        <div class="col-7 shadow backlight"></div>
 
     </section>
 
