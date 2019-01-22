@@ -17,13 +17,12 @@
                     <label for="inputDeparture">Title</label>
                     <input type="text" class="form-control" placeholder="Title" name="title" required>
                 </div>
-              
                 <div class="form-group col-md-4">
                     <label id='seats-field'>Available Seats</label>
                     <input type='number' min="1" max="100" class="form-control" id='seats' name='seats' placeholder="5" required>
                 </div>
             </div>
-             <div class="form-row"> 
+            <div class="form-row"> 
                 <div class="form-group col-md-12">
                     <label for="inputDestination">Short Description</label>
                     <input type="text" class="form-control" placeholder="Short Description" name="shortdesc" required>
@@ -33,12 +32,10 @@
                 <div class="form-group col-md-6">
                     <label id='dep-field'> <i class="far fa-calendar-alt"></i> Departure <br></label>
                     <input type='date' class="form-control" id='deptime' name='dep_time' placeholder="Check-in" required>
-
                 </div>
                 <div class="form-group col-md-6">
                     <label id='ar-field'><i class="far fa-calendar-alt"></i> Arrival<br></label>
-                    <input type='date' class="form-control" id='artime'  name='ar_tim' placeholder="Check-out" required>
-
+                    <input type='date' class="form-control" id='artime'  name='ar_time' placeholder="Check-out" required>
                 </div>
             </div>
             <div class="form-row">
@@ -47,7 +44,6 @@
                     <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="description" required></textarea>
                 </div>
             </div>
-            
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label class="custom-file-label" for="customFile">Choose Image</label>
