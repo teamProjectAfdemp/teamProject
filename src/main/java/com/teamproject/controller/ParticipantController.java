@@ -65,10 +65,11 @@ public class ParticipantController {
 
         RouteDAO routeDAO = RouteDAO.getInstance();
 
-        if (routeDAO.createRoute(route) != 0) {
-            return new ModelAndView("redirect:/login");
-        } else {
-            return new ModelAndView("error");
-        }
+//        if (routeDAO.createRoute(route) != 0) {
+//            return new ModelAndView("redirect:/login");
+//        } else {
+//            
+//        }
+        return new ModelAndView("error");
     }
 }

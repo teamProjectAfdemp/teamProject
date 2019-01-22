@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div  class="flex-column justify-content-md-center align-items-center">
-
-    <div  class="row"><button id="joinButton" action="/allusers" class="col-2 shadow mybutton">JOIN !</button></div>
+        <!--shadow mybutton-->
+        <div  class="row"><button id="joinButton" action="/allusers" class="btn btn-outline-secondary p-3 col-2"><b>JOIN !</b></button></div>
 
     <div id="routePreview" class="row d-flex justify-content-center "> 
         <div id="routeHeader" class="col-3 text-center "> 
@@ -19,7 +19,8 @@
     </div>
 
     <div id="routePic" class="row d-flex justify-content-center "
-         style="background-image: url('<c:url value="/resources/img/routesample.jpg"/>');">
+         style="background-image: url(${empty aRoute.image ? '../resources/img/route1.jpg' : 'data:image/jpg;base64,'}${aRoute.image });">
+
     </div>
 
     <div id="routeDetails"  class="row d-flex justify-content-center ">
@@ -31,13 +32,14 @@
         <div class="col-1"></div>
     </div>
 
-    <div id="routeUsers" class="row d-flex justify-content-center">
-        <h2>Already joined:</h2>
-        <c:import url="viewParticipants.jsp"/>
-    </div>
+    <section id="routeUsers" class=" row justify-content-center align-items-center">
+        <div class="col-5">
+            <c:import url="viewParticipants.jsp"/>
+        </div>
+    </section>
 
     <section id="routeChat" class=" row justify-content-center align-items-center">
-        <div class="col-7">
+        <div class="col-5">
             <c:import url="viewPosts.jsp"/>
             <c:import url="addpost.jsp"/>
         </div>

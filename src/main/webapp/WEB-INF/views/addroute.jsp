@@ -1,5 +1,5 @@
 <div class="d-md-flex flex-column justify-content-center align-items-center border border-dark p-2">
-    <form action="/addroute" method="POST" modelAttribute="route">
+    <form action="/addroute" method="POST" modelAttribute="route" enctype="multipart/form-data">
 <!--        <div class="form-group" hidden>
             <label for="inputCrator">Creator</label>
             <input type="text" class="form-control" placeholder="Creator" name="creator_id">
@@ -26,7 +26,7 @@
         </div>
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="customFile" name="image">
-            <label class="custom-file-label" for="customFile">Choose file</label>
+            <label class="custom-file-label" for="customFile">Choose Image</label>
         </div>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">

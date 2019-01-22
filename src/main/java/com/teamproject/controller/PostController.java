@@ -8,7 +8,6 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,17 +36,6 @@ public class PostController {
         return model;
     }
 
-//    @GetMapping("/addpost")
-//    public ModelAndView getAddPost(HttpServletRequest request) {
-//
-//        // if user's cookie does not match got to login page!
-//        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
-//
-//        ModelAndView model = new ModelAndView("template");
-//        model.addObject("includeView", "addpost");
-//
-//        return model;
-//    }
 
     @PostMapping("/addpost")
     public ModelAndView postAddPost(Post post, HttpServletRequest request) {

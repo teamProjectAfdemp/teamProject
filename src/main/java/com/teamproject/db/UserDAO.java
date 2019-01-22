@@ -14,12 +14,15 @@ public class UserDAO extends Database {
 
     public static UserDAO userDAO = null;
 
+    private static HashMap<Integer, String> idUsernamesMap = new HashMap();
+
     private UserDAO() {
     }
 
     public static UserDAO getInstance() {
         if (userDAO == null) {
             userDAO = new UserDAO();
+            userDAO.selectAllUsernames();
         }
         return userDAO;
     }
@@ -29,28 +32,13 @@ public class UserDAO extends Database {
 
         String query = "SELECT * FROM `Users` WHERE `username` = '" + username + "';";
 
-        Collection<Map<String, Object>> answer = new ArrayList<>();
+        Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
 
         for (Map<String, Object> row : answer) {
             userID = (Integer) row.get("id");
         }
         return userID;
-    }
-
-    public boolean checkPass(int userID, String pass) {
-        boolean userAuth = false;
-        int newID = 0;
-
-        String query = "SELECT `id` FROM `Users` WHERE `id` = '" + userID + "' AND `password` = '" + pass + "';";
-
-        Collection<Map<String, Object>> answer = new ArrayList<>();
-        answer = getGenericSelect(query);
-
-        for (Map<String, Object> row : answer) {
-            newID = (Integer) row.get("id");
-        }
-        return newID != 0;
     }
 
     public int checkUsernamePassword(String username, String pass) {
@@ -69,21 +57,21 @@ public class UserDAO extends Database {
 
     public User getUserById(int id) {
         User user = new User();
-        
+
         String query = ("SELECT * FROM `teamproject`.`Users` WHERE `id` = '" + id + "';");
 
         Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
-        
+
         for (Map<String, Object> row : answer) {
             user.setFname((String) row.get("fname"));
             user.setLname((String) row.get("lname"));
             user.setUsername((String) row.get("username"));
-            user.setId( (Integer) row.get("id"));
+            user.setId((Integer) row.get("id"));
             System.out.println(row.get("id"));
             System.out.println("ONE MORE USER");
         }
-        
+
         System.out.println(user.getId());
 
         return user;
@@ -139,19 +127,23 @@ public class UserDAO extends Database {
         String query = "SELECT * FROM `teamproject`.`Users`;";
         return getUsersfromQuery(query);
     }
-    
-    public HashMap<Integer,String> selectAllUsernames() {
-        
-        HashMap<Integer,String> usernamesMap =  new HashMap();
+
+    private void selectAllUsernames() {
+
         String query = "SELECT `id`,`username` FROM `teamproject`.`Users`;";
 
-         Collection<Map<String, Object>> answer = new ArrayList<>();
-         answer = getGenericSelect(query);
-         for (Map<String, Object> row : answer) {
-             usernamesMap.put((Integer) row.get("id"), (String) row.get("username"));
-         }
+        Collection<Map<String, Object>> answer = getGenericSelect(query);
+
+        for (Map<String, Object> row : answer) {
+            idUsernamesMap.put((Integer) row.get("id"), (String) row.get("username"));
+            System.out.println(row.get("id") +" "+ row.get("username"));
+        }
         
-         return usernamesMap;
+
+    }
+    
+    public HashMap<Integer, String> getidUsernamesMap(){
+        return idUsernamesMap;
     }
 
     public HashMap<Integer, User> getUsersfromQuery(String query) {
@@ -178,26 +170,18 @@ public class UserDAO extends Database {
 
         String query = "UPDATE `teamproject`.`Users` SET `fname` = '" + user.getFname()
                 + "' ,`lname` = '" + user.getLname() + "' WHERE `id` = '" + user.getId() + "';";
-        
+
         System.out.println(query);
         return execUpdateInsert(query);
-        
+
     }
-    
+
     public int deleteUser(User user) {
-        
+
         String query = "DELETE FROM `teamproject`.`Users` WHERE `id` = '" + user.getId() + "';";
-        
+
         System.out.println(query);
         return execUpdateInsert(query);
-    }
-    
-    public int disableUser(User user) {
-        
-        // NOT YET IMPLEMENTED ON DB
-         String query = "UPDATE `Users` SET `active` = '" + "??" + "' WHERE `id` = '" + user.getId() + "';";
-        return execUpdateInsert(query);
-        
     }
 
     public int updatePass(User user) {

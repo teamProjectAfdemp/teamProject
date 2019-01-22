@@ -13,11 +13,11 @@ public class CookieHandler {
     
     // retrieve the JSESSIONID cookie from the request cookies list
     public static String getCookie(Cookie[] cookies){
-        
+       
         for(Cookie cookie: cookies)
             if(cookie.getName().equals("JSESSIONID")) 
                 return cookie.getValue();
-       
+        
         return null;
     }
 

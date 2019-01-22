@@ -104,12 +104,8 @@ public class PostDAO extends Database implements PostDAOinterface{
             post.setRoute_id((Integer) row.get("route_id"));
             post.setUser_id((Integer) row.get("user_id"));
             post.setPost((String) row.get("post"));
-            
-            System.out.println(row.get("id"));
-            System.out.println("ONE MORE POST");
         }
-        
-        System.out.println(post.getId());
+
 
         return post;
     }
