@@ -1,19 +1,43 @@
-<div class="d-md-flex col-3 flex-column justify-content-center align-items-center p-2" >
-    <h1>"${userToEdit.username}" Edit</h1>
-    <form  class="form-signin" id="updateuser" action="/updateuser" method="POST" modelAttribute="updatedUser">
-        <div class="form-label-group">
-            username <br><input class="form-control readonlyinput p-3" type="username" name="username" placeholder="${userToEdit.username}" value="${userToEdit.username}" readonly >
+
+<div class="d-md-flex flex-column justify-content-center align-items-center" >
+
+
+    <div class="d-md-flex flex-column justify-content-center align-items-center" > 
+        <img src="../resources/img/avatar.png" alt=""style="width:150px; height: 150px;"/>
+        <h2>Welcome to your profile.</h2>
+        <p>Edit your information</p>
+    </div>
+    <div class="d-md-flex"  >
+        <div class="d-md-flex flex-column justify-content-start align-items-start"style="margin-top: 50px;">
+            <img src="../resources/img/map.png" alt=""/>
         </div>
-        <div class="form-label-group">
-            first name <br><input class="form-control p-3" type="text" name="fname" placeholder="${userToEdit.fname}" value="${userToEdit.fname}" required>
+        <div class="d-md-flex flex-column justify-content-end align-items-end"style="margin:100px;">
+            <form  class="form-signin" id="updateuser" action="/updateuser" method="POST" modelAttribute="updatedUser">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputUsername">Username</label>
+                        <input readonly type="username" placeholder="${userToEdit.username}" value="${userToEdit.username}" class="form-control" name="username">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword">Password</label>
+                        <input class="form-control" type="password" name="password" required>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="inputfname">First Name</label>
+                    <input class="form-control" type="text" name="fname" placeholder="${userToEdit.fname}" value="${userToEdit.fname}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputlname">Last Name</label>
+                    <input class="form-control p-3" type="text" name="lname" placeholder="${userToEdit.lname}" value="${userToEdit.lname}" required>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-outline-secondary p-3">Update</button>
+                </div>
+
         </div>
-        <div class="form-label-group">
-            last name <br><input class="form-control p-3" type="text" name="lname" placeholder="${userToEdit.lname}" value="${userToEdit.lname}" required>
-        </div>
-        <input type="text" name="id" value="${userToEdit.id}" hidden>
-        <div class="form-label-group">
-            <button class="form-control btn mybutton p-3" type="submit">UPDATE</button>
-        </div>
-    </form>
-    <%--<c:set var="user.id" value="${userToEdit.id}"/>--%>
-</div>
+    </div>
+

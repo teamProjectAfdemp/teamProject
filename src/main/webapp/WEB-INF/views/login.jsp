@@ -27,10 +27,10 @@
                                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
-                                <hr>
+                                
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button>
                                 <a class="d-block text-center mt-2 small" href="/signup">Sign Up</a>
-                                <hr class="my-4">
+                     
                             </form>
                         </div>
                     </div>

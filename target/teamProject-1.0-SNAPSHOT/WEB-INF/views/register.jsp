@@ -27,7 +27,6 @@
                                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
-                                <hr>
                                 <div class="form-label-group">
                                     <input type="text" id="inputText" class="form-control" placeholder="First Name" name="fname" required>
                                     <label for="inputText">First Name</label>
@@ -42,7 +41,7 @@
                                 </div>-->
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
                                 <a class="d-block text-center mt-2 small" href="/login">Sign In</a>
-                                <hr class="my-4">
+                             
                             </form>
                         </div>
                     </div>
