@@ -43,6 +43,8 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         String query = "SELECT `id` FROM `teamproject`.`Routes`;";
 
         Collection<Map<String, Object>> answer = getGenericSelect(query);
+        
+        routesIdsList.clear();
 
         for (Map<String, Object> row : answer) {
             routesIdsList.add( (Integer) row.get("id") );
@@ -75,7 +77,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             e.printStackTrace();
         }
         
-         // update usernames list if user was deleted
+         // update usernames list if route was created
         if (rowsInserted>0)routeDAO.selectAllRoutesIds();
         
         return rowsInserted;

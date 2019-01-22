@@ -139,6 +139,8 @@ public class UserDAO extends Database {
         String query = "SELECT `id`,`username` FROM `teamproject`.`Users`;";
 
         Collection<Map<String, Object>> answer = getGenericSelect(query);
+        
+        idUsernamesMap.clear();
 
         for (Map<String, Object> row : answer) {
             idUsernamesMap.put((Integer) row.get("id"), (String) row.get("username"));
