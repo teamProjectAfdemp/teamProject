@@ -5,6 +5,7 @@ import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.Interface.RouteDAOinterface;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -15,8 +16,10 @@ import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.Part;
+import org.springframework.web.multipart.MultipartFile;
 
 public class RouteDAO extends Database implements RouteDAOinterface {
 
@@ -51,9 +54,38 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         }
 
     }
+    
+    public List<Integer> selectCreatedRoutesIds(int userId) {
+        
+        String query = "SELECT `id` FROM `teamproject`.`Routes` WHERE `creator_id` = '" + userId + "';";
+        
+        Collection<Map<String, Object>> answer = getGenericSelect(query);
+        List<Integer> routes = new ArrayList();
+        
+        answer.forEach( (row) -> routes.add( (Integer) row.get("id")) );
+        
+        return routes;
+    }
+    
+    public List<Integer> selectJoinedRoutesIds(int userId) {
+        
+        String query =  "SELECT `Routes`.`id` FROM `Routes` \n" +
+                        "INNER JOIN `Participants` \n" +
+                        "ON `Participants`.`route_id`= `Routes`.`id`\n" +
+                        "WHERE `Participants`.`user_id` = '" + userId + "';";
+        
+        Collection<Map<String, Object>> answer = getGenericSelect(query);
+        List<Integer> routes = new ArrayList();
+        
+        answer.forEach( (row) -> routes.add( (Integer) row.get("id")) );
+        
+        return routes;
+    }
+    
+    
 
     @Override
-    public int createRoute(Route route, Part filePart) {
+    public int createRoute(Route route, MultipartFile file) {
         User curUser = (User) session().getAttribute("curUser");
         Connection conn = createConnection();
         PreparedStatement prest = null;
@@ -71,7 +103,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             prest.setString(6, route.getDep_time());
             prest.setString(7, route.getAr_time());
             
-            prest.setBlob(8, getBlobInputStream(filePart));
+            prest.setBlob(8, getBlobInputStream(file));
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,7 +115,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         return rowsInserted;
     }
 
-    public InputStream getBlobInputStream(Part filePart) {
+    public InputStream getBlobInputStream(MultipartFile filePart) {
         InputStream inputStream = null; // input stream of the upload file
 
         try {

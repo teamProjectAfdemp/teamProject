@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib  uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <div class="d-md-flex flex-column justify-content-center align-items-center">
     <h1>Plan Your Journey</h1>
@@ -15,39 +16,51 @@
             <div class="form-row">
                 <div class="form-group col-md-8">
                     <label for="inputDeparture">Title</label>
-                    <input type="text" class="form-control" placeholder="Title" name="title" required>
-                </div>
+                    <spring:bind path="route.title">
+                    <input type="text" class="form-control" placeholder="Title" name="${status.expression}" value="${status.value}" required>
+                    </spring:bind>
+               </div>
                 <div class="form-group col-md-4">
                     <label id='seats-field'>Available Seats</label>
-                    <input type='number' min="1" max="100" class="form-control" id='seats' name='seats' placeholder="5" required>
+                    <spring:bind path="route.seats">
+                    <input type='number' min="1" max="100" class="form-control" id='seats' name="${status.expression}" value="${status.value}" placeholder="5" required>
+                    </spring:bind>
                 </div>
             </div>
             <div class="form-row"> 
                 <div class="form-group col-md-12">
                     <label for="inputDestination">Short Description</label>
-                    <input type="text" class="form-control" placeholder="Short Description" name="shortdesc" required>
+                    <spring:bind path="route.shortdesc">
+                    <input type="text" class="form-control" placeholder="Short Description" name="${status.expression}" value="${status.value}" required>
+                    </spring:bind>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label id='dep-field'> <i class="far fa-calendar-alt"></i> Departure <br></label>
-                    <input type='date' class="form-control" id='deptime' name='dep_time' placeholder="Check-in" required>
+                    <spring:bind path="route.dep_time">
+                    <input type='date' class="form-control" id='deptime' name="${status.expression}" value="${status.value}" required>
+                    </spring:bind>
                 </div>
                 <div class="form-group col-md-6">
                     <label id='ar-field'><i class="far fa-calendar-alt"></i> Arrival<br></label>
-                    <input type='date' class="form-control" id='artime'  name='ar_time' placeholder="Check-out" required>
+                    <spring:bind path="route.ar_time">
+                    <input type='date' class="form-control" id='artime'  name="${status.expression}" value="${status.value}" required>
+                    </spring:bind>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="inputDescription">Description</label>
-                    <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="description" required></textarea>
+                     <spring:bind path="route.description">
+                    <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="${status.expression}" value="${status.value}" required></textarea>
+                    </spring:bind>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label class="custom-file-label" for="customFile">Choose Image</label>
-                    <input type="file" class="custom-file-input" id="customFile" name="image"> 
+                    <input type="file" class="custom-file-input" id="customFile" name="file"> 
                 </div>
             </div>
             <button type="submit" class="btn btn-outline-secondary w-100 p-3">Create your route</button>
