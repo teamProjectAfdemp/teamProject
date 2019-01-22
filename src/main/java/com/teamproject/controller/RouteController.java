@@ -42,16 +42,16 @@ public class RouteController {
         }
 
         ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "viewRoutes");
-
-        ArrayList<Route> allRoutes = new ArrayList<>();
-
-        RouteDAO routeDAO = RouteDAO.getInstance();
-        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
-
-        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-
-        model.addObject("allRoutes", allRoutes);
+//        model.addObject("includeView", "viewRoutes");
+//
+//        ArrayList<Route> allRoutes = new ArrayList<>();
+//
+//        RouteDAO routeDAO = RouteDAO.getInstance();
+//        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
+//
+//        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
+//
+//        model.addObject("allRoutes", allRoutes);
 
         return model;
     }
@@ -138,6 +138,26 @@ public class RouteController {
             session.setAttribute("usernamesMap", UserDAO.getInstance().getidUsernamesMap());
         }
 
+        return model;
+    }
+    
+    @GetMapping("/ajaxroutes")
+    public ModelAndView allRoutesAjax(HttpServletRequest request, RedirectAttributes redir) {
+        
+        // if user's cookie does not match got to login page!
+        if (!(CookieHandler.validateCookie(request.getCookies()))) {
+            return new ModelAndView("redirect:/");
+        }
+        
+        ArrayList<Route> allRoutes = new ArrayList<>();
+
+        HashMap<Integer, Route> allRoutesMap = RouteDAO.getInstance().selectAllRoutes();
+
+        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
+        
+        ModelAndView model = new ModelAndView("viewRoutes");
+        model.addObject("allRoutes", allRoutes);
+        
         return model;
     }
 

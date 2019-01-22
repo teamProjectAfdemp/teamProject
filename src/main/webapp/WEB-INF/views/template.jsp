@@ -18,23 +18,29 @@
         <!--nav menu-->
     <header >
         <%--<%@include file="navmenu.jsp" %>--%>
-         <c:import url="navmenu.jsp"/>
+        <c:import url="navmenu.jsp"/>
     </header>
 
-    <main class="container-fluid">
-        
-    <c:import url="${includeView}.jsp"/>
-      
-    <c:if test="${!empty modal}">
-        <c:import url="modal.jsp"/>
-        <script type="text/javascript" src="/resources/js/showmodal.js"></script>
-    </c:if>  
+    <main id="main" class="container-fluid">
+        <c:if test="${empty includeView}">
+            <div class="lds-ellipsis  row justify-content-center align-items-center"><div></div><div></div><div></div><div></div></div>
+            <script type="text/javascript" src="/resources/js/routeajax.js"></script>
+        </c:if> 
+        <!--<input type="button" value="GO!" onclick="doAjaxCall();" />-->
+        <c:if test="${!empty includeView}">
+            <c:import url="${includeView}.jsp"/>
+        </c:if>  
+
+        <c:if test="${!empty modal}">
+            <c:import url="modal.jsp"/>
+            <script type="text/javascript" src="/resources/js/showmodal.js"></script>
+        </c:if>  
 
     </main>
 
     <footer>
 
     </footer>
-       
+
 </body>
 </html>
