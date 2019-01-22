@@ -1,7 +1,9 @@
 function myfunc(){
 
-    const checkinEl = document.querySelector('#depTime');
-    const checkoutEl = document.querySelector('#arTime');
+    const checkinEl = document.querySelector('#deptime');
+    const checkoutEl = document.querySelector('#artime');
+    
+    var fd = new FormData();
  
     //event for checking date for check-in check-out
     checkinEl.addEventListener('change', function() {
@@ -24,6 +26,17 @@ function myfunc(){
 
         checkoutEl.setAttribute('min',minDateValue);
     });
+    
+//    
+//    fd.append('file', document.getElementById("image").files[0]);
+//    var req;
+//    if (window.ActiveXObject) {
+//        req=new ActiveXObject();
+//    } else {
+//        req=new XMLHttpRequest();
+//    }
+//    req.open("post", "Image", true);
+//    req.send(fd);
   
 
 }

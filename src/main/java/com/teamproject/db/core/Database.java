@@ -1,4 +1,4 @@
-package com.teamproject.db;
+package com.teamproject.db.core;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

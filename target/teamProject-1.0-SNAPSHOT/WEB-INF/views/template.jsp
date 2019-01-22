@@ -22,11 +22,9 @@
     </header>
 
     <main id="main" class="container-fluid">
-        <c:if test="${empty includeView}">
-            <div class="lds-ellipsis  row justify-content-center align-items-center"><div></div><div></div><div></div><div></div></div>
-            <script type="text/javascript" src="/resources/js/routeajax.js"></script>
-        </c:if> 
+
         <!--<input type="button" value="GO!" onclick="doAjaxCall();" />-->
+        
         <c:if test="${!empty includeView}">
             <c:import url="${includeView}.jsp"/>
         </c:if>  

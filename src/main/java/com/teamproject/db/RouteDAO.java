@@ -1,14 +1,12 @@
 package com.teamproject.db;
 
+import com.teamproject.db.core.Database;
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.Interface.RouteDAOinterface;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -22,11 +20,8 @@ import javax.servlet.http.Part;
 
 public class RouteDAO extends Database implements RouteDAOinterface {
 
-    public static RouteDAO routeDAO = null;
-
-    public static RouteDAO getInstance(String curUser) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private static RouteDAO routeDAO = null;
+    private static ArrayList<Integer> routesIdsList = new ArrayList();
 
     private RouteDAO() {
     }
@@ -36,6 +31,22 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             routeDAO = new RouteDAO();
         }
         return routeDAO;
+    }
+    
+    public ArrayList<Integer> getRoutesIdsList(){
+        return routesIdsList;
+    }
+    
+    private void selectAllRoutesIds() {
+
+        String query = "SELECT `id` FROM `teamproject`.`Routes`;";
+
+        Collection<Map<String, Object>> answer = getGenericSelect(query);
+
+        for (Map<String, Object> row : answer) {
+            routesIdsList.add( (Integer) row.get("id") );
+        }
+
     }
 
     @Override
@@ -62,6 +73,10 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+         // update usernames list if user was deleted
+        if (rowsInserted>0)routeDAO.selectAllRoutesIds();
+        
         return rowsInserted;
     }
 

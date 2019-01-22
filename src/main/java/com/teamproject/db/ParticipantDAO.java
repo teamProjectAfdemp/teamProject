@@ -1,8 +1,7 @@
 package com.teamproject.db;
 
+import com.teamproject.db.core.Database;
 import com.teamproject.bean.Participant;
-import com.teamproject.bean.Route;
-import com.teamproject.bean.Post;
 import com.teamproject.db.Interface.ParticipantDAOinterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,12 +10,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Controller;
 
 
 public class ParticipantDAO extends Database implements ParticipantDAOinterface {
 
-    public static ParticipantDAO participantDAO = null;
+    private static ParticipantDAO participantDAO = null;
 
     private ParticipantDAO() {
     }

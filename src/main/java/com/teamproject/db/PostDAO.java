@@ -1,7 +1,7 @@
 package com.teamproject.db;
 
+import com.teamproject.db.core.Database;
 import com.teamproject.bean.Post;
-import com.teamproject.bean.Route;
 import com.teamproject.db.Interface.PostDAOinterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class PostDAO extends Database implements PostDAOinterface{
     
-    public static PostDAO postDAO = null;
+    private static PostDAO postDAO = null;
 
     private PostDAO() {
     }

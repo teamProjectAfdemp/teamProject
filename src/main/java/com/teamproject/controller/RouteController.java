@@ -42,18 +42,23 @@ public class RouteController {
         }
 
         ModelAndView model = new ModelAndView("template");
-//        model.addObject("includeView", "viewRoutes");
-//
-//        ArrayList<Route> allRoutes = new ArrayList<>();
-//
-//        RouteDAO routeDAO = RouteDAO.getInstance();
-//        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
-//
-//        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-//
-//        model.addObject("allRoutes", allRoutes);
+        model.addObject("includeView", "viewRoutes");
+
+        ArrayList<Route> allRoutes = new ArrayList<>();
+
+        RouteDAO routeDAO = RouteDAO.getInstance();
+        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
+
+        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
+
+        model.addObject("allRoutes", allRoutes);
 
         return model;
+    }
+    
+    @RequestMapping("/ajaxroutelist")
+    public ArrayList<Integer> getRouteList() {
+       return RouteDAO.getInstance().getRoutesIdsList();
     }
 
     @RequestMapping("/allcreatedroutes")
@@ -160,7 +165,23 @@ public class RouteController {
         
         return model;
     }
+    
+    @GetMapping("/ajaxroute/{id}")
+    public ModelAndView getRouteAjax( @PathVariable("id") int id, HttpServletRequest request, RedirectAttributes redir) {
+        
+        // if user's cookie does not match got to login page!
+        if (!(CookieHandler.validateCookie(request.getCookies()))) {
+            return new ModelAndView("redirect:/");
+        }
 
+        Route route = RouteDAO.getInstance().getRouteById(id);
+        
+        ModelAndView model = new ModelAndView("viewSingleRoute");
+        model.addObject("route", route);
+        return model;
+    }
+            
+            
     @GetMapping("/addroute")
     public ModelAndView getAddRoute(HttpServletRequest request) {
 
@@ -190,6 +211,9 @@ public class RouteController {
         } catch (ServletException | IOException e) {
 
         }
+        
+        System.out.println(route.getImage());
+        System.out.println(route.getDescription());
         
         int addedRoute = routeDAO.createRoute(route,filePart);
         
