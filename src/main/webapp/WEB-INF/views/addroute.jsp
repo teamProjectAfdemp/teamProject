@@ -22,26 +22,29 @@
                     <input type="text" class="form-control" placeholder="Short Description" name="shortdesc" required>
                 </div>
             </div>
-            <div class="form-group">
-                <label id='dep-field'> <i class="far fa-calendar-alt"></i> Departure <br>
-                    <input type='date' class="form-control" id='deptime' name='dep_time' placeholder="Check-in" required>
-                </label>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label id='dep-field'> <i class="far fa-calendar-alt"></i> Departure <br></label>
+                        <input type='date' class="form-control" id='deptime' name='dep_time' placeholder="Check-in" required>
+                    
+                </div>
+                <div class="form-group col-md-6">
+                    <label id='ar-field'><i class="far fa-calendar-alt"></i> Arrival<br></label>
+                        <input type='date' class="form-control" id='artime'  name='ar_tim' placeholder="Check-out" required>
+                    
+                </div>
             </div>
-            <div class="form-group">		
-                <label id='ar-field'><i class="far fa-calendar-alt"></i> Arrival<br>
-                    <input type='date' class="form-control" id='artime'  name='ar_tim' placeholder="Check-out" required>
-                </label>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputDescription">Description</label>
+                    <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="description" required></textarea>
+                </div>
+                <div class="form-group col-md-12">
+                    <input type="file" class="custom-file-input" id="customFile" name="image">
+                    <label class="custom-file-label" for="customFile">Choose Image</label>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="inputDescription">Description</label>
-                <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="description" required></textarea>
-            </div>
-            <div class="form-group col-md-12">
-                <input type="file" class="custom-file-input" id="customFile" name="image">
-                <label class="custom-file-label" for="customFile">Choose Image</label>
-            </div>
-            <button type="submit" class="btn btn-outline-primary">Create your route</button>
+            <button type="submit" class="btn btn-outline-secondary w-100 p-3">Create your route</button>
     </div>
 </div>
 
