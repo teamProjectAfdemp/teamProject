@@ -19,7 +19,8 @@
     </div>
 
     <div id="routePic" class="row d-flex justify-content-center "
-         style="background-image: url('<c:url value="/resources/img/routesample.jpg"/>');">
+         style="background-image: url(${empty aRoute.image ? '../resources/img/route1.jpg' : 'data:image/jpg;base64,'}${aRoute.image });">
+
     </div>
 
     <div id="routeDetails"  class="row d-flex justify-content-center ">
