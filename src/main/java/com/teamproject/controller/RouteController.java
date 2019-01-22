@@ -60,7 +60,11 @@ public class RouteController {
     }
     
     @RequestMapping("/ajaxroutelist")
-    public @ResponseBody ArrayList<Integer> getRouteList(HttpServletResponse response) {
+    public @ResponseBody ArrayList<Integer> getRouteList(HttpServletResponse response, HttpServletRequest request) {
+        
+        // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ArrayList<Integer>();
+        
         response.setContentType("application/json");     
         return RouteDAO.getInstance().getRoutesIdsList();
     }
