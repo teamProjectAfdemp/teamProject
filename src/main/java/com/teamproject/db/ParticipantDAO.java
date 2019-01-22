@@ -26,6 +26,24 @@ public class ParticipantDAO extends Database implements ParticipantDAOinterface 
         return participantDAO;
     }
 
+    public int createParticipant(int route_id , int user_id) {
+        System.out.println("HEREEEEEEEEEEEEEEEEEEEEEee");
+        Connection conn = createConnection();
+        PreparedStatement prest = null;
+        int rowsInserted = 0;
+        String query = "INSERT INTO `Participants` (`route_id`,`user_id`)"
+                + "VALUES (?,?);";
+        try {
+            prest = conn.prepareStatement(query);
+            prest.setInt(1, route_id);
+            prest.setInt(2, user_id);
+            rowsInserted = prest.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowsInserted;
+    }
+    
     @Override
     public int createParticipant(Participant participant) {
         Connection conn = createConnection();

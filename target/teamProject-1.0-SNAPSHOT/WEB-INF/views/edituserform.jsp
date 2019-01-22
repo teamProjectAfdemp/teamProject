@@ -3,7 +3,7 @@
 
 
     <div class="d-md-flex flex-column justify-content-center align-items-center" > 
-        <img src="../resources/img/avatar.png" alt=""style="width:150px; height: 150px;"/>
+<!--        <img src="../resources/img/avatar.png" alt=""style="width:150px; height: 150px;"/>-->
         <h2>Welcome to your profile</h2>
         <p>Edit your information</p>
     </div>

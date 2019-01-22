@@ -126,7 +126,8 @@ public class RouteDAO extends Database implements RouteDAOinterface {
     }
 
     public HashMap<Integer, Route> selectAllJoinedRoutesById(User user) {
-        String query = ("SELECT * FROM `teamproject`.`Routes` WHERE `creator_id` = '" + user.getId() + "';");
+        String query = ("SELECT Routes.* FROM teamproject.Routes INNER JOIN Participants on Participants.route_id=Routes.id "
+                + " WHERE user_id = '" + user.getId() + "';");
         return getRoutefromQuery(query);
     }
 
