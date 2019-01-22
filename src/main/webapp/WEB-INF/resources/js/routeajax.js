@@ -1,6 +1,36 @@
 $(document).ready(function () {
     doAjaxRouteList();
+    $("#loader").empty();
 });
+
+function doAjaxRouteList() {
+    $.ajax({
+        type: "GET",
+        url: '/ajaxroutelist',
+        success: function (response) {
+            $.each(response, function (index, item) {
+                doAjaxCall(item);
+            });
+        },
+        complete: function ()
+        {
+            $("#loader").empty();
+        }
+    });
+}
+
+function doAjaxCall(id) {
+    $.ajax({
+        type: "GET",
+        url: '/ajaxroute/' + id,
+        success: function (response) {
+            $('#routedeck').append(response);
+//            $('#routedeck').html(response).add();
+        }
+    });
+}
+
+
 
 //function doAjaxCall() {
 //    $.ajax({
@@ -27,29 +57,3 @@ $(document).ready(function () {
 //        doAjaxCall(item);
 //    });
 //}
-
-function doAjaxRouteList() {
-    $.ajax({
-        type: "GET",
-        url: '/ajaxroutelist',
-        success: function (response) {
-            $.each(response, function (index, item) {
-                doAjaxCall(item);
-            });
-        },
-        complete: function ()
-        {
-            $("#loader").empty();
-        }
-    });
-}
-
-function doAjaxCall(id) {
-    $.ajax({
-        type: "GET",
-        url: '/ajaxroute/' + id,
-        success: function (response) {
-            $('#routedeck').html(response).add();
-        }
-    });
-}

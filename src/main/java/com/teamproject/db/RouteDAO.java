@@ -29,6 +29,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
     public static RouteDAO getInstance() {
         if (routeDAO == null) {
             routeDAO = new RouteDAO();
+            routeDAO.selectAllRoutesIds();
         }
         return routeDAO;
     }

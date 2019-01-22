@@ -19,12 +19,14 @@ import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -42,23 +44,25 @@ public class RouteController {
         }
 
         ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "viewRoutes");
+        model.addObject("includeView", "viewRoutesAjax");
 
-        ArrayList<Route> allRoutes = new ArrayList<>();
-
-        RouteDAO routeDAO = RouteDAO.getInstance();
-        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
-
-        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-
-        model.addObject("allRoutes", allRoutes);
+//        ArrayList<Route> allRoutes = new ArrayList<>();
+//
+//        RouteDAO routeDAO = RouteDAO.getInstance();
+//        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
+//
+//        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
+//
+//        model.addObject("allRoutes", allRoutes);
+      
 
         return model;
     }
     
     @RequestMapping("/ajaxroutelist")
-    public ArrayList<Integer> getRouteList() {
-       return RouteDAO.getInstance().getRoutesIdsList();
+    public @ResponseBody ArrayList<Integer> getRouteList(HttpServletResponse response) {
+        response.setContentType("application/json");     
+        return RouteDAO.getInstance().getRoutesIdsList();
     }
 
     @RequestMapping("/allcreatedroutes")
