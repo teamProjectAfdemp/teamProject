@@ -42,16 +42,16 @@ public class RouteController {
         }
 
         ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "viewRoutesAjax");
-//
-//        ArrayList<Route> allRoutes = new ArrayList<>();
-//
-//        RouteDAO routeDAO = RouteDAO.getInstance();
-//        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
-//
-//        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-//
-//        model.addObject("allRoutes", allRoutes);
+        model.addObject("includeView", "viewRoutes");
+
+        ArrayList<Route> allRoutes = new ArrayList<>();
+
+        RouteDAO routeDAO = RouteDAO.getInstance();
+        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
+
+        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
+
+        model.addObject("allRoutes", allRoutes);
 
         return model;
     }
