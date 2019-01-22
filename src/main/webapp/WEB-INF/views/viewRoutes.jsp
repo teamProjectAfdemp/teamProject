@@ -1,8 +1,8 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<div class="container pt-4" class="row pt-4">
-    <div class="card-deck">
+<div class="container pt-4" >
+    <div id="routedeck" class="card-deck">
         <c:forEach items="${allRoutes}" var="route"> 
             <div class="col-12 col-sm-6 col-lg-4 mb-4 routecard"> <div class="card">
                      <a href="/route/${route.id}">

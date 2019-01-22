@@ -2,11 +2,11 @@ com\teamproject\bean\Post.class
 com\teamproject\bean\Route.class
 com\teamproject\db\PostDAO.class
 com\teamproject\bean\Participant.class
+com\teamproject\db\core\Database.class
 com\teamproject\configuration\CORSFilter.class
 com\teamproject\db\RouteDAO.class
 com\teamproject\configuration\SpringConfiguration.class
 com\teamproject\configuration\SpringWebIntializer.class
-com\teamproject\db\Database.class
 com\teamproject\controller\PostController.class
 com\teamproject\db\Interface\PostDAOinterface.class
 com\teamproject\db\ParticipantDAO.class

@@ -1,8 +1,7 @@
 package com.teamproject.db;
 
-import com.teamproject.db.RouteDAO;
+import com.teamproject.db.core.Database;
 import com.teamproject.bean.User;
-import static com.teamproject.db.RouteDAO.routeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,8 +11,7 @@ import java.util.*;
 // Call them through getInstance() to get the same object always
 public class UserDAO extends Database {
 
-    public static UserDAO userDAO = null;
-
+    private static UserDAO userDAO = null;
     private static HashMap<Integer, String> idUsernamesMap = new HashMap();
 
     private UserDAO() {
@@ -25,6 +23,10 @@ public class UserDAO extends Database {
             userDAO.selectAllUsernames();
         }
         return userDAO;
+    }
+    
+     public HashMap<Integer, String> getidUsernamesMap(){
+        return idUsernamesMap;
     }
 
     public int checkUser(String username) {
@@ -94,6 +96,10 @@ public class UserDAO extends Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        // update usernames list if user was created
+        if (rowsInserted>0)userDAO.selectAllUsernames();
+        
         return rowsInserted;
     }
 
@@ -138,13 +144,9 @@ public class UserDAO extends Database {
             idUsernamesMap.put((Integer) row.get("id"), (String) row.get("username"));
             System.out.println(row.get("id") +" "+ row.get("username"));
         }
-        
 
     }
-    
-    public HashMap<Integer, String> getidUsernamesMap(){
-        return idUsernamesMap;
-    }
+
 
     public HashMap<Integer, User> getUsersfromQuery(String query) {
 
@@ -181,7 +183,13 @@ public class UserDAO extends Database {
         String query = "DELETE FROM `teamproject`.`Users` WHERE `id` = '" + user.getId() + "';";
 
         System.out.println(query);
-        return execUpdateInsert(query);
+        int rowsDeleted= 0;
+        rowsDeleted = execUpdateInsert(query);
+        
+        // update usernames list if user was deleted
+        if (rowsDeleted>0)userDAO.selectAllUsernames();
+        
+        return rowsDeleted;
     }
 
     public int updatePass(User user) {

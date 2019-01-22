@@ -28,6 +28,7 @@ main
    /* background-image: linear-gradient(160deg,#8eaacf, #c1e5dd);*/
     background-color: #cfe0e8;
     margin: 0;
+    min-height: 100vh;
     /*height: 100vh;*/  
     padding: 0;
     padding-top: 8rem;
@@ -247,8 +248,7 @@ footer {
     /*color: #3a3a3a !important;*/
     /*border: 3px solid #3a3a3a !important;*/
     outline: 3px solid #3a3a3a;
-    outline-offset: -12px;
-    
+    outline-offset: -12px;  
 }
 
 
