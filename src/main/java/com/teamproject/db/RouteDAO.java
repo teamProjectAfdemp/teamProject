@@ -234,7 +234,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
                 + "' ,`ar_time` = '" + route.getAr_time() + "' ,`image` = '" + route.getImage()
                 + "' WHERE `id` = '" + route.getId() + "';";
 
-//        System.out.println(query);
+        System.out.println(query);
         return execUpdateInsert(query);
 
     }
