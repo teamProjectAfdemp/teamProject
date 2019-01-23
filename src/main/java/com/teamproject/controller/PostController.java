@@ -8,6 +8,8 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,6 +37,19 @@ public class PostController {
 
         return model;
     }
+    
+    @GetMapping("/posts/{id}")
+    public ModelAndView getRoutePosts(@PathVariable("id") int id, HttpServletRequest request){
+         // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+        ArrayList<Post> routePosts = new ArrayList<>(PostDAO.getInstance().selectPostsByRouteId(id).values());
+        
+        ModelAndView model =  new ModelAndView("viewPosts");
+        model.addObject("routePosts", routePosts);
+        
+        return model;
+    }
 
 
     @PostMapping("/addpost")
@@ -47,6 +62,18 @@ public class PostController {
        
         return new ModelAndView("redirect:/route/"+post.getRoute_id());
     }
+    
+//    @PostMapping("/addpost")
+//    public ModelAndView postAddPost(@ModelAttribute("newpost") Post newpost, HttpServletRequest request) {
+//        
+//        // if user's cookie does not match got to login page!
+//        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+//        System.out.println("////////////////////////////////////////////");
+//        System.out.println(newpost);
+//        System.out.println( PostDAO.getInstance().createPost(newpost));
+//       
+//        return new ModelAndView("empty");
+//    }
     
 //    @GetMapping("/edipost/{id}")
 //    public ModelAndView getEditPost(@PathVariable("id") int id, Post updatedPost, HttpServletRequest request) {

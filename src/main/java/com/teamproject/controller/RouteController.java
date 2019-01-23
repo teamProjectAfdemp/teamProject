@@ -118,12 +118,12 @@ public class RouteController {
         }
 
         // get route participants and posts
-        ArrayList<Participant> routeParticipants = new ArrayList<>(ParticipantDAO.getInstance().selectParticipantById(route.getId()).values());
-        ArrayList<Post> routePosts = new ArrayList<>(PostDAO.getInstance().selectPostsByRouteId(route.getId()).values());
+//        ArrayList<Participant> routeParticipants = new ArrayList<>(ParticipantDAO.getInstance().selectParticipantById(route.getId()).values());
+//        ArrayList<Post> routePosts = new ArrayList<>(PostDAO.getInstance().selectPostsByRouteId(route.getId()).values());
 
         model.addObject("aRoute", route);
-        model.addObject("routePosts", routePosts);
-        model.addObject("routeParticipants", routeParticipants);
+//        model.addObject("routePosts", routePosts);
+//        model.addObject("routeParticipants", routeParticipants);
 
         HttpSession session = session();
         if (session.getAttribute("usernamesMap") == null) {
@@ -227,22 +227,25 @@ public class RouteController {
         return "fileUploadView";
     }
       
-    @PostMapping("/join{id}")
-    public ModelAndView postJoin(@PathVariable("id") int id, Route route, HttpServletRequest request) {
-
-        ModelAndView model = new ModelAndView("redirect:/route/"+id);
-
-        // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) {
-            return new ModelAndView("redirect:/");
-        }
+//    @PostMapping("/join{id}")
+//    public ModelAndView postJoin(@PathVariable("id") int id, Route route, HttpServletRequest request) {
+//
+//        ModelAndView model = new ModelAndView("redirect:/route/"+id);
+//
+//        // if user's cookie does not match got to login page!
+//        if (!(CookieHandler.validateCookie(request.getCookies()))) {
+//            return new ModelAndView("redirect:/");
+//        }
+////        curUser = (User) session().getAttribute("curUser");
+//        ParticipantDAO participantDao = ParticipantDAO.getInstance();
 //        curUser = (User) session().getAttribute("curUser");
-        ParticipantDAO participantDao = ParticipantDAO.getInstance();
-        curUser = (User) session().getAttribute("curUser");
-      
-        if ( participantDao.checkParticipant(id, curUser.getId()) ) return model;
-        ParticipantDAO.getInstance().createParticipant(route, curUser);
-
-        return model;
-    }
+//      
+//        if ( participantDao.checkParticipant(id, curUser.getId()) ) return model;
+//        ParticipantDAO.getInstance().createParticipant(route, curUser);
+//
+//        return model;
+//    }
+    
+   
+    
 }
