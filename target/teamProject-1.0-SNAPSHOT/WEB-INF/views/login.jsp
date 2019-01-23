@@ -20,11 +20,11 @@
                             <h5 class="card-title text-center">Log in</h5>
                             <form class="form-signin" id="Login" action="/login" method="POST" modelAttribute="user">
                                 <div class="form-label-group">
-                                    <input type="username" id="inputUserame" class="form-control" placeholder="Username" name="username" required >
+                                    <input pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$" type="username" id="inputUserame" class="form-control" placeholder="Username" name="username" required >
                                     <label for="inputUserame">Username</label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+                                    <input pattern="" type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
                                 

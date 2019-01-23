@@ -99,11 +99,13 @@ public class UserController {
 
        // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
-
+        
+        curUser = (User) session().getAttribute("curUser");
+        updatedUser.setId(curUser.getId());
         int updated = UserDAO.getInstance().updateUser(updatedUser);
         
-        redir.addFlashAttribute("modal", "User Updated!");
-
+        redir.addFlashAttribute("modal", ( updated>0 )? "User Updated!":"Something went wrong!");
+ 
         return new ModelAndView("redirect:/allroutes");
     }
 
@@ -112,24 +114,26 @@ public class UserController {
 
        // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
-
-        int updated = UserDAO.getInstance().deleteUser(userToDelete);
         
-        redir.addFlashAttribute("modal", "User Updated!");
+        curUser = (User) session().getAttribute("curUser");
+        if( ! curUser.getUsername().equals("admin")) return new ModelAndView("redirect:/");
+        
+        int deleted = UserDAO.getInstance().deleteUser(userToDelete);
+        redir.addFlashAttribute("modal", ( deleted>0 )? "User deleted!":"Something went wrong!");
 
         return new ModelAndView("redirect:/allusers");
     }
     
-     @GetMapping("/disableuser{id}")
-    public ModelAndView getDisableUser(@ModelAttribute("userToDisable")User userToDisable, HttpServletRequest request){
-
-        // if user's cookie does not match got to login page!
-        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
-        
-        // NOT YET IMPLEMENTED ON DB
-//        int updated = UserDAO.getInstance().disableUser(userToDisable);
-
-        return new ModelAndView("redirect:/allusers");
-    }
+//     @GetMapping("/disableuser{id}")
+//    public ModelAndView getDisableUser(@ModelAttribute("userToDisable")User userToDisable, HttpServletRequest request){
+//
+//        // if user's cookie does not match got to login page!
+//        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+//        
+//        // NOT YET IMPLEMENTED ON DB
+////        int updated = UserDAO.getInstance().disableUser(userToDisable);
+//
+//        return new ModelAndView("redirect:/allusers");
+//    }
 
 }

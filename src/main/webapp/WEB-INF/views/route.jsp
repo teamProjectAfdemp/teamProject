@@ -1,6 +1,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 
 <div  class="flex-column justify-content-md-center align-items-center">
         <!--shadow mybutton-->
@@ -8,9 +10,9 @@
 
     <div id="routePreview" class="row d-flex justify-content-center "> 
         <div id="routeHeader" class="col-3 text-center "> 
-            <h1><c:out value="${aRoute.title}"/></h1>
+            <h1><c:out value="${fn:escapeXml(aRoute.title)}"/></h1>
             <hr class="">
-            <p>From ${aRoute.dep_time}<br>To ${aRoute.ar_time}</p>
+            <p>From ${aRoute.dep_time}<br>To ${fn:escapeXml(aRoute.ar_time)}</p>
         </div>
         <div id="routeSmallInfo" class="col-4 p-3 shadow"> 
             <h4>Details</h4>
