@@ -183,8 +183,6 @@ public class RouteController {
         }
         
         Route routeToEdit = RouteDAO.getInstance().getRouteById(id);
-        
-        updatedRoute.setId(id);
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "editrouteform");
