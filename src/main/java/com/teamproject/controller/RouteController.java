@@ -192,13 +192,12 @@ public class RouteController {
     }
 
     @PostMapping("/updateroute")
-    public ModelAndView postEditRoute(@ModelAttribute("updatedRoute") Route updatedRoute, HttpServletRequest request, RedirectAttributes redir) {
+    public ModelAndView postEditRoute(@ModelAttribute("updateRoute") Route updateRoute, HttpServletRequest request, RedirectAttributes redir) {
 
         // if user's cookie does not match got to login page!
         if (!(CookieHandler.validateCookie(request.getCookies()))) return new ModelAndView("redirect:/");
-
-        System.out.println(updatedRoute.getId());
-        int updated = RouteDAO.getInstance().updateRoute(updatedRoute);
+        
+        int updated = RouteDAO.getInstance().updateRoute(updateRoute);
         if (updated>0) redir.addFlashAttribute("modal", "Route updated!");
 
         return new ModelAndView("redirect:/allroutes");
