@@ -52,7 +52,7 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="inputDescription">Description</label>
-                    <textarea  type="text" class="form-control" rows="4" placeholder="${fn:escapeXml(routeToEdit.description)}" name="description" required>${fn:escapeXml(routeToEdit.description)}</textarea>
+                    <textarea id="textarea" type="text" class="form-control" rows="4" placeholder="${fn:escapeXml(routeToEdit.description)}" name="description" required>${fn:escapeXml(routeToEdit.description)}</textarea>
                 </div>
             </div>
             <div class="form-row">

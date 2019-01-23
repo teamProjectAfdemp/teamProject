@@ -53,7 +53,7 @@
                 <div class="form-group col-md-12">
                     <label for="inputDescription">Description</label>
                      <spring:bind path="route.description">
-                    <textarea  type="text" class="form-control" rows="4" placeholder="Description" name="${status.expression}" value="${status.value}" required></textarea>
+                    <textarea id="textarea" type="text" class="form-control" rows="4" placeholder="Description" name="${status.expression}" value="${status.value}" required></textarea>
                     </spring:bind>
                 </div>
             </div>
