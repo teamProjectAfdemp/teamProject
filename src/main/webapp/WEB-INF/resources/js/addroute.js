@@ -10,7 +10,7 @@ function myfunc(){
 
         let checkinDate = new Date(checkinEl.value); 
         let minDate = new Date(checkinEl.value);
-        minDate.setDate(checkinDate.getDate() + 1);
+        minDate.setDate(checkinDate.getDate());
         let minDateValue = minDate.toISOString().substr(0,10);
 
         if (checkoutEl.value != ''){
