@@ -24,7 +24,7 @@
                                     <label for="inputUserame">Username</label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input pattern="" type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                                     <label for="inputPassword">Password</label>
                                 </div>
                                 
