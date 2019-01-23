@@ -6,7 +6,8 @@
 
 <div  class="flex-column justify-content-md-center align-items-center">
         <!--shadow mybutton-->
-        <div  class="row"><button id="joinButton" action="/allusers" class="btn btn-outline-secondary p-3 col-2"><b>JOIN !</b></button></div>
+        <div  class="row">
+            <button id="joinButton" action="/joinparticipant" class="btn btn-outline-secondary p-3 col-2"><b>JOIN !</b></button></div>
 
     <div id="routePreview" class="row d-flex justify-content-center "> 
         <div id="routeHeader" class="col-3 text-center "> 

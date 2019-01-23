@@ -3,6 +3,7 @@ package com.teamproject.controller;
 import com.teamproject.bean.Participant;
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
+import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.ParticipantDAO;
 import com.teamproject.db.RouteDAO;
 import java.util.ArrayList;
@@ -55,15 +56,15 @@ public class ParticipantController {
         return model;
     }
 
-    @PostMapping("/addparticipant")
-    public ModelAndView postAddParticipant(Route route, HttpServletRequest request) {
+    @PostMapping("/joinparticipant")
+    public ModelAndView postJoinParticipant(Route route, HttpServletRequest request) {
 
         // if user's cookie does not match got to login page!
         if (!(CookieHandler.validateCookie(request.getCookies()))) {
             return new ModelAndView("redirect:/");
         }
-
-        RouteDAO routeDAO = RouteDAO.getInstance();
+        curUser = (User) session().getAttribute("curUser");
+        ParticipantDAO.getInstance().createParticipant(route.getId(), curUser.getId());
 
 //        if (routeDAO.createRoute(route) != 0) {
 //            return new ModelAndView("redirect:/login");
