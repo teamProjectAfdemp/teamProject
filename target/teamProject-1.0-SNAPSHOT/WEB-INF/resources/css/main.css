@@ -115,9 +115,18 @@ hr
 #joinButton{
     position: fixed;
     top: 80px; 
-    height: 60px;
-    max-width: 100px;
+    height: 120px;
+    max-width: 200px;
     margin: 2rem !important;
+}
+#joinButton:hover {
+    
+    background-color: #333;
+}
+
+
+#joinButton > h4{
+    margin-bottom: 1px solid black;
 }
 
 .mybutton {
