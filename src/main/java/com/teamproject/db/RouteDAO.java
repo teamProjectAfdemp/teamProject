@@ -36,53 +36,51 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         }
         return routeDAO;
     }
-    
-    public ArrayList<Integer> getRoutesIdsList(){
+
+    public ArrayList<Integer> getRoutesIdsList() {
         return routesIdsList;
     }
-    
+
     private void selectAllRoutesIds() {
 
         String query = "SELECT `id` FROM `teamproject`.`Routes`;";
 
         Collection<Map<String, Object>> answer = getGenericSelect(query);
-        
+
         routesIdsList.clear();
 
         for (Map<String, Object> row : answer) {
-            routesIdsList.add( (Integer) row.get("id") );
+            routesIdsList.add((Integer) row.get("id"));
         }
 
     }
-    
+
     public List<Integer> selectCreatedRoutesIds(int userId) {
-        
+
         String query = "SELECT `id` FROM `teamproject`.`Routes` WHERE `creator_id` = '" + userId + "';";
-        
+
         Collection<Map<String, Object>> answer = getGenericSelect(query);
         List<Integer> routes = new ArrayList();
-        
-        answer.forEach( (row) -> routes.add( (Integer) row.get("id")) );
-        
+
+        answer.forEach((row) -> routes.add((Integer) row.get("id")));
+
         return routes;
     }
-    
+
     public List<Integer> selectJoinedRoutesIds(int userId) {
-        
-        String query =  "SELECT `Routes`.`id` FROM `Routes` \n" +
-                        "INNER JOIN `Participants` \n" +
-                        "ON `Participants`.`route_id`= `Routes`.`id`\n" +
-                        "WHERE `Participants`.`user_id` = '" + userId + "';";
-        
+
+        String query = "SELECT `Routes`.`id` FROM `Routes` \n"
+                + "INNER JOIN `Participants` \n"
+                + "ON `Participants`.`route_id`= `Routes`.`id`\n"
+                + "WHERE `Participants`.`user_id` = '" + userId + "';";
+
         Collection<Map<String, Object>> answer = getGenericSelect(query);
         List<Integer> routes = new ArrayList();
-        
-        answer.forEach( (row) -> routes.add( (Integer) row.get("id")) );
-        
+
+        answer.forEach((row) -> routes.add((Integer) row.get("id")));
+
         return routes;
     }
-    
-    
 
     @Override
     public int createRoute(Route route, MultipartFile file) {
@@ -92,7 +90,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         int rowsInserted = 0;
         String query = "INSERT INTO `Routes` (`creator_id`,`title`,`shortdesc`,`description`,`seats`,`dep_time`,`ar_time`,`image`)"
                 + "VALUES (?,?,?,?,?,?,?,?);";
-        System.out.println(query);
+//        System.out.println(query);
         try {
             prest = conn.prepareStatement(query);
             prest.setInt(1, curUser.getId());
@@ -102,16 +100,18 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             prest.setInt(5, route.getSeats());
             prest.setString(6, route.getDep_time());
             prest.setString(7, route.getAr_time());
-            
+
             prest.setBlob(8, getBlobInputStream(file));
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-         // update usernames list if route was created
-        if (rowsInserted>0)routeDAO.selectAllRoutesIds();
-        
+
+        // update usernames list if route was created
+        if (rowsInserted > 0) {
+            routeDAO.selectAllRoutesIds();
+        }
+
         return rowsInserted;
     }
 
@@ -121,16 +121,16 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         try {
             if (filePart != null) {
                 // prints out some information for debugging
-                System.out.println(filePart.getName());
-                System.out.println(filePart.getSize());
-                System.out.println(filePart.getContentType());
+//                System.out.println(filePart.getName());
+//                System.out.println(filePart.getSize());
+//                System.out.println(filePart.getContentType());
 
                 inputStream = filePart.getInputStream();
             }
         } catch (IOException e) {
             System.out.println("Error!");
         }
-        
+
         return inputStream;
     }
 
@@ -182,9 +182,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             route.setSeats((Integer) row.get("seats"));
             route.setDep_time((String) row.get("dep_time"));
             route.setAr_time((String) row.get("ar_time"));
-            //route.setCreated((String) row.get("created"));
-//            route.setImage((String) row.get("image"));
-            route.setImage( stringFromBlob( (byte[]) row.get("image") ) );
+            route.setImage(stringFromBlob((byte[]) row.get("image")));
             routeFound.put(route.getId(), route);
         }
 
@@ -194,28 +192,9 @@ public class RouteDAO extends Database implements RouteDAOinterface {
     public String stringFromBlob(byte[] byteArray) {
         String base64Image = null;
 
-//        try {
-//            InputStream inputStream = new ByteArrayOutputStream(byteArray);
-//            ByteArrayInputStream bis = new 
-//            
-//            ByteArrayOutputStream outputStream = ;
-//            byte[] buffer = new byte[4096];
-//            int bytesRead = -1;
-//
-//            while ((bytesRead = inputStream.read(byteArray)) != -1) {
-//                outputStream.write(buffer, 0, bytesRead);
-//            }
-//
-//            byte[] imageBytes = outputStream.toByteArray();
-            if(byteArray!=null)
-                base64Image = Base64.getEncoder().encodeToString(byteArray);
-
-//            inputStream.close();
-//            outputStream.close();
-//        } catch (SQLException | IOException | NullPointerException e) {
-//            System.out.println("Image not loaded correctly!");
-//        }
-
+        if (byteArray != null)  
+            base64Image = Base64.getEncoder().encodeToString(byteArray);
+        
         return base64Image;
     }
 
@@ -236,14 +215,13 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             route.setSeats((Integer) row.get("seats"));
             route.setDep_time((String) row.get("dep_time"));
             route.setAr_time((String) row.get("ar_time"));
-            //route.setCreated((String) row.get("created"));
-            route.setImage( stringFromBlob( (byte[]) row.get("image") ) );
+            route.setImage(stringFromBlob((byte[]) row.get("image")));
 
-            System.out.println(row.get("id"));
-            System.out.println("ONE MORE USER");
+//            System.out.println(row.get("id"));
+//            System.out.println("ONE MORE USER");
         }
 
-        System.out.println(route.getId());
+//        System.out.println(route.getId());
 
         return route;
     }
@@ -256,7 +234,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
                 + "' ,`ar_time` = '" + route.getAr_time() + "' ,`image` = '" + route.getImage()
                 + "' WHERE `id` = '" + route.getId() + "';";
 
-        System.out.println(query);
+//        System.out.println(query);
         return execUpdateInsert(query);
 
     }
@@ -265,7 +243,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
 
         String query = "DELETE FROM `teamproject`.`Routes` WHERE `id` = '" + route.getId() + "';";
 
-        System.out.println(query);
+//        System.out.println(query);
         return execUpdateInsert(query);
     }
 
@@ -287,8 +265,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             route.setSeats((Integer) row.get("seats"));
             route.setDep_time((String) row.get("dep_time"));
             route.setAr_time((String) row.get("ar_time"));
-            //route.setCreated((String) row.get("created"));
-            route.setImage( stringFromBlob( (byte[]) row.get("image") ) );
+            route.setImage(stringFromBlob((byte[]) row.get("image")));
         }
 
         return route;
