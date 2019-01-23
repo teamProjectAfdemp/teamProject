@@ -12,21 +12,23 @@
     </div>
     <div class="d-md-flex flex-column justify-content-end align-items-end"style="margin:40px;">
         <form action="/updateroute" method="POST" modelAttribute="route" enctype="multipart/form-data">
+            <div class="form-group col-md-8">
+                    <input type="number" class="form-control" name="id" value="${fn:escapeXml(routeToEdit.id)}" hidden>
+                </div>
             <div class="form-row">
                 <div class="form-group col-md-8">
                     <label for="inputDeparture">Title</label>
-                    <input type="text" class="form-control" placeholder="${fn:escapeXml(routeToEdit.title)}" name="title" value="${fn:escapeXml(routeToEdit.title)}" required>
+                    <input type="text" class="form-control" placeholder="${fn:escapeXml(routeToEdit.title)}" name="title" value="${fn:escapeXml(routeToEdit.title)}" >
                 </div>
-
-                <div class="form-group col-md-4">
+               <div class="form-group col-md-4">
                     <label id='seats-field'>Available Seats</label>
-                    <input type='number' min="1" max="100" class="form-control" id='seats' name='seats' placeholder="${fn:escapeXml(routeToEdit.seats)}" value="${fn:escapeXml(routeToEdit.seats)}" required>
+                    <input type='number' min="1" max="100" class="form-control" id='seats' name='seats' placeholder="${fn:escapeXml(routeToEdit.seats)}" value="${fn:escapeXml(routeToEdit.seats)}" >
                 </div>
             </div>
             <div class="form-row"> 
                 <div class="form-group col-md-12">
                     <label for="inputDestination">Short Description</label>
-                    <input type="text" class="form-control" placeholder="${fn:escapeXml(routeToEdit.shortdesc)}" name="shortdesc" value="${fn:escapeXml(routeToEdit.shortdesc)}" required>
+                    <input type="text" class="form-control" placeholder="${fn:escapeXml(routeToEdit.shortdesc)}" name="shortdesc" value="${fn:escapeXml(routeToEdit.shortdesc)}" >
                 </div>
             </div>
             <div class="form-row">
@@ -52,15 +54,15 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="inputDescription">Description</label>
-                    <textarea id="textarea" type="text" class="form-control" rows="4" placeholder="${fn:escapeXml(routeToEdit.description)}" name="description" required>${fn:escapeXml(routeToEdit.description)}</textarea>
+                    <textarea id="textarea" type="text" class="form-control" rows="4" placeholder="${fn:escapeXml(routeToEdit.description)}" name="description" >${fn:escapeXml(routeToEdit.description)}</textarea>
                 </div>
             </div>
-            <div class="form-row">
+<!--            <div class="form-row">
                 <div class="form-group col-md-12">
                     <label class="custom-file-label" for="customFile">Choose Image</label>
                     <input type="file" class="custom-file-input" id="customFile" name="image"> 
                 </div>
-            </div>
+            </div>-->
             <button type="submit" class="btn btn-outline-secondary w-100 p-3">Update your route</button>
         </form>
     </div>

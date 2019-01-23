@@ -100,7 +100,6 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             prest.setInt(5, route.getSeats());
             prest.setString(6, route.getDep_time());
             prest.setString(7, route.getAr_time());
-
             prest.setBlob(8, getBlobInputStream(file));
             rowsInserted = prest.executeUpdate();
         } catch (SQLException e) {
@@ -226,13 +225,21 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         return route;
     }
 
+//    public int updateRoute(Route route) {
+//
+//        String query = "UPDATE `teamproject`.`Routes` SET `title` = '" + route.getTitle()
+//                + "' WHERE `id` = '" + route.getId() + "';";
+//
+//        System.out.println(query);
+//        return execUpdateInsert(query);
+//    }
+    
     public int updateRoute(Route route) {
 
         String query = "UPDATE `teamproject`.`Routes` SET `title` = '" + route.getTitle()
                 + "' ,`shortdesc` = '" + route.getShortdesc() + "' ,`description` = '" + route.getDescription()
                 + "' ,`seats` = '" + route.getSeats() + "' ,`dep_time` = '" + route.getDep_time()
-                + "' ,`ar_time` = '" + route.getAr_time() + "' ,`image` = '" + route.getImage()
-                + "' WHERE `id` = '" + route.getId() + "';";
+                + "' ,`ar_time` = '" + route.getAr_time() + "' WHERE `id` = '" + route.getId() + "';";
 
         System.out.println(query);
         return execUpdateInsert(query);
