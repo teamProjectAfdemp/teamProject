@@ -252,3 +252,9 @@ footer {
 }
 
 
+#textarea{
+     overflow-y:scroll;
+     resize: none;
+}
+
+
