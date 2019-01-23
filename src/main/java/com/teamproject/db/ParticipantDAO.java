@@ -64,15 +64,48 @@ public class ParticipantDAO extends Database implements ParticipantDAOinterface 
         }
         return rowsInserted;
     }
+    
+
+    public int createParticipant(int routeid, int userid) {
+        Connection conn = createConnection();
+        PreparedStatement prest = null;
+        int rowsInserted = 0;
+        String query = "INSERT INTO `Participants` (`route_id`,`user_id`)"
+                + "VALUES (?,?);";
+//        System.out.println(query);
+        try {
+            prest = conn.prepareStatement(query);
+            prest.setInt(1, routeid);
+            prest.setInt(2, userid);
+            rowsInserted = prest.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowsInserted;
+    }
 
     @Override
     public void updateParticipant(int id, int route_id, int user_id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void deleteParticipant() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public int deleteParticipant(int routeid, int userid) {
+        Connection conn = createConnection();
+        PreparedStatement prest = null;
+        int rowsDeleted = 0;
+        
+         String query = "DELETE FROM `teamproject`.`Participants` " +
+                        "WHERE `route_id` = (?) AND `user_id` = (?) ;";
+        try {
+            prest = conn.prepareStatement(query);
+            prest.setInt(1, routeid);
+            prest.setInt(2, userid);
+            rowsDeleted = prest.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowsDeleted;
     }
 
     @Override

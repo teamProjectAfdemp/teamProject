@@ -67,7 +67,7 @@ public class PostDAO extends Database implements PostDAOinterface{
     }
     
     public HashMap<Integer, Post> selectPostsByRouteId(int id) {
-       String query = "SELECT * FROM `teamproject`.`Posts` WHERE `route_id` = '"+ id + "';"; 
+       String query = "SELECT * FROM `teamproject`.`Posts` WHERE `route_id` = '"+ id + "' ORDER BY `created` ASC ;"; 
        
        return getPostfromQuery(query);
     }
