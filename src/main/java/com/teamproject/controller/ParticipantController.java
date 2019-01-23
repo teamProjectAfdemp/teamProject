@@ -55,22 +55,4 @@ public class ParticipantController {
 
         return model;
     }
-
-    @PostMapping("/joinparticipant")
-    public ModelAndView postJoinParticipant(Route route, HttpServletRequest request) {
-
-        // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) {
-            return new ModelAndView("redirect:/");
-        }
-        curUser = (User) session().getAttribute("curUser");
-        ParticipantDAO.getInstance().createParticipant(route.getId(), curUser.getId());
-
-//        if (routeDAO.createRoute(route) != 0) {
-//            return new ModelAndView("redirect:/login");
-//        } else {
-//            
-//        }
-        return new ModelAndView("error");
-    }
 }
