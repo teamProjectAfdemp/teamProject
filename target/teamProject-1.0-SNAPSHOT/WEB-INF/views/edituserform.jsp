@@ -11,9 +11,8 @@
         <div class="d-md-flex flex-column justify-content-start align-items-start"style="margin-top: 50px;">
             <img src="../resources/img/map.png" alt=""/>
         </div>
-        <div class="d-md-flex flex-column justify-content-end align-items-end"style="margin:100px;">
+        <div class="d-md-flex flex-column justify-content-end align-items-end"style="margin:80px;">
             <form  class="form-signin" id="updateuser" action="/updateuser" method="POST" modelAttribute="updatedUser">
-
                 <div class="form-group">
                     <label for="inputUsername">Username</label>
                     <input readonly type="username" placeholder="${userToEdit.username}" value="${userToEdit.username}" class="form-control" name="username">

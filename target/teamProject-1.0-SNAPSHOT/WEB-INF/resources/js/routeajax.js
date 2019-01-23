@@ -1,6 +1,7 @@
+
 $(document).ready(function () {
     doAjaxRouteList();
-    $("#loader").empty();
+     $("#loader").empty();
 });
 
 function doAjaxRouteList() {
@@ -11,10 +12,6 @@ function doAjaxRouteList() {
             $.each(response, function (index, item) {
                 doAjaxCall(item);
             });
-        },
-        complete: function ()
-        {
-            $("#loader").empty();
         }
     });
 }

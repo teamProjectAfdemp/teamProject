@@ -13,20 +13,18 @@ import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.ParticipantDAO;
 import com.teamproject.db.RouteDAO;
 import com.teamproject.db.UserDAO;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -46,28 +44,23 @@ public class RouteController {
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "viewRoutesAjax");
 
-//        ArrayList<Route> allRoutes = new ArrayList<>();
-//
-//        RouteDAO routeDAO = RouteDAO.getInstance();
-//        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllRoutes();
-//
-//        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-//
-//        model.addObject("allRoutes", allRoutes);
-      
+        model.addObject("routesList", RouteDAO.getInstance().getRoutesIdsList());
 
         return model;
     }
-    
-    @RequestMapping("/ajaxroutelist")
-    public @ResponseBody ArrayList<Integer> getRouteList(HttpServletResponse response, HttpServletRequest request) {
-        
-        // if user's cookie does not match got to login page!
-        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ArrayList<Integer>();
-        
-        response.setContentType("application/json");     
-        return RouteDAO.getInstance().getRoutesIdsList();
-    }
+
+//    @RequestMapping("/ajaxroutelist")
+//    public @ResponseBody
+//    ArrayList<Integer> getRouteList(HttpServletResponse response, HttpServletRequest request) {
+//
+//        // if user's cookie does not match got to login page!
+//        if (!(CookieHandler.validateCookie(request.getCookies()))) {
+//            return new ArrayList<Integer>();
+//        }
+//
+//        response.setContentType("application/json");
+//        return RouteDAO.getInstance().getRoutesIdsList();
+//    }
 
     @RequestMapping("/allcreatedroutes")
     public ModelAndView getAllJoinedRoutes(HttpServletRequest request) {
@@ -78,17 +71,11 @@ public class RouteController {
         }
 
         ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "viewRoutes");
+        model.addObject("includeView", "viewRoutesAjax");
 
-        ArrayList<Route> allRoutes = new ArrayList<>();
-
-        RouteDAO routeDAO = RouteDAO.getInstance();
         curUser = (User) session().getAttribute("curUser");
-        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllCreatedRoutesById(curUser);
 
-        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-
-        model.addObject("allRoutes", allRoutes);
+        model.addObject("routesList", RouteDAO.getInstance().selectCreatedRoutesIds(curUser.getId()));
 
         return model;
     }
@@ -102,17 +89,11 @@ public class RouteController {
         }
 
         ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "viewRoutes");
+        model.addObject("includeView", "viewRoutesAjax");
 
-        ArrayList<Route> allRoutes = new ArrayList<>();
-
-        RouteDAO routeDAO = RouteDAO.getInstance();
         curUser = (User) session().getAttribute("curUser");
-        HashMap<Integer, Route> allRoutesMap = routeDAO.selectAllJoinedRoutesById(curUser);
 
-        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-
-        model.addObject("allRoutes", allRoutes);
+        model.addObject("routesList", RouteDAO.getInstance().selectJoinedRoutesIds(curUser.getId()));
 
         return model;
     }
@@ -136,10 +117,8 @@ public class RouteController {
             return new ModelAndView("redirect:/");
         }
 
-        // get route participants
+        // get route participants and posts
         ArrayList<Participant> routeParticipants = new ArrayList<>(ParticipantDAO.getInstance().selectParticipantById(route.getId()).values());
-
-        // get route posts
         ArrayList<Post> routePosts = new ArrayList<>(PostDAO.getInstance().selectPostsByRouteId(route.getId()).values());
 
         model.addObject("aRoute", route);
@@ -153,43 +132,20 @@ public class RouteController {
 
         return model;
     }
-    
-    @GetMapping("/ajaxroutes")
-    public ModelAndView allRoutesAjax(HttpServletRequest request, RedirectAttributes redir) {
-        
-        // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) {
-            return new ModelAndView("redirect:/");
-        }
-        
-        ArrayList<Route> allRoutes = new ArrayList<>();
 
-        HashMap<Integer, Route> allRoutesMap = RouteDAO.getInstance().selectAllRoutes();
-
-        allRoutesMap.forEach((k, v) -> allRoutes.add(v));
-        
-        ModelAndView model = new ModelAndView("viewRoutes");
-        model.addObject("allRoutes", allRoutes);
-        
-        return model;
-    }
-    
     @GetMapping("/ajaxroute/{id}")
-    public ModelAndView getRouteAjax( @PathVariable("id") int id, HttpServletRequest request, RedirectAttributes redir) {
-        
+    public ModelAndView getRouteAjax(@PathVariable("id") int id, HttpServletRequest request, RedirectAttributes redir) {
+
         // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) {
-            return new ModelAndView("redirect:/");
-        }
+        if (!(CookieHandler.validateCookie(request.getCookies()))) return new ModelAndView("redirect:/");
 
         Route route = RouteDAO.getInstance().getRouteById(id);
-        
+
         ModelAndView model = new ModelAndView("viewSingleRoute");
         model.addObject("route", route);
         return model;
     }
-            
-            
+
     @GetMapping("/addroute")
     public ModelAndView getAddRoute(HttpServletRequest request) {
 
@@ -200,36 +156,22 @@ public class RouteController {
 
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "addroute");
+        Route route = new Route();
+        model.addObject("route", route);
 
         return model;
     }
 
     @PostMapping("/addroute")
-    public ModelAndView postAddRoute(Route route, HttpServletRequest request) {
+    public ModelAndView postAddRoute(@ModelAttribute("route") Route route, @ModelAttribute("file") MultipartFile file, HttpServletRequest request) {
 
         // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) {
-            return new ModelAndView("redirect:/");
-        }
+        if (!(CookieHandler.validateCookie(request.getCookies()))) return new ModelAndView("redirect:/");
+        // create the new route and upload the file
+        int addedRoute = RouteDAO.getInstance().createRoute(route, file); 
+        
+        return new ModelAndView( (addedRoute != 0)? "redirect:/allroutes": "error");
 
-        RouteDAO routeDAO = RouteDAO.getInstance();
-        Part filePart = null;
-        try {
-            filePart = request.getPart("image");
-        } catch (ServletException | IOException e) {
-
-        }
-        
-        System.out.println(route.getImage());
-        System.out.println(route.getDescription());
-        
-        int addedRoute = routeDAO.createRoute(route,filePart);
-        
-        if (addedRoute != 0) {
-            return new ModelAndView("redirect:/login");
-        } else {
-            return new ModelAndView("error");
-        }
     }
 
     @GetMapping("/editroute{id}")
@@ -239,8 +181,7 @@ public class RouteController {
         if (!(CookieHandler.validateCookie(request.getCookies()))) {
             return new ModelAndView("redirect:/");
         }
-
-        System.out.println(id);
+        
         Route routeToEdit = RouteDAO.getInstance().getRouteById(id);
 
         ModelAndView model = new ModelAndView("template");
@@ -251,30 +192,40 @@ public class RouteController {
     }
 
     @PostMapping("/updateroute")
-    public ModelAndView postEditRoute(@ModelAttribute("updatedRoute") Route updatedRoute, HttpServletRequest request) {
+    public ModelAndView postEditRoute(@ModelAttribute("updatedRoute") Route updatedRoute, HttpServletRequest request, RedirectAttributes redir) {
 
         // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) {
-            return new ModelAndView("redirect:/");
-        }
+        if (!(CookieHandler.validateCookie(request.getCookies()))) return new ModelAndView("redirect:/");
 
         System.out.println(updatedRoute.getId());
         int updated = RouteDAO.getInstance().updateRoute(updatedRoute);
+        if (updated>0) redir.addFlashAttribute("modal", "Route updated!");
 
         return new ModelAndView("redirect:/allroutes");
     }
 
     @GetMapping("/deleteroute{id}")
-    public ModelAndView postDeleteUser(@ModelAttribute("userToDelete") Route routeToDelete, HttpServletRequest request) {
+    public ModelAndView postDeleteUser(@ModelAttribute("userToDelete") Route routeToDelete, HttpServletRequest request, RedirectAttributes redir) {
 
         // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) {
-            return new ModelAndView("redirect:/");
-        }
-
-        int updated = RouteDAO.getInstance().deleteRoute(routeToDelete);
-
+        if (!(CookieHandler.validateCookie(request.getCookies()))) return new ModelAndView("redirect:/");
+        
+        curUser = (User) session().getAttribute("curUser");
+        // if user is not admin go to root!
+        if (!curUser.getUsername().equals("admin")) return new ModelAndView("redirect:/");
+        
+        // NEED TO DELETE POSTS AND PARTICIPANTS BEFORE DELETING THE ROUTE
+        int deleted = RouteDAO.getInstance().deleteRoute(routeToDelete);
+        if (deleted>0) redir.addFlashAttribute("modal", "Route deleted!");
+        
         return new ModelAndView("redirect:/allroutes");
     }
-   
+
+
+    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    public String submit(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
+        modelMap.addAttribute("file", file);
+        return "fileUploadView";
+    }
+
 }
