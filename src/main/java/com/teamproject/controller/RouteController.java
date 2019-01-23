@@ -221,11 +221,28 @@ public class RouteController {
         return new ModelAndView("redirect:/allroutes");
     }
 
-
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public String submit(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
         modelMap.addAttribute("file", file);
         return "fileUploadView";
     }
+      
+    @PostMapping("/join{id}")
+    public ModelAndView postJoin(@PathVariable("id") int id, Route route, HttpServletRequest request) {
 
+        ModelAndView model = new ModelAndView("redirect:/route/"+id);
+
+        // if user's cookie does not match got to login page!
+        if (!(CookieHandler.validateCookie(request.getCookies()))) {
+            return new ModelAndView("redirect:/");
+        }
+//        curUser = (User) session().getAttribute("curUser");
+        ParticipantDAO participantDao = ParticipantDAO.getInstance();
+        curUser = (User) session().getAttribute("curUser");
+      
+        if ( participantDao.checkParticipant(id, curUser.getId()) ) return model;
+        ParticipantDAO.getInstance().createParticipant(route, curUser);
+
+        return model;
+    }
 }
