@@ -11,19 +11,18 @@
     </div>
     <div class="d-md-flex flex-column justify-content-end align-items-end"style="margin:40px;">
         <form action="/updateroute" method="POST" modelAttribute="route" enctype="multipart/form-data">
-
             <div class="form-row">
                 <div class="form-group col-md-8">
                     <label for="inputDeparture">Title</label>
                     <input type="text" class="form-control" placeholder="${routeToEdit.title}" name="title" value="${routeToEdit.title}" required>
                 </div>
-              
+
                 <div class="form-group col-md-4">
                     <label id='seats-field'>Available Seats</label>
                     <input type='number' min="1" max="100" class="form-control" id='seats' name='seats' placeholder="${routeToEdit.seats}" value="${routeToEdit.seats}" required>
                 </div>
             </div>
-             <div class="form-row"> 
+            <div class="form-row"> 
                 <div class="form-group col-md-12">
                     <label for="inputDestination">Short Description</label>
                     <input type="text" class="form-control" placeholder="${routeToEdit.shortdesc}" name="shortdesc" value="${routeToEdit.shortdesc}" required>
@@ -31,23 +30,30 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label id='dep-field'> <i class="far fa-calendar-alt"></i> Departure <br></label>
-                    <input type='date' class="form-control" id='deptime' name='dep_time' placeholder="${routeToEdit.dep_time}" value="${routeToEdit.dep_time}" required>
-
+                    <label id='dep-field'> <i class="far fa-calendar-alt"></i>Current Departure <br></label>
+                    <input type='text' class="form-control" id='deptime' name='dep_time' placeholder="${routeToEdit.dep_time}" readonly>
                 </div>
                 <div class="form-group col-md-6">
-                    <label id='ar-field'><i class="far fa-calendar-alt"></i> Arrival<br></label>
-                    <input type='date' class="form-control" id='artime'  name='ar_time' placeholder="${routeToEdit.ar_time}" value="${routeToEdit.ar_time}" required>
-
+                    <label id='ar-field'><i class="far fa-calendar-alt"></i>Current Arrival<br></label>
+                    <input type='text' class="form-control" id='artime'  name='ar_time' placeholder="${routeToEdit.ar_time}"  readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label id='dep-field'> <i class="far fa-calendar-alt"></i>New Departure <br></label>
+                    <input type='date' class="form-control" id='deptime' name='dep_time'  value="${routeToEdit.dep_time}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label id='ar-field'><i class="far fa-calendar-alt"></i>New Arrival<br></label>
+                    <input type='date' class="form-control" id='artime'  name='ar_time'  value="${routeToEdit.ar_time}" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="inputDescription">Description</label>
-                    <textarea  type="text" class="form-control" rows="4" placeholder="${routeToEdit.description}" name="description" value="${routeToEdit.description}" required></textarea>
+                    <textarea id="textarea" type="text" class="form-control" rows="4" placeholder="${routeToEdit.description}" name="description" value="${routeToEdit.description}" required></textarea>
                 </div>
             </div>
-            
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label class="custom-file-label" for="customFile">Choose Image</label>
@@ -55,6 +61,7 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-outline-secondary w-100 p-3">Update your route</button>
+        </form>
     </div>
 </div>
 
