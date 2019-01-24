@@ -12,7 +12,6 @@ public class Route {
     private String ar_time;
     private String created;
     private String image;
-   
     
     public Route(){
         

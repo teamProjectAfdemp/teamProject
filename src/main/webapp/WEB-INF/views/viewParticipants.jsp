@@ -15,23 +15,17 @@
     </button>
 </div>
 
-
 <span id="participants">
     <h2>Participants: </h2>
     <div class=" p-0 mt-1 pt-2 pb-2" >
-        <div class="card card-body shadow ">
-            <!--<input id="countParticipants" value="${fn:length(routeParticipants)}" hidden/>-->
+        <div class="card card-body shadow ">         
             <table class="table">
                 <tbody>
                     <% int i = 1;%>
                     <c:forEach items="${routeParticipants}" var="participantid">
-                        <%--<c:if test="${participantid == curUser.id}">--%>
-                        <!--<input id="joined" hidden value="true"/>-->
-                        <%--</c:if>--%>
                         <tr>
                             <td><%= i%></td>
                             <td>${fn:escapeXml(usernamesMap[participantid])}</td>
-
                             <%i++;%>
                         </tr>
                     </c:forEach>
@@ -39,5 +33,4 @@
             </table>
         </div>
     </div>
-
 </span>

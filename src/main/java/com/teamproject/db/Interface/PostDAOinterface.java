@@ -1,11 +1,12 @@
 package com.teamproject.db.Interface;
 
 import com.teamproject.bean.Post;
-
+import java.util.HashMap;
 
 public interface PostDAOinterface {
-    int createPost(Post post);
-    void updatePost(int id, int route_id, int user_id, String post);
-    void deletePost();
-    void deletePostById(int id);
+    public int createPost(Post post);
+    public HashMap<Integer, Post> selectAllPosts();
+    public HashMap<Integer, Post> selectPostsByRouteId(int id);
+    public HashMap<Integer, Post> getPostfromQuery(String query);
+    public Post getPostById(int id);
 }
