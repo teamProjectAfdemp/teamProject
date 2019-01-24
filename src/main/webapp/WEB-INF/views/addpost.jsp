@@ -1,5 +1,3 @@
-
-
 <form action="/addpost" method="POST"  modelAttribute="newpost"> 
     <div class="input-group inline">
         <input type="text"  name="post" class="form-control" placeholder="Ask something!" required placeholder="Ask something" aria-label="Ask something">

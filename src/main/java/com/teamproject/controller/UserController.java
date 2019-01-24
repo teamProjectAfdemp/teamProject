@@ -19,27 +19,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserController {
-
     User curUser;
 
     @RequestMapping("/profile")
     public ModelAndView userProfile( HttpServletRequest request) {
-        
         // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
         
         HttpSession session = session();
         curUser = (User) session.getAttribute("curUser");
-        return new ModelAndView("forward:/edituser" + curUser.getId() );
-//        ModelAndView model = new ModelAndView("template");
-//        model.addObject("includeView", "allroutes");
-        
+        return new ModelAndView("forward:/edituser" + curUser.getId() );       
     }
-
 
     @GetMapping("/allusers")
     public ModelAndView getAllUsers(User user, HttpServletRequest request) {
-        
         // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
         
@@ -61,22 +54,9 @@ public class UserController {
 
         return model;
     }
-    
-    @GetMapping("/allusersJson")
-    public ModelAndView getAllUsersJson(User user) {
-        // if no user is logged in go to welcome page!
-//        if (session().getAttribute("curUser") == null)
-//            return new ModelAndView("redirect:/");
-        
-        ModelAndView model = new ModelAndView("template");
-        model.addObject("includeView", "viewUsersJson");
-
-        return model;
-    }
 
     @GetMapping("/edituser{id}")
     public ModelAndView getEditUser(@PathVariable("id") int id, User updatedUser, HttpServletRequest request) {
-
         // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
         
@@ -96,7 +76,6 @@ public class UserController {
 
     @PostMapping("/updateuser")
     public ModelAndView postEditUser(@ModelAttribute("updatedUser")User updatedUser, HttpServletRequest request, RedirectAttributes redir){
-
        // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
         
@@ -111,7 +90,6 @@ public class UserController {
 
     @GetMapping("/deleteuser{id}")
     public ModelAndView postDeleteUser(@ModelAttribute("userToDelete")User userToDelete, HttpServletRequest request, RedirectAttributes redir){
-
        // if user's cookie does not match got to login page!
         if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
         
@@ -123,17 +101,4 @@ public class UserController {
 
         return new ModelAndView("redirect:/allusers");
     }
-    
-//     @GetMapping("/disableuser{id}")
-//    public ModelAndView getDisableUser(@ModelAttribute("userToDisable")User userToDisable, HttpServletRequest request){
-//
-//        // if user's cookie does not match got to login page!
-//        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
-//        
-//        // NOT YET IMPLEMENTED ON DB
-////        int updated = UserDAO.getInstance().disableUser(userToDisable);
-//
-//        return new ModelAndView("redirect:/allusers");
-//    }
-
 }

@@ -5,7 +5,6 @@ import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.Interface.RouteDAOinterface;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -14,11 +13,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.Part;
 import org.springframework.web.multipart.MultipartFile;
 
 public class RouteDAO extends Database implements RouteDAOinterface {
@@ -37,28 +34,26 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         return routeDAO;
     }
 
+    @Override
     public ArrayList<Integer> getRoutesIdsList() {
         return routesIdsList;
     }
 
     private void selectAllRoutesIds() {
-
         String query = "SELECT `id` FROM `teamproject`.`Routes`;";
 
         Collection<Map<String, Object>> answer = getGenericSelect(query);
 
         routesIdsList.clear();
-
         for (Map<String, Object> row : answer) {
             routesIdsList.add((Integer) row.get("id"));
         }
-
     }
 
+    @Override
     public List<Integer> selectCreatedRoutesIds(int userId) {
-
         String query = "SELECT `id` FROM `teamproject`.`Routes` WHERE `creator_id` = '" + userId + "';";
-
+        
         Collection<Map<String, Object>> answer = getGenericSelect(query);
         List<Integer> routes = new ArrayList();
 
@@ -67,13 +62,13 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         return routes;
     }
 
+    @Override
     public List<Integer> selectJoinedRoutesIds(int userId) {
-
         String query = "SELECT `Routes`.`id` FROM `Routes` \n"
                 + "INNER JOIN `Participants` \n"
                 + "ON `Participants`.`route_id`= `Routes`.`id`\n"
                 + "WHERE `Participants`.`user_id` = '" + userId + "';";
-
+        
         Collection<Map<String, Object>> answer = getGenericSelect(query);
         List<Integer> routes = new ArrayList();
 
@@ -90,7 +85,6 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         int rowsInserted = 0;
         String query = "INSERT INTO `Routes` (`creator_id`,`title`,`shortdesc`,`description`,`seats`,`dep_time`,`ar_time`,`image`)"
                 + "VALUES (?,?,?,?,?,?,?,?);";
-//        System.out.println(query);
         try {
             prest = conn.prepareStatement(query);
             prest.setInt(1, curUser.getId());
@@ -105,67 +99,47 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         // update usernames list if route was created
         if (rowsInserted > 0) {
             routeDAO.selectAllRoutesIds();
         }
-
         return rowsInserted;
     }
 
+    @Override
     public InputStream getBlobInputStream(MultipartFile filePart) {
         InputStream inputStream = null; // input stream of the upload file
-
         try {
             if (filePart != null) {
-                // prints out some information for debugging
-//                System.out.println(filePart.getName());
-//                System.out.println(filePart.getSize());
-//                System.out.println(filePart.getContentType());
-
                 inputStream = filePart.getInputStream();
             }
         } catch (IOException e) {
             System.out.println("Error!");
         }
-
         return inputStream;
     }
 
     @Override
-    public void updateRoute(int id, int creator_id, String title, String shortdesc, Date dep_time, Date ar_time, String description) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteRoute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deleteRouteById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public HashMap<Integer, Route> selectAllRoutes() {
         String query = "SELECT * FROM `teamproject`.`Routes`;";
         return getRoutefromQuery(query);
     }
 
+    @Override
     public HashMap<Integer, Route> selectAllCreatedRoutesById(User user) {
         String query = ("SELECT * FROM `teamproject`.`Routes` WHERE `creator_id` = '" + user.getId() + "';");
         return getRoutefromQuery(query);
     }
 
+    @Override
     public HashMap<Integer, Route> selectAllJoinedRoutesById(User user) {
         String query = ("SELECT Routes.* FROM teamproject.Routes INNER JOIN Participants on Participants.route_id=Routes.id "
                 + " WHERE user_id = '" + user.getId() + "';");
         return getRoutefromQuery(query);
     }
 
+    @Override
     public HashMap<Integer, Route> getRoutefromQuery(String query) {
-
         Collection<Map<String, Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
 
@@ -184,22 +158,20 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             route.setImage(stringFromBlob((byte[]) row.get("image")));
             routeFound.put(route.getId(), route);
         }
-
         return routeFound;
     }
 
+    @Override
     public String stringFromBlob(byte[] byteArray) {
         String base64Image = null;
-
         if (byteArray != null)  
             base64Image = Base64.getEncoder().encodeToString(byteArray);
-        
         return base64Image;
     }
 
+    @Override
     public Route getRouteById(int id) {
         Route route = new Route();
-
         String query = ("SELECT * FROM `teamproject`.`Routes` WHERE `id` = '" + id + "';");
 
         Collection<Map<String, Object>> answer;
@@ -215,52 +187,31 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             route.setDep_time((String) row.get("dep_time"));
             route.setAr_time((String) row.get("ar_time"));
             route.setImage(stringFromBlob((byte[]) row.get("image")));
-
-//            System.out.println(row.get("id"));
-//            System.out.println("ONE MORE USER");
         }
-
-//        System.out.println(route.getId());
-
         return route;
     }
-
-//    public int updateRoute(Route route) {
-//
-//        String query = "UPDATE `teamproject`.`Routes` SET `title` = '" + route.getTitle()
-//                + "' WHERE `id` = '" + route.getId() + "';";
-//
-//        System.out.println(query);
-//        return execUpdateInsert(query);
-//    }
     
+    @Override
     public int updateRoute(Route route) {
-
         String query = "UPDATE `teamproject`.`Routes` SET `title` = '" + route.getTitle()
                 + "' ,`shortdesc` = '" + route.getShortdesc() + "' ,`description` = '" + route.getDescription()
                 + "' ,`seats` = '" + route.getSeats() + "' ,`dep_time` = '" + route.getDep_time()
                 + "' ,`ar_time` = '" + route.getAr_time() + "' WHERE `id` = '" + route.getId() + "';";
-
-        System.out.println(query);
         return execUpdateInsert(query);
-
     }
 
+    @Override
     public int deleteRoute(Route route) {
-
         String query = "DELETE FROM `teamproject`.`Routes` WHERE `id` = '" + route.getId() + "';";
-
-//        System.out.println(query);
         return execUpdateInsert(query);
     }
 
+    @Override
     public Route selectRouteById(int id) {
-
         String query = "SELECT * FROM `teamproject`.`Routes` WHERE `id` = '" + id + "';";
 
         Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
-
         Route route = new Route();
 
         for (Map<String, Object> row : answer) {
@@ -274,7 +225,6 @@ public class RouteDAO extends Database implements RouteDAOinterface {
             route.setAr_time((String) row.get("ar_time"));
             route.setImage(stringFromBlob((byte[]) row.get("image")));
         }
-
         return route;
     }
 }

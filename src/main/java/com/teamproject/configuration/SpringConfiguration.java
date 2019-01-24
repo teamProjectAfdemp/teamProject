@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -21,7 +20,6 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
         viewResolver.setPrefix("/WEB-INF/views/");
@@ -39,7 +37,6 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("message");
         return messageSource;
-
     }
 
     @Bean(name = "multipartResolver")
@@ -48,9 +45,4 @@ public class SpringConfiguration extends WebMvcConfigurerAdapter {
         multipartResolver.setMaxUploadSize(400000);
         return multipartResolver;
     }
-
-//    @Bean
-//    public StandardServletMultipartResolver multipartResolver() {
-//        return new StandardServletMultipartResolver();
-//    }
 }
