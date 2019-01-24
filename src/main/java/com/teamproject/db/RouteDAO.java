@@ -106,8 +106,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         return rowsInserted;
     }
 
-    @Override
-    public InputStream getBlobInputStream(MultipartFile filePart) {
+    private InputStream getBlobInputStream(MultipartFile filePart) {
         InputStream inputStream = null; // input stream of the upload file
         try {
             if (filePart != null) {
@@ -161,8 +160,7 @@ public class RouteDAO extends Database implements RouteDAOinterface {
         return routeFound;
     }
 
-    @Override
-    public String stringFromBlob(byte[] byteArray) {
+    private String stringFromBlob(byte[] byteArray) {
         String base64Image = null;
         if (byteArray != null)  
             base64Image = Base64.getEncoder().encodeToString(byteArray);
@@ -197,12 +195,6 @@ public class RouteDAO extends Database implements RouteDAOinterface {
                 + "' ,`shortdesc` = '" + route.getShortdesc() + "' ,`description` = '" + route.getDescription()
                 + "' ,`seats` = '" + route.getSeats() + "' ,`dep_time` = '" + route.getDep_time()
                 + "' ,`ar_time` = '" + route.getAr_time() + "' WHERE `id` = '" + route.getId() + "';";
-        return execUpdateInsert(query);
-    }
-
-    @Override
-    public int deleteRoute(Route route) {
-        String query = "DELETE FROM `teamproject`.`Routes` WHERE `id` = '" + route.getId() + "';";
         return execUpdateInsert(query);
     }
 
