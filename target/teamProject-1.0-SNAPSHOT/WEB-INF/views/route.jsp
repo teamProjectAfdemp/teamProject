@@ -5,11 +5,12 @@
 
 
 <div  class="flex-column justify-content-md-center align-items-center">
-        <!--shadow mybutton-->
-        <div  class="row">
-            <form action="/join${aRoute.id}" method="POST" modelAttribute="route" enctype="multipart/form-data">
-                <button id="joinButton" type="submit" class="btn btn-outline-secondary p-3 col-2"><b>JOIN !</b></button></div>
-            </form>
+    <!--shadow mybutton-->
+    <div  class="row">
+        <!--<form action="" id="joinform" method="GET" modelAttribute="route" enctype="multipart/form-data">-->
+            <button id="joinButton" type="submit" class="btn btn-outline-secondary p-1 col-2"><b>...</b></button>
+        <!--</form>-->
+    </div>
 
     <div id="routePreview" class="row d-flex justify-content-center "> 
         <div id="routeHeader" class="col-3 text-center "> 
@@ -37,17 +38,19 @@
         <div class="col-1"></div>
     </div>
 
-    <section id="routeUsers" class=" row justify-content-center align-items-center">
-        <div class="col-5">
-            <c:import url="viewParticipants.jsp"/>
+    <section class=" row justify-content-center align-items-center">
+        <div id="routeParticipants" class="col-5">
+            <%--<c:import url="viewParticipants.jsp"/>--%>
         </div>
     </section>
 
-    <section id="routeChat" class=" row justify-content-center align-items-center">
-        <div class="col-5">
-            <c:import url="viewPosts.jsp"/>
-            <c:import url="addpost.jsp"/>
+    <section  class=" row justify-content-center align-items-center">
+        <div  class="col-5">
+            <c:import url="viewPostsFrame.jsp"/>
+            <%--<c:import url="addpost.jsp"/>--%>
         </div>
     </section>
+
+    <c:import url="getPostsParticipantsJs.jsp"/>
 
 </div>
