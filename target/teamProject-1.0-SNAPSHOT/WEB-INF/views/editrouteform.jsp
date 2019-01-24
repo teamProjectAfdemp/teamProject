@@ -30,16 +30,6 @@
                     <input type="text" class="form-control" placeholder="${fn:escapeXml(routeToEdit.shortdesc)}" name="shortdesc" value="${fn:escapeXml(routeToEdit.shortdesc)}" >
                 </div>
             </div>
-<!--            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label id='dep-field'> <i class="far fa-calendar-alt"></i>Current Departure <br></label>
-                    <input type='text' class="form-control"  placeholder="${routeToEdit.dep_time}" readonly>
-                </div>
-                <div class="form-group col-md-6">
-                    <label id='ar-field'><i class="far fa-calendar-alt"></i>Current Arrival<br></label>
-                    <input type='text' class="form-control"  placeholder="${routeToEdit.ar_time}"  readonly>
-                </div>
-            </div>-->
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label id='dep-field'> <i class="far fa-calendar-alt"></i>Departure <br></label>
