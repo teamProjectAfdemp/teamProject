@@ -10,14 +10,11 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-
 public class SpringWebIntializer implements WebApplicationInitializer {
-    
     private String TMP_FOLDER = "/tmp"; 
     private int MAX_UPLOAD_SIZE = 90 * 1024 * 1024; 
 
     public void onStartup(ServletContext container) throws ServletException {
-        
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.register(SpringConfiguration.class);
         context.setServletContext(container);
@@ -34,34 +31,3 @@ public class SpringWebIntializer implements WebApplicationInitializer {
         servlet.setMultipartConfig(multipartConfigElement);
     }
 }
-
-
-//import com.teamproject.controller.WelcomeController;
-//import javax.servlet.Filter;
-//
-//import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-//
-//public class SpringWebIntializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-// 
-//    @Override
-//    protected Class<?>[] getRootConfigClasses() {
-//        return new Class[] { WelcomeController.class };
-//    }
-//  
-//    @Override
-//    protected Class<?>[] getServletConfigClasses() {
-//        return null;
-//    }
-//  
-//    @Override
-//    protected String[] getServletMappings() {
-//        return new String[] { "/" };
-//    }
-//    
-//    @Override
-//    protected Filter[] getServletFilters() {
-//    	Filter [] singleton = { new CORSFilter() };
-//    	return singleton;
-//	}
-// 
-//}

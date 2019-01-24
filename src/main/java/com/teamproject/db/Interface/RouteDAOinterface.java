@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
-
 public interface RouteDAOinterface {
     public ArrayList<Integer> getRoutesIdsList();
     public List<Integer> selectCreatedRoutesIds(int userId);

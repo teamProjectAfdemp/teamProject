@@ -49,7 +49,6 @@ public class UserDAO extends Database implements UserDAOinterface{
     @Override
     public int checkUsernamePassword(String username, String pass) {
         int userId = 0;
-
         String query = ("SELECT * FROM `teamproject`.`Users` WHERE `username` = '" + username + "' AND `password` = '" + pass + "';");
 
         Collection<Map<String, Object>> answer;
@@ -64,7 +63,6 @@ public class UserDAO extends Database implements UserDAOinterface{
     @Override
     public User getUserById(int id) {
         User user = new User();
-
         String query = ("SELECT * FROM `teamproject`.`Users` WHERE `id` = '" + id + "';");
 
         Collection<Map<String, Object>> answer;
@@ -120,7 +118,7 @@ public class UserDAO extends Database implements UserDAOinterface{
     @Override
     public HashMap<Integer, User> searchForUser(String keyword) {
         String like = "'%" + keyword + "%'";
-
+        
         String query = "SELECT * FROM `Users` "
                 + "WHERE `username` LIKE " + like
                 + " OR `fname` LIKE " + like
