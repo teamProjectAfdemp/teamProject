@@ -162,22 +162,6 @@ public class RouteController {
         return new ModelAndView("redirect:/allroutes");
     }
 
-    @GetMapping("/deleteroute{id}")
-    public ModelAndView postDeleteUser(@ModelAttribute("userToDelete") Route routeToDelete, HttpServletRequest request, RedirectAttributes redir) {
-        // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) return new ModelAndView("redirect:/");
-        
-        curUser = (User) session().getAttribute("curUser");
-        // if user is not admin go to root!
-        if (!curUser.getUsername().equals("admin")) return new ModelAndView("redirect:/");
-        
-        // NEED TO DELETE POSTS AND PARTICIPANTS BEFORE DELETING THE ROUTE
-        int deleted = RouteDAO.getInstance().deleteRoute(routeToDelete);
-        if (deleted>0) redir.addFlashAttribute("modal", "Route deleted!");
-        
-        return new ModelAndView("redirect:/allroutes");
-    }
-
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     public String submit(@RequestParam("file") MultipartFile file, ModelMap modelMap) {
         modelMap.addAttribute("file", file);

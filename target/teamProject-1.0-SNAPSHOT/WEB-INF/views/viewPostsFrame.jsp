@@ -16,3 +16,4 @@
     <div class="collapse p-0 mt-1 pt-2 pb-2" id="collapseExample">
         <c:import url="addpost.jsp"/>    
     </div>
+</div>

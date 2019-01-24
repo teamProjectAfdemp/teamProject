@@ -14,7 +14,6 @@
         </c:if>  
     </button>
 </div>
-
 <span id="participants">
     <h2>Participants: </h2>
     <div class=" p-0 mt-1 pt-2 pb-2" >

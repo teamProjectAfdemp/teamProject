@@ -1,23 +1,35 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-<h2>Participants: </h2>
-<div class=" p-0 mt-1 pt-2 pb-2" >
-    <div class="card card-body shadow ">
-        <input id="countParticipants" value="${fn:length(routeParticipants)}" hidden/>
-        <table class="table">
-            <tbody>
-                <% int i = 1;%>
-                <c:forEach items="${routeParticipants}" var="participant">
-                    <c:if test="${participant.user_id == curUser.id}">
-                    <input id="joined" hidden value="true"/>
-                    </c:if>
+
+<div id="joinButtonDiv">
+    <button  id="joinButton" type="submit" class="btn btn-outline-secondary p-1 col-2">
+        <c:if test="${buttonState == 'JOIN'}">
+            <h4><b>JOIN</b></h4> <p>${fn:length(routeParticipants)} joined</p>
+        </c:if>
+        <c:if test="${buttonState == 'EXIT'}">
+            <h4><b>EXIT</b></h4> <p>${fn:length(routeParticipants)} joined</p>
+        </c:if>  
+        <c:if test="${buttonState == 'FULL'}">
+            <h4><b>FULL</b></h4> <p>${fn:length(routeParticipants)} joined</p>
+        </c:if>  
+    </button>
+</div>
+<span id="participants">
+    <h2>Participants: </h2>
+    <div class=" p-0 mt-1 pt-2 pb-2" >
+        <div class="card card-body shadow ">         
+            <table class="table">
+                <tbody>
+                    <% int i = 1;%>
+                    <c:forEach items="${routeParticipants}" var="participantid">
                         <tr>
                             <td><%= i%></td>
-                            <td>${fn:escapeXml(usernamesMap[participant.user_id])}</td>
+                            <td>${fn:escapeXml(usernamesMap[participantid])}</td>
                             <%i++;%>
                         </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
+</span>
