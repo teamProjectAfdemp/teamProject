@@ -2,8 +2,8 @@
 <link href="<c:url value="/resources/css/navbar.css" />" rel="stylesheet" type="text/css">
 
 <nav class="row navbar navbar-expand-lg navbar-dark pb-0">
-    <a href="<c:url value="/index"/>"><img src="/resources/img/RouteIcon.svg" width="80" height="80" margin="10px" alt="logo-image"></a>
-    <a id="mainTitle" class="navbar-brand p-2" href="<c:url value="/index"/>" > route <br> planner</a>
+    <a href="<c:url value="/allroutes"/>"><img src="/resources/img/RouteIcon.svg" width="80" height="80" margin="10px" alt="logo-image"></a>
+    <a id="mainTitle" class="navbar-brand p-2" href="<c:url value="/allroutes"/>" > route <br> planner</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
