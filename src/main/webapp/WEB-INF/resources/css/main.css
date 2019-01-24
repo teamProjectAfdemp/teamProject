@@ -112,20 +112,20 @@ hr
     background-color: #777;
 }
 
-#joinButton{
+#joinButton button{
     position: fixed;
     top: 80px; 
     height: 120px;
     max-width: 200px;
     margin: 2rem !important;
 }
-#joinButton:hover {
+#joinButton button:hover {
     
     background-color: #333;
 }
 
 
-#joinButton > h4{
+#joinButton h4{
     margin-bottom: 1px solid black;
 }
 

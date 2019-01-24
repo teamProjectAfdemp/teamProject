@@ -111,6 +111,9 @@ public class RouteController {
 
         // Select route
         Route route = RouteDAO.getInstance().selectRouteById(id);
+        HttpSession session = session();
+        
+        
 
         if (route == null) {
             redir.addFlashAttribute("modal", "Route does not exist!");
@@ -122,10 +125,12 @@ public class RouteController {
 //        ArrayList<Post> routePosts = new ArrayList<>(PostDAO.getInstance().selectPostsByRouteId(route.getId()).values());
 
         model.addObject("aRoute", route);
+        
+//        route.setImage("");
+        session.setAttribute("route"+id, route);
 //        model.addObject("routePosts", routePosts);
 //        model.addObject("routeParticipants", routeParticipants);
 
-        HttpSession session = session();
         if (session.getAttribute("usernamesMap") == null) {
             session.setAttribute("usernamesMap", UserDAO.getInstance().getidUsernamesMap());
         }

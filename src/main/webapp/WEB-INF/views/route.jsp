@@ -5,11 +5,8 @@
 
 
 <div  class="flex-column justify-content-md-center align-items-center">
-    <!--shadow mybutton-->
-    <div  class="row">
-        <!--<form action="" id="joinform" method="GET" modelAttribute="route" enctype="multipart/form-data">-->
-            <button id="joinButton" type="submit" class="btn btn-outline-secondary p-1 col-2"><b>...</b></button>
-        <!--</form>-->
+
+    <div  id="JoinDiv" class="row">
     </div>
 
     <div id="routePreview" class="row d-flex justify-content-center "> 
@@ -25,8 +22,7 @@
     </div>
 
     <div id="routePic" class="row d-flex justify-content-center "
-         style="background-image: url(${empty aRoute.image ? '../resources/img/route1.jpg' : 'data:image/jpg;base64,'}${aRoute.image });">
-
+         style="background-image: url(${empty aRoute.image ? '../resources/img/route1.jpg' : 'data:image/jpg;base64,'}${aRoute.image});">
     </div>
 
     <div id="routeDetails"  class="row d-flex justify-content-center ">
@@ -39,7 +35,7 @@
     </div>
 
     <section class=" row justify-content-center align-items-center">
-        <div id="routeParticipants" class="col-5">
+        <div id="routeParticipantsDiv" class="col-5">
             <%--<c:import url="viewParticipants.jsp"/>--%>
         </div>
     </section>
