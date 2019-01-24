@@ -1,24 +1,23 @@
 package com.teamproject.controller;
 
 import com.teamproject.bean.Participant;
+import com.teamproject.bean.Post;
 import com.teamproject.bean.Route;
 import com.teamproject.bean.User;
 import static com.teamproject.controller.WelcomeController.session;
 import com.teamproject.db.ParticipantDAO;
+import com.teamproject.db.PostDAO;
 import com.teamproject.db.RouteDAO;
-import com.teamproject.db.UserDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -60,21 +59,39 @@ public class ParticipantController {
 
         return model;
     }
-
-    @PostMapping("/addparticipant")
-    public ModelAndView postAddParticipant(Route route, HttpServletRequest request) {
-
+    
+     @GetMapping("/participants/{id}")
+    public ModelAndView getRouteParticipants(@PathVariable("id") int id, HttpServletRequest request){
+         // if user's cookie does not match got to login page!
+        if ( !(CookieHandler.validateCookie(request.getCookies())) ) return new ModelAndView("redirect:/");
+        
+        ArrayList<Participant> routeParticipants = new ArrayList<>(ParticipantDAO.getInstance().selectParticipantById(id).values());   
+        
+        ModelAndView model =  new ModelAndView("viewParticipants");
+        model.addObject("routeParticipants", routeParticipants);
+        
+        return model;
+    }
+    
+     @GetMapping("/join{id}")
+    public ModelAndView getJoin(@PathVariable("id") int id, HttpServletRequest request) { 
+        int joined =0;
         // if user's cookie does not match got to login page!
-        if (!(CookieHandler.validateCookie(request.getCookies()))) {
-            return new ModelAndView("redirect:/");
+        if ((CookieHandler.validateCookie(request.getCookies()))) {
+           curUser = (User) session().getAttribute("curUser");
+           joined = ParticipantDAO.getInstance().createParticipant(id, curUser.getId());
         }
-
-        RouteDAO routeDAO = RouteDAO.getInstance();
-
-        if (routeDAO.createRoute(route) != 0) {
-            return new ModelAndView("redirect:/login");
-        } else {
-            return new ModelAndView("error");
+        return new ModelAndView("empty");
+    }
+    
+     @GetMapping("/exit{id}")
+    public ModelAndView getExit(@PathVariable("id") int id, HttpServletRequest request) { 
+        int exit = 0;
+        // if user's cookie match exit the route!
+        if ((CookieHandler.validateCookie(request.getCookies()))) {
+           curUser = (User) session().getAttribute("curUser");
+           exit = ParticipantDAO.getInstance().deleteParticipant(id, curUser.getId());
         }
+        return new ModelAndView("empty");
     }
 }

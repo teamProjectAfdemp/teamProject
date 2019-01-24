@@ -1,7 +1,7 @@
 package com.teamproject.db;
 
+import com.teamproject.db.core.Database;
 import com.teamproject.bean.Post;
-import com.teamproject.bean.Route;
 import com.teamproject.db.Interface.PostDAOinterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class PostDAO extends Database implements PostDAOinterface{
     
-    public static PostDAO postDAO = null;
+    private static PostDAO postDAO = null;
 
     private PostDAO() {
     }
@@ -67,7 +67,7 @@ public class PostDAO extends Database implements PostDAOinterface{
     }
     
     public HashMap<Integer, Post> selectPostsByRouteId(int id) {
-       String query = "SELECT * FROM `teamproject`.`Posts` WHERE `route_id` = '"+ id + "';"; 
+       String query = "SELECT * FROM `teamproject`.`Posts` WHERE `route_id` = '"+ id + "' ORDER BY `created` ASC ;"; 
        
        return getPostfromQuery(query);
     }
@@ -104,12 +104,8 @@ public class PostDAO extends Database implements PostDAOinterface{
             post.setRoute_id((Integer) row.get("route_id"));
             post.setUser_id((Integer) row.get("user_id"));
             post.setPost((String) row.get("post"));
-            
-            System.out.println(row.get("id"));
-            System.out.println("ONE MORE POST");
         }
-        
-        System.out.println(post.getId());
+
 
         return post;
     }

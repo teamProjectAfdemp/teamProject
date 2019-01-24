@@ -1,8 +1,7 @@
 package com.teamproject.db;
 
-import com.teamproject.db.RouteDAO;
+import com.teamproject.db.core.Database;
 import com.teamproject.bean.User;
-import static com.teamproject.db.RouteDAO.routeDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,7 +11,8 @@ import java.util.*;
 // Call them through getInstance() to get the same object always
 public class UserDAO extends Database {
 
-    public static UserDAO userDAO = null;
+    private static UserDAO userDAO = null;
+    private static HashMap<Integer, String> idUsernamesMap = new HashMap();
 
     private UserDAO() {
     }
@@ -20,8 +20,13 @@ public class UserDAO extends Database {
     public static UserDAO getInstance() {
         if (userDAO == null) {
             userDAO = new UserDAO();
+            userDAO.selectAllUsernames();
         }
         return userDAO;
+    }
+    
+     public HashMap<Integer, String> getidUsernamesMap(){
+        return idUsernamesMap;
     }
 
     public int checkUser(String username) {
@@ -29,28 +34,13 @@ public class UserDAO extends Database {
 
         String query = "SELECT * FROM `Users` WHERE `username` = '" + username + "';";
 
-        Collection<Map<String, Object>> answer = new ArrayList<>();
+        Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
 
         for (Map<String, Object> row : answer) {
             userID = (Integer) row.get("id");
         }
         return userID;
-    }
-
-    public boolean checkPass(int userID, String pass) {
-        boolean userAuth = false;
-        int newID = 0;
-
-        String query = "SELECT `id` FROM `Users` WHERE `id` = '" + userID + "' AND `password` = '" + pass + "';";
-
-        Collection<Map<String, Object>> answer = new ArrayList<>();
-        answer = getGenericSelect(query);
-
-        for (Map<String, Object> row : answer) {
-            newID = (Integer) row.get("id");
-        }
-        return newID != 0;
     }
 
     public int checkUsernamePassword(String username, String pass) {
@@ -69,21 +59,21 @@ public class UserDAO extends Database {
 
     public User getUserById(int id) {
         User user = new User();
-        
+
         String query = ("SELECT * FROM `teamproject`.`Users` WHERE `id` = '" + id + "';");
 
         Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
-        
+
         for (Map<String, Object> row : answer) {
             user.setFname((String) row.get("fname"));
             user.setLname((String) row.get("lname"));
             user.setUsername((String) row.get("username"));
-            user.setId( (Integer) row.get("id"));
+            user.setId((Integer) row.get("id"));
             System.out.println(row.get("id"));
             System.out.println("ONE MORE USER");
         }
-        
+
         System.out.println(user.getId());
 
         return user;
@@ -106,6 +96,10 @@ public class UserDAO extends Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        // update usernames list if user was created
+        if (rowsInserted>0)userDAO.selectAllUsernames();
+        
         return rowsInserted;
     }
 
@@ -140,6 +134,22 @@ public class UserDAO extends Database {
         return getUsersfromQuery(query);
     }
 
+    private void selectAllUsernames() {
+
+        String query = "SELECT `id`,`username` FROM `teamproject`.`Users`;";
+
+        Collection<Map<String, Object>> answer = getGenericSelect(query);
+        
+        idUsernamesMap.clear();
+
+        for (Map<String, Object> row : answer) {
+            idUsernamesMap.put((Integer) row.get("id"), (String) row.get("username"));
+            System.out.println(row.get("id") +" "+ row.get("username"));
+        }
+
+    }
+
+
     public HashMap<Integer, User> getUsersfromQuery(String query) {
 
         Collection<Map<String, Object>> answer = new ArrayList<>();
@@ -164,26 +174,24 @@ public class UserDAO extends Database {
 
         String query = "UPDATE `teamproject`.`Users` SET `fname` = '" + user.getFname()
                 + "' ,`lname` = '" + user.getLname() + "' WHERE `id` = '" + user.getId() + "';";
-        
+
         System.out.println(query);
         return execUpdateInsert(query);
-        
+
     }
-    
+
     public int deleteUser(User user) {
-        
+
         String query = "DELETE FROM `teamproject`.`Users` WHERE `id` = '" + user.getId() + "';";
-        
+
         System.out.println(query);
-        return execUpdateInsert(query);
-    }
-    
-    public int disableUser(User user) {
+        int rowsDeleted= 0;
+        rowsDeleted = execUpdateInsert(query);
         
-        // NOT YET IMPLEMENTED ON DB
-         String query = "UPDATE `Users` SET `active` = '" + "??" + "' WHERE `id` = '" + user.getId() + "';";
-        return execUpdateInsert(query);
+        // update usernames list if user was deleted
+        if (rowsDeleted>0)userDAO.selectAllUsernames();
         
+        return rowsDeleted;
     }
 
     public int updatePass(User user) {

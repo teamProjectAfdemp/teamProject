@@ -5,36 +5,37 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${curUser.username}'s Profile</title>
-        <%--<%@include file="links.jsp" %>--%>
+        <title>Route Planner</title>
         <c:import url="links.jsp"/>
-        <link rel="icon" href="/resources/img/RouteIcon.svg">
-
-        <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i&amp;subset=greek" rel="stylesheet"> 
 
     </head>
     <body>
         <!--nav menu-->
     <header >
         <%--<%@include file="navmenu.jsp" %>--%>
-         <c:import url="navmenu.jsp"/>
+        <c:import url="navmenu.jsp"/>
     </header>
 
-    <main class="container-fluid">
-        
-    <c:import url="${includeView}.jsp"/>
-      
-    <c:if test="${!empty modal}">
-        <c:import url="modal.jsp"/>
-        <script type="text/javascript" src="/resources/js/showmodal.js"></script>
-    </c:if>  
+    <main id="main" class="container-fluid">
+
+        <!--<input type="button" value="GO!" onclick="doAjaxCall();" />-->
+
+        <c:if test="${!empty includeView}">
+            <c:import url="${includeView}.jsp"/>
+        </c:if>  
+
+        <c:if test="${!empty modal}">
+            <c:import url="modal.jsp"/>
+            <script type="text/javascript" src="/resources/js/showmodal.js"></script>
+        </c:if>  
 
     </main>
 
     <footer>
-
+        <div class="d-md-flex flex-column justify-content-center align-items-center" style=" padding-top: 20px;">
+            <p> Copyright 2019 © By Team e-Xcursions afdemp</p>
+        </div>
     </footer>
-       
+
 </body>
 </html>

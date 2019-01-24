@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamproject.bean.User;
+import com.teamproject.db.RouteDAO;
 import com.teamproject.db.UserDAO;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +27,10 @@ public class WelcomeController {
     }
 
     @RequestMapping( {"/","/index"} )
-    public ModelAndView welcome(User user) {
+    public ModelAndView welcome(User user, HttpServletRequest request) {
         
         ModelAndView model = new ModelAndView("redirect:/login");
+        
         //String includedLinks;
         return model;
     }
@@ -36,7 +39,13 @@ public class WelcomeController {
     public ModelAndView loginGet(User user, HttpServletRequest request) {
         
         // if user's cookie does not match got to login page!
-        return new ModelAndView( (CookieHandler.validateCookie(request.getCookies())) ?"redirect:/profile": "login");
+        if (request.getCookies()!=null){
+            return new ModelAndView( (CookieHandler.validateCookie(request.getCookies())) ?"redirect:/profile": "login");
+        }
+        else{
+            return new ModelAndView("login");
+        }
+//        return new ModelAndView( (CookieHandler.validateCookie(request.getCookies())) ?"redirect:/profile": "login");
     }
 
     @PostMapping("/login")
