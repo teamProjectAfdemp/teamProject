@@ -143,7 +143,9 @@ public class RouteController {
             return new ModelAndView("redirect:/");
         }
         Route routeToEdit = RouteDAO.getInstance().getRouteById(id);
-
+        curUser = (User) session().getAttribute("curUser");
+        if (routeToEdit.getCreator_id() != curUser.getId()) return new ModelAndView("redirect:/allroutes");
+        
         ModelAndView model = new ModelAndView("template");
         model.addObject("includeView", "editrouteform");
         model.addObject("routeToEdit", routeToEdit);
