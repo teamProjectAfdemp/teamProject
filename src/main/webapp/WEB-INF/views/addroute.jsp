@@ -36,13 +36,13 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label id='dep-field'> <i class="far fa-calendar-alt"></i> Departure <br></label>
-                        <spring:bind path="route.dep_time">
+                    <spring:bind path="route.dep_time">
                         <input type='date' class="form-control" id='deptime' name="${status.expression}" value="${status.value}" required>
                     </spring:bind>
                 </div>
                 <div class="form-group col-md-6">
                     <label id='ar-field'><i class="far fa-calendar-alt"></i> Arrival<br></label>
-                        <spring:bind path="route.ar_time">
+                    <spring:bind path="route.ar_time">
                         <input type='date' class="form-control" id='artime'  name="${status.expression}" value="${status.value}" required>
                     </spring:bind>
                 </div>

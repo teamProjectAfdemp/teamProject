@@ -161,13 +161,13 @@ h1 {
     border: 3px solid black;
 }
 
-#routeSmallInfo h4{
+#routeSmallInfo h4 {
     padding: 1rem;
     padding-bottom: .1rem;
     font-size: 1.8rem;
 }
 
-#routeSmallInfo p{
+#routeSmallInfo p {
     padding: 1rem;
     font-size: 1.3rem;
     letter-spacing: 0px;
@@ -186,7 +186,7 @@ h1 {
     background-origin: padding-box;
 }
 
-#routeDetailsText h4{
+#routeDetailsText h4 {
     padding: 1rem;
     padding-bottom: .1rem;
     font-size: 1.8rem;
@@ -198,7 +198,7 @@ h1 {
     padding: 2rem 10rem 2rem 10rem;
 }
 
-#routeDetailsText p{
+#routeDetailsText p {
     padding: 1rem;
     font-size: 1.3rem;
     letter-spacing: 0px;
@@ -210,7 +210,7 @@ h1 {
     height: auto;
 }
 
-#routeChat div{
+#routeChat div {
     padding-top: 2rem; 
     padding-bottom: 2rem;
 }
@@ -248,7 +248,7 @@ footer {
     outline-offset: -12px;  
 }
 
-#textarea{
+#textarea {
     overflow-y:scroll;
     resize: none;
 }

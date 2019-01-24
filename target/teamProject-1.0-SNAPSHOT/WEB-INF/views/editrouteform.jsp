@@ -30,7 +30,7 @@
                     <input type="text" class="form-control" placeholder="${fn:escapeXml(routeToEdit.shortdesc)}" name="shortdesc" value="${fn:escapeXml(routeToEdit.shortdesc)}" >
                 </div>
             </div>
-            <div class="form-row">
+<!--            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label id='dep-field'> <i class="far fa-calendar-alt"></i>Current Departure <br></label>
                     <input type='text' class="form-control"  placeholder="${routeToEdit.dep_time}" readonly>
@@ -39,14 +39,14 @@
                     <label id='ar-field'><i class="far fa-calendar-alt"></i>Current Arrival<br></label>
                     <input type='text' class="form-control"  placeholder="${routeToEdit.ar_time}"  readonly>
                 </div>
-            </div>
+            </div>-->
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label id='dep-field'> <i class="far fa-calendar-alt"></i>New Departure <br></label>
+                    <label id='dep-field'> <i class="far fa-calendar-alt"></i>Departure <br></label>
                     <input type='date' class="form-control" id='deptime' name='dep_time'  value="${routeToEdit.dep_time}" >
                 </div>
                 <div class="form-group col-md-6">
-                    <label id='ar-field'><i class="far fa-calendar-alt"></i>New Arrival<br></label>
+                    <label id='ar-field'><i class="far fa-calendar-alt"></i>Arrival<br></label>
                     <input type='date' class="form-control" id='artime'  name='ar_time'  value="${routeToEdit.ar_time}" >
                 </div>
             </div>

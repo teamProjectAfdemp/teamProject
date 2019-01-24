@@ -1,4 +1,4 @@
-.row{
+.row {
     padding-bottom: 15px;
     margin: 0;
 }
@@ -26,19 +26,19 @@ nav a {
     padding: 10px;
 }
 
-#navbardiv li  {
+#navbardiv li {
     width: 180px;
     text-align: center;
     align-items: center;
 }
 
-#navbardiv li a{
+#navbardiv li a {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
     padding-top: 0;
     padding-bottom: 2rem;
 }
 
-#dropdownMenuButton{
+#dropdownMenuButton {
     margin-right: 135px;
 }
