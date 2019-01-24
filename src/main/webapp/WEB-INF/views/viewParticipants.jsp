@@ -5,27 +5,19 @@
     <div class="card card-body shadow ">
         <input id="countParticipants" value="${fn:length(routeParticipants)}" hidden/>
         <table class="table">
-            <!--    <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">User ID</th>
-                    </tr>
-                </thead>-->
             <tbody>
                 <% int i = 1;%>
                 <c:forEach items="${routeParticipants}" var="participant">
                     <c:if test="${participant.user_id == curUser.id}">
-                        <input id="joined" hidden value="true"/>
-                    </c:if>
-                    <tr>
-                        <td><%= i%></td>
-                        <td>${fn:escapeXml(usernamesMap[participant.user_id])}</td>
-
-                        <%i++;%>
-                    </tr>
-                </c:forEach>
+                    <input id="joined" hidden value="true"/>
+                </c:if>
+                <tr>
+                    <td><%= i%></td>
+                    <td>${fn:escapeXml(usernamesMap[participant.user_id])}</td>
+                    <%i++;%>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
 </div>
-                

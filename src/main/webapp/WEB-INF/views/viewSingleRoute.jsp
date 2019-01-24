@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
@@ -9,7 +8,6 @@
         <div class="card-body">
             <h4 class="card-title">${fn:escapeXml(route.title)}</h4>
             <p class="card-text">${fn:escapeXml(route.shortdesc)} </p>
-            <!--<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. </p>-->
             <div class="card-footer">
                 <p class="card-text"><small class="text-muted">Dep Time: ${fn:escapeXml(route.dep_time)}</small></p>
                 <p class="card-text"><small class="text-muted">Ar Time: ${fn:escapeXml(route.ar_time)}</small></p>
