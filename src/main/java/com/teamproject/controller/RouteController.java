@@ -84,14 +84,16 @@ public class RouteController {
 
         // Select route
         Route route = RouteDAO.getInstance().selectRouteById(id);
-
+        HttpSession session = session();
+       
         if (route == null) {
             redir.addFlashAttribute("modal", "Route does not exist!");
             return new ModelAndView("redirect:/");
         }
         model.addObject("aRoute", route);
 
-        HttpSession session = session();
+        session.setAttribute("route"+id, route);
+
         if (session.getAttribute("usernamesMap") == null) {
             session.setAttribute("usernamesMap", UserDAO.getInstance().getidUsernamesMap());
         }

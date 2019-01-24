@@ -144,24 +144,18 @@ public class ParticipantDAO extends Database implements ParticipantDAOinterface 
         return  participant;
     }
 
-    public HashMap<Integer, Participant> selectParticipantById(int id) {
+    public ArrayList<Integer> selectParticipantById(int id) {
 
-        String query = "SELECT * FROM `teamproject`.`Participants` WHERE `route_id` = '" + id + "';";
+        String query = "SELECT `user_id` FROM `teamproject`.`Participants` WHERE `route_id` = '" + id + "';";
 
         Collection<Map<String, Object>> answer;
         answer = getGenericSelect(query);
 
-        HashMap<Integer, Participant> participantsFound = new HashMap<>();
+        ArrayList<Integer> participantsIdsFound = new ArrayList();
 
-        for (Map<String, Object> row : answer) {
-            Participant participant = new Participant();
-            participant.setId((Integer) row.get("id"));
-            participant.setRoute_id((Integer) row.get("route_id"));
-            participant.setUser_id((Integer) row.get("user_id"));
-            participantsFound.put(participant.getId(), participant);
-        }
+        answer.forEach((row) -> participantsIdsFound.add( (Integer) row.get("user_id") ) );
 
-        return participantsFound;
+        return participantsIdsFound;
     }
     
     public boolean checkParticipant(int routeId, int userId){

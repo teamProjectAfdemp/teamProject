@@ -61,6 +61,17 @@ public class RouteDAO extends Database implements RouteDAOinterface {
 
         return routes;
     }
+    
+//    public int getRouteSeatsById(int id){
+//         String query = "SELECT `seats` FROM `teamproject`.`Routes` WHERE `id` = '" + id + "';";
+//         
+//         Collection<Map<String, Object>> answer = getGenericSelect(query);
+//         
+//         int seats = 0;
+//        answer..forEach( (row) -> seats = (Integer) row.get("id") );
+//        
+//        return seats;
+//    }
 
     @Override
     public List<Integer> selectJoinedRoutesIds(int userId) {
