@@ -96,7 +96,6 @@ public class UserDAO extends Database implements UserDAOinterface{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
         // update usernames list if user was created
         if (rowsInserted>0)userDAO.selectAllUsernames();
         return rowsInserted;

@@ -3,7 +3,6 @@ package com.teamproject.db.Interface;
 import com.teamproject.bean.User;
 import java.util.HashMap;
 
-
 public interface UserDAOinterface {
     public HashMap<Integer, String> getidUsernamesMap();
     public int checkUser(String username);

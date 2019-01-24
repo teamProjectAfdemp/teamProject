@@ -70,34 +70,32 @@ public class Database {
         }
         return rowsAffected;
     }
-
-//Method execute SELECT
-    public ResultSet execSelect(Connection conn, String query) {
-        ResultSet rs = null;
-        Statement st = null;
-        try {
-            st = conn.createStatement();
-            rs = st.executeQuery(query);
-        } catch (SQLException | NullPointerException ex) {
-            System.out.println("Execute query did not work!");
-        }
-        return rs;
-    }
-
-    public ResultSet execPrepSelect(Connection conn, String query, Map<String, String> paramMap) {
-        Connection conn2 = createConnection();
-        ResultSet rs = null;
-        PreparedStatement prest = null;
-
-        try {
-            prest = conn2.prepareStatement(query);
-//        prest.setString();
-//        rs = st.executeQuery(query);
-        } catch (SQLException | NullPointerException ex) {
-            System.out.println("Execute query did not work!");
-        }
-        return rs;
-    }
+//
+////Method execute SELECT
+//    public ResultSet execSelect(Connection conn, String query) {
+//        ResultSet rs = null;
+//        Statement st = null;
+//        try {
+//            st = conn.createStatement();
+//            rs = st.executeQuery(query);
+//        } catch (SQLException | NullPointerException ex) {
+//            System.out.println("Execute query did not work!");
+//        }
+//        return rs;
+//    }
+//
+//    public ResultSet execPrepSelect(Connection conn, String query, Map<String, String> paramMap) {
+//        Connection conn2 = createConnection();
+//        ResultSet rs = null;
+//        PreparedStatement prest = null;
+//
+//        try {
+//            prest = conn2.prepareStatement(query);
+//        } catch (SQLException | NullPointerException ex) {
+//            System.out.println("Execute query did not work!");
+//        }
+//        return rs;
+//    }
 
     public Collection<Map<String, Object>> getGenericSelect(String query) {
         Connection con = createConnection();
@@ -126,38 +124,38 @@ public class Database {
         return answer;
     }
 
-    public int genericInsert(String table, ArrayList<String> fields, ArrayList<String[]> values) {
-
-        int rowsInserted = 0;
-
-        StringBuilder query = new StringBuilder()
-                .append("INSERT INTO `" + table + "` (");
-
-        for (int i = 0; i < fields.size(); i++) {
-            query.append("`" + fields.get(i) + "`");
-            if (i < (fields.size() - 1)) {
-                query.append(",");
-            }
-        }
-        query.append(") VALUES ");
-
-        for (int i = 0; i < values.size(); i++) {
-            query.append("(");
-
-            for (int j = 0; j < values.get(i).length; j++) {
-                query.append("'" + values.get(i)[j] + "'");
-                if (j < (values.get(i).length - 1)) {
-                    query.append(",");
-                }
-            }
-            if (i < values.size() - 1) {
-                query.append(") ,");
-            } else {
-                query.append(");");
-            }
-        }
-        rowsInserted = execUpdateInsert(query.toString());
-
-        return rowsInserted;
-    }
+//    public int genericInsert(String table, ArrayList<String> fields, ArrayList<String[]> values) {
+//
+//        int rowsInserted = 0;
+//
+//        StringBuilder query = new StringBuilder()
+//                .append("INSERT INTO `" + table + "` (");
+//
+//        for (int i = 0; i < fields.size(); i++) {
+//            query.append("`" + fields.get(i) + "`");
+//            if (i < (fields.size() - 1)) {
+//                query.append(",");
+//            }
+//        }
+//        query.append(") VALUES ");
+//
+//        for (int i = 0; i < values.size(); i++) {
+//            query.append("(");
+//
+//            for (int j = 0; j < values.get(i).length; j++) {
+//                query.append("'" + values.get(i)[j] + "'");
+//                if (j < (values.get(i).length - 1)) {
+//                    query.append(",");
+//                }
+//            }
+//            if (i < values.size() - 1) {
+//                query.append(") ,");
+//            } else {
+//                query.append(");");
+//            }
+//        }
+//        rowsInserted = execUpdateInsert(query.toString());
+//
+//        return rowsInserted;
+//    }
 }

@@ -47,33 +47,19 @@ public class PostDAO extends Database implements PostDAOinterface{
     }
 
     @Override
-    public void updatePost(int id, int route_id, int user_id, String post) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deletePost() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deletePostById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public HashMap<Integer, Post> selectAllPosts() {
         String query = "SELECT * FROM `teamproject`.`Posts`;";
         return getPostfromQuery(query);
     }
     
+    @Override
     public HashMap<Integer, Post> selectPostsByRouteId(int id) {
-       String query = "SELECT * FROM `teamproject`.`Posts` WHERE `route_id` = '"+ id + "' ORDER BY `created` ASC ;"; 
-       
+       String query = "SELECT * FROM `teamproject`.`Posts` WHERE `route_id` = '"+ id + "' ORDER BY `created` ASC ;";        
        return getPostfromQuery(query);
     }
     
+    @Override
     public HashMap<Integer, Post> getPostfromQuery(String query) {
-
         Collection<Map<String, Object>> answer = new ArrayList<>();
         answer = getGenericSelect(query);
 
@@ -91,9 +77,9 @@ public class PostDAO extends Database implements PostDAOinterface{
         return postFound;
     }    
     
+    @Override
     public Post getPostById(int id) {
         Post post = new Post();
-        
         String query = ("SELECT * FROM `teamproject`.`Posts` WHERE `id` = '" + id + "';");
 
         Collection<Map<String, Object>> answer;
@@ -105,25 +91,6 @@ public class PostDAO extends Database implements PostDAOinterface{
             post.setUser_id((Integer) row.get("user_id"));
             post.setPost((String) row.get("post"));
         }
-
-
         return post;
-    }
-    
-    public int updatePost(Post post) {
-
-        String query = "UPDATE `teamproject`.`Posts` SET `post` = '" + post.getPost() +
-                "' WHERE `id` = '" + post.getId() + "';";
-        
-        System.out.println(query);
-        return execUpdateInsert(query);
-    }
-    
-    public int deletePost(Post post) {
-        
-        String query = "DELETE FROM `teamproject`.`Posts` WHERE `id` = '" + post.getId() + "';";
-        
-        System.out.println(query);
-        return execUpdateInsert(query);
     }
 }
