@@ -3,33 +3,12 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        
+        $("#joinButton").on("click", '');
+        $('#joinButton').prop('disabled', true);
         doParticipantsAjaxCall();
         doPostsAjaxCall();
 //        $("#createpost").on("click", createPostAjaxCall);
-
-//        $("#loader").empty();
     });
-
-
-    function createPostAjaxCall() {
-        $.ajax({
-            type: "POST",
-            url: '/addpost',
-            data: 'newpost',
-            success: function (data) {
-                console.log('success', data);
-            },
-            error: function (exception) {
-                alert('Exeption:' + exception);
-            },
-            complete: function () {
-                $("#routePosts").empty();
-                doPostsAjaxCall();
-            }
-        });
-//        e.preventDefault();
-    };
 
     function doPostsAjaxCall() {
         $.ajax({
@@ -37,9 +16,6 @@
             url: '/posts/${aRoute.id}',
             success: function (response) {
                 $('#routePosts').html(response);
-            },
-            complete: function () {
-                $("#createpost").on("click", createPostAjaxCall);
             }
         });
     };
@@ -59,22 +35,30 @@
     };
 
     function joinAjaxCall() {
+    $("#joinButton").on("click", '');
+    $('#joinButton').prop('disabled', true);
         $.ajax({
             type: "GET",
             url: '/join${aRoute.id}',
             success: function (response) {
                 $('#routeParticipants').empty;
+            },
+            complete: function () {
                 doParticipantsAjaxCall();
             }
         });
     };
 
     function exitAjaxCall() {
+    $("#joinButton").on("click", '');
+    $('#joinButton').prop('disabled', true);
         $.ajax({
             type: "GET",
             url: '/exit${aRoute.id}',
             success: function (response) {
                 $('#routeParticipants').empty;
+            },
+            complete: function () {
                 doParticipantsAjaxCall();
             }
         });
@@ -88,15 +72,37 @@
             if (left > 0) {
                 $("#joinButton").html("<h4> JOIN !</h4>" + left + " out of " + seats + "<br> slots open.");
                 $("#joinButton").on("click", joinAjaxCall);
+                $('#joinButton').prop('disabled', false);
             } else {
                 $("#joinButton").html("<h4> FULL </h4> all " + seats + "<br> slots are closed.");
                 $("#joinButton").on("click", '');
+                $('#joinButton').prop('disabled', false);
+                
             }
         } else {
             $("#joinButton").html("<h4> EXIT </h4>" + left + " out of " + seats + "<br> slots open.");
             $("#joinButton").on("click", exitAjaxCall);
+            $('#joinButton').prop('disabled', false);
         }
     };
 
+//    function createPostAjaxCall() {
+//        $.ajax({
+//            type: "POST",
+//            url: '/addpost',
+//            data: 'newpost',
+//            success: function (data) {
+//                console.log('success', data);
+//            },
+//            error: function (exception) {
+//                alert('Exeption:' + exception);
+//            },
+//            complete: function () {
+//                $("#routePosts").empty();
+//                doPostsAjaxCall();
+//            }
+//        });
+//        e.preventDefault();
+//    };
 
 </script>
