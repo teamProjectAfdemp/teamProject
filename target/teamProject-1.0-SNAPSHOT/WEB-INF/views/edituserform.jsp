@@ -24,6 +24,7 @@
                 <div class="row">
                     <button type="submit" class="btn btn-outline-secondary p-2 w-100">Update</button>
                 </div>
+            </form>
         </div>
     </div>
 </div>

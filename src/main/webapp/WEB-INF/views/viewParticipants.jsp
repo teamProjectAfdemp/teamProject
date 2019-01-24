@@ -10,13 +10,13 @@
                 <c:forEach items="${routeParticipants}" var="participant">
                     <c:if test="${participant.user_id == curUser.id}">
                     <input id="joined" hidden value="true"/>
-                </c:if>
-                <tr>
-                    <td><%= i%></td>
-                    <td>${fn:escapeXml(usernamesMap[participant.user_id])}</td>
-                    <%i++;%>
-                </tr>
-            </c:forEach>
+                    </c:if>
+                        <tr>
+                            <td><%= i%></td>
+                            <td>${fn:escapeXml(usernamesMap[participant.user_id])}</td>
+                            <%i++;%>
+                        </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>
